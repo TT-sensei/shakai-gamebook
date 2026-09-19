@@ -10,7 +10,12 @@ const KOME_ZUKURI_DATA = {
     lead: "きみは米農家。春の準備から秋の収穫まで、<br>一年間の判断を体験しよう。",
     endingLabel: "あなたの一年",
     endingText: "一年間、あなたはたくさんの判断をしながら米づくりを進めました。今回は {{eventCount}} 件のできごとを経験しました。",
-    footerNote: "むずかしい判断に「絶対の正解」はありません。結果を見て、次はどうするか考えてみよう。"
+    footerNote: "むずかしい判断に「絶対の正解」はありません。結果を見て、次はどうするか考えてみよう。",
+    navi: [
+      { src: "https://tt-sensei.github.io/edu-kit/assets/navi/riku.png", message: "田んぼの様子をよく見て、考えてみよう。" },
+      { src: "https://tt-sensei.github.io/edu-kit/assets/navi/sora.png", message: "どの方法にも、よさと課題がありそうだね。" },
+      { src: "https://tt-sensei.github.io/edu-kit/assets/navi/kai.png", message: "この選択のあと、何が起こるか考えてみよう。" }
+    ]
   },
   REQUIRED_LEARNING: {
   natural: "自然条件に合わせて仕事をする",
