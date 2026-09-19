@@ -61,47 +61,50 @@ function clearSave(){
   try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
 }
 
+const STATUS_META={water:{label:"水管理",icon:"💧"},growth:{label:"稲の育ち",icon:"🌾"},efficiency:{label:"作業効率",icon:"⚙️"},cooperation:{label:"地域との協力",icon:"🤝"},quality:{label:"米の品質",icon:"📦"}};
+const LEARNING_TO_STATUS={natural:"growth",water:"water",observe:"growth",tech:"efficiency",quality:"quality",society:"cooperation"};
+function initialStatus(){return{water:3,growth:3,efficiency:3,cooperation:3,quality:3};}
+function effectForChoice(scene,index){
+  const keys=[...(new Set((scene.requiredLearning||[]).map(k=>LEARNING_TO_STATUS[k]).filter(Boolean)))];
+  if(!keys.length)return{};
+  if(keys.length===1)return{[keys[0]]:index===1?1:-1};
+  const e={};
+  if(index===0){e[keys[0]]=-1;e[keys[1]]=1;}
+  else if(index===1){e[keys[0]]=1;e[keys[1]]=1;}
+  else{e[keys[0]]=1;e[keys[1]]=-1;}
+  return e;
+}
+function applyEffects(effects){Object.keys(STATUS_META).forEach(k=>{state.status[k]=Math.max(0,Math.min(5,state.status[k]+Number(effects[k]||0)));});}
+function failedStatus(){return Object.keys(STATUS_META).find(k=>state.status[k]<=0)||null;}
 function startNewGame(){
-  state = { timeline: buildTimeline(GAME_DATA), index:0, log:[], phase:"scene" };
-  saveState();
-  render();
+  state={timeline:buildTimeline(GAME_DATA),index:0,log:[],phase:"scene",status:initialStatus(),lastChoice:null,failedStatus:null};
+  saveState();render();
 }
 function resumeGame(){
   const s = loadSave();
   if(!s){ startNewGame(); return; }
   if(s.gameId && s.gameId !== GAME_DATA.meta.id) { startNewGame(); return; }
-  state = { timeline: s.timelineData, index: s.index, log: s.log, phase:"scene", lastChoice:null };
+  state={timeline:s.timelineData,index:s.index,log:s.log,phase:"scene",lastChoice:null,status:s.status||initialStatus(),failedStatus:s.failedStatus||null};
   render();
 }
 
 function currentScene(){ return state.timeline[state.index]; }
 
 function chooseOption(choiceIndex){
-  const scene = currentScene();
-  const choice = scene.choices[choiceIndex];
-  state.log.push({
-    stage: scene.stage,
-    title: scene.title || scene.eventName,
-    kind: scene.kind,
-    choiceText: choice.text,
-    result: choice.result
-  });
-  state.lastChoice = choice;
-  state.phase = "result";
-  saveState();
-  render();
+  const scene=currentScene(),choice=scene.choices[choiceIndex];
+  const effects=choice.effects||effectForChoice(scene,choiceIndex),before={...state.status};
+  applyEffects(effects);
+  state.log.push({stage:scene.stage,title:scene.title||scene.eventName,kind:scene.kind,choiceText:choice.text,result:choice.result,effects,before,after:{...state.status}});
+  state.lastChoice={...choice,effects,before,after:{...state.status}};
+  state.failedStatus=failedStatus();state.phase="result";saveState();render();
 }
 
 function goNext(){
+  if(state.failedStatus){state.phase="gameover";clearSave();render();return;}
   state.index++;
-  if(state.index >= state.timeline.length){
-    state.phase = "end";
-    clearSave();
-  }else{
-    state.phase = "scene";
-  }
-  saveState();
-  render();
+  if(state.index>=state.timeline.length){state.phase="end";clearSave();}
+  else state.phase="scene";
+  saveState();render();
 }
 
 /* =========================================================
@@ -131,6 +134,7 @@ function render(){
   app.innerHTML = "";
   if(!state){ renderTitle(); return; }
   if(state.phase==="end"){ renderEnding(); return; }
+  if(state.phase==="gameover"){ renderGameOver(); return; }
 
   const scene = currentScene();
   const stageInfo = GAME_DATA.STAGES[scene.stage];
@@ -161,6 +165,7 @@ function render(){
       guide.innerHTML = `<div class="navi-bubble">${navi.message || "どうするか、考えてみよう。"}</div><img src="${navi.src}" alt="" class="navi-img">`;
       main.appendChild(guide);
     }
+    main.appendChild(renderStatus());
     const card = document.createElement("div");
     card.className = "scene-card";
     card.innerHTML = `
@@ -191,6 +196,7 @@ function render(){
       guide.innerHTML = `<div class="navi-bubble">${navi.resultMessage || "結果を見て、次の判断につなげよう。"}</div><img src="${navi.src}" alt="" class="navi-img">`;
       main.appendChild(guide);
     }
+    main.appendChild(renderStatus());
     const card = document.createElement("div");
     card.className = "result-card";
     card.innerHTML = `
@@ -198,6 +204,7 @@ function render(){
         <h3>結果</h3>
         <p>${c.result}</p>
       </div>
+      ${renderEffectSummary(c.effects)}
       <div class="point-block">
         <h3>ここがポイント</h3>
         <p>${c.point || "この選択によって、別の結果や課題が生まれました。"}</p>
@@ -214,6 +221,33 @@ function render(){
   }
 
   app.appendChild(main);
+}
+
+
+function renderStatus(){
+  const box=document.createElement("div");box.className="status-panel";
+  box.innerHTML='<div class="status-title">今年の米づくり</div><div class="status-grid">'+Object.keys(STATUS_META).map(k=>{
+    const m=STATUS_META[k],v=state.status[k];
+    return '<div class="status-item"><div class="status-label"><span>'+m.icon+'</span>'+m.label+'</div><div class="status-bars">'+Array.from({length:5},(_,i)=>'<span class="status-dot '+(i<v?'on':'')+'"></span>').join('')+'</div></div>';
+  }).join('')+'</div>';return box;
+}
+function renderEffectSummary(effects){
+  if(!effects)return '';
+  const html=Object.keys(STATUS_META).filter(k=>effects[k]).map(k=>{
+    const d=effects[k],m=STATUS_META[k];
+    return '<span class="effect '+(d>0?'up':'down')+'">'+m.icon+' '+(d>0?'+1':'−1')+'</span>';
+  }).join('');
+  return html?'<div class="effect-summary"><span class="effect-title">今回の変化</span>'+html+'</div>':'';
+}
+function renderGameOver(){
+  const bar=document.createElement("div");bar.className="stagebar";bar.style.background="#5B5148";
+  bar.innerHTML='<div class="row"><div class="season">今年の米づくり</div><div class="month">'+GAME_DATA.meta.title+'</div></div>';app.appendChild(bar);
+  const main=document.createElement("main"),failed=STATUS_META[state.failedStatus];
+  const card=document.createElement("div");card.className="result-card gameover-card";
+  card.innerHTML='<div class="gameover-mark">今年はここで終了</div><h2>'+failed.icon+' '+failed.label+' が0になりました</h2><p>このまま米づくりを続けるのは難しい状態です。けれど、失敗した判断からも、米づくりの工夫や課題を学ぶことができます。</p><div class="status-final">'+Object.keys(STATUS_META).map(k=>'<div><span>'+STATUS_META[k].icon+'</span><b>'+STATUS_META[k].label+'</b><strong>'+state.status[k]+'</strong></div>').join('')+'</div>';
+  main.appendChild(card);
+  const reflect=document.createElement("div");reflect.className="scene-card";reflect.innerHTML='<p class="reflect-q">どの判断が、この結果につながったと思いますか？</p><textarea class="reflect" placeholder="学びノートに書いてみよう。"></textarea>';main.appendChild(reflect);
+  const retry=document.createElement("button");retry.className="next-btn";retry.textContent="もう一度、米づくりに挑戦する";retry.onclick=startNewGame;main.appendChild(retry);app.appendChild(main);
 }
 
 function renderTitle(){
