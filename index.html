@@ -7,31 +7,81 @@
 <link rel="stylesheet" href="css/style.css">
 <style>
 .portal{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px 18px}
-.portal-inner{width:100%;max-width:760px}
+.portal-inner{width:100%;max-width:820px}
 .portal-kicker{font-size:13px;color:var(--ink-soft);letter-spacing:.08em}
-.portal h1{font-size:30px;margin:8px 0;color:var(--paddy-dark)}
-.portal-lead{line-height:1.8;color:var(--ink-soft);margin:0 0 24px}
+.portal h1{font-size:32px;margin:8px 0;color:var(--paddy-dark)}
+.portal-lead{line-height:1.8;color:var(--ink-soft);margin:0 0 26px}
+.portal-hero{background:rgba(255,255,255,.82);border:1px solid rgba(78,124,74,.12);border-radius:20px;padding:22px 22px 20px;box-shadow:var(--card-shadow);margin-bottom:22px}
+.portal-hero-label{font-size:12px;color:var(--paddy);letter-spacing:.08em;margin-bottom:5px}
+.portal-hero-title{font-size:20px;font-weight:700;color:var(--ink);margin:0 0 6px}
+.portal-hero-text{font-size:14px;line-height:1.75;color:var(--ink-soft);margin:0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 2px 10px}
+.section-head h2{font-size:18px;margin:0;color:var(--paddy-dark)}
+.section-head p{font-size:12px;color:var(--ink-soft);margin:0}
 .game-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .game-card{display:block;text-decoration:none;color:inherit;background:#fff;border-radius:16px;padding:20px;box-shadow:var(--card-shadow);border:2px solid transparent;transition:.15s}
-.game-card:hover{border-color:var(--paddy)}
+.game-card:hover{border-color:var(--paddy);transform:translateY(-1px)}
+.game-card:focus-visible{outline:3px solid rgba(78,124,74,.28);outline-offset:3px}
 .game-card .icon{font-size:38px}
-.game-card h2{font-size:19px;margin:10px 0 6px}
+.game-card h3{font-size:19px;margin:10px 0 6px}
 .game-card p{font-size:14px;line-height:1.7;color:var(--ink-soft);margin:0}
-.future{opacity:.58}
-.portal-note{font-size:12px;color:var(--ink-soft);margin-top:24px}
+.game-card .card-link{display:inline-block;margin-top:12px;font-size:13px;color:var(--paddy-dark);font-weight:700}
+.future{opacity:.58;cursor:default}
+.future:hover{border-color:transparent;transform:none}
+.portal-note{font-size:12px;line-height:1.6;color:var(--ink-soft);margin:22px 2px 0}
+.portal-footer{font-size:11px;color:var(--ink-soft);text-align:center;margin-top:30px}
+@media (min-width:700px){
+  .portal{padding:42px 28px}
+  .portal-hero{padding:24px 26px}
+  .portal h1{font-size:36px}
+}
+@media (prefers-reduced-motion:reduce){
+  .game-card{transition:none}
+}
 </style>
 </head>
 <body>
-<div class="portal"><div class="portal-inner">
-<div class="portal-kicker">TT-sensei / SOCIAL GAMEBOOK</div>
-<h1>社会科ゲームブック</h1>
-<p class="portal-lead">読む。考える。選ぶ。<br>社会の中で、人々がどんな判断や工夫をしているのかを体験するゲームブックです。</p>
-<div class="game-grid">
-<a class="game-card" href="kome-zukuri.html"><div class="icon">🌾</div><h2>米づくり</h2><p>春の準備から収穫・出荷まで。自然や天候、技術、地域との関わりを考えながら一年を体験します。</p></a>
-<div class="game-card future"><div class="icon">🚗</div><h2>自動車づくり</h2><p>準備中。部品、組み立て、品質、安全、輸送などを体験します。</p></div>
-<div class="game-card future"><div class="icon">📰</div><h2>ニュースづくり</h2><p>準備中。情報を集め、確かめ、選び、伝えるまでを体験します。</p></div>
+<div class="portal">
+  <main class="portal-inner">
+    <div class="portal-kicker">TT-sensei / SOCIAL GAMEBOOK</div>
+    <h1>社会科ゲームブック</h1>
+    <p class="portal-lead">読む。考える。選ぶ。<br>社会の中で、人々がどんな判断や工夫をしているのかを体験するゲームブックです。</p>
+
+    <section class="portal-hero" aria-label="ゲームブックの遊び方">
+      <div class="portal-hero-label">GAMEBOOK</div>
+      <p class="portal-hero-title">正解を当てるのではなく、選んで、その先を体験する。</p>
+      <p class="portal-hero-text">場面を読み、考え、選びます。選んだ結果から、次の判断につなげながら社会のしくみを見ていきます。</p>
+    </section>
+
+    <div class="section-head">
+      <h2>ゲームを選ぶ</h2>
+      <p>社会科の学習テーマ</p>
+    </div>
+
+    <div class="game-grid">
+      <a class="game-card" href="kome-zukuri.html">
+        <div class="icon">🌾</div>
+        <h3>米づくり</h3>
+        <p>春の準備から収穫・出荷まで。自然や天候、技術、地域との関わりを考えながら一年を体験します。</p>
+        <span class="card-link">ゲームをはじめる →</span>
+      </a>
+
+      <div class="game-card future" aria-disabled="true">
+        <div class="icon">🚗</div>
+        <h3>自動車づくり</h3>
+        <p>準備中。部品、組み立て、品質、安全、輸送などを体験します。</p>
+      </div>
+
+      <div class="game-card future" aria-disabled="true">
+        <div class="icon">📰</div>
+        <h3>ニュースづくり</h3>
+        <p>準備中。情報を集め、確かめ、選び、伝えるまでを体験します。</p>
+      </div>
+    </div>
+
+    <p class="portal-note">今後、社会科のさまざまな単元をこの入口から追加していけます。ゲーム本体とシナリオデータは分離して管理しています。</p>
+    <div class="portal-footer">TT-sensei / 社会科ゲームブック</div>
+  </main>
 </div>
-<p class="portal-note">※ゲーム本体とシナリオデータを分離し、今後の単元追加に対応できる構造にしています。</p>
-</div></div>
 </body>
 </html>
