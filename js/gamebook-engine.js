@@ -1,7 +1,8 @@
 /* =========================================================
    ゲームエンジン
    ========================================================= */
-const SAVE_KEY = "shakai_gamebook_save_v1";
+const SAVE_KEY_PREFIX = "shakai_gamebook_save_v1_";
+let SAVE_KEY = SAVE_KEY_PREFIX + "default";
 
 function weightedPick(pool, n){
   // 重み付き非復元抽出（Math.random()^(1/weight) トリック）
@@ -36,13 +37,14 @@ function buildTimeline(data){
 }
 
 let state = null;
-let GAME_DATA = null; // {timeline, index, log:[], phase:'scene'|'result'|'end', lastChoice:null}
+let GAME_DATA = null; // {meta, timeline, index, log:[], phase:'scene'|'result'|'end', lastChoice:null}
 
 function saveState(){
   try{
     localStorage.setItem(SAVE_KEY, JSON.stringify({
       timelineIds: state.timeline.map(s=>s.id),
       timelineData: state.timeline,
+      gameId: GAME_DATA.meta.id,
       index: state.index,
       log: state.log
     }));
@@ -67,7 +69,8 @@ function startNewGame(){
 function resumeGame(){
   const s = loadSave();
   if(!s){ startNewGame(); return; }
-  state = { timeline: s.timelineData, index: s.index, log: s.log, phase:"scene" };
+  if(s.gameId && s.gameId !== GAME_DATA.meta.id) { startNewGame(); return; }
+  state = { timeline: s.timelineData, index: s.index, log: s.log, phase:"scene", lastChoice:null };
   render();
 }
 
@@ -123,7 +126,7 @@ function render(){
   bar.innerHTML = `
     <div class="row">
       <div class="season">${stageInfo.label}</div>
-      <div class="month">米づくりゲームブック</div>
+      <div class="month">${GAME_DATA.meta.title}</div>
     </div>
     <div class="dots">
       ${GAME_DATA.STAGE_ORDER.map((k,i)=>`<div class="dot ${i<stageIdx?"done":""} ${i===stageIdx?"now":""}"></div>`).join("")}
@@ -185,8 +188,8 @@ function renderTitle(){{
   wrap.className = "center-screen";
   wrap.innerHTML = `
     <div class="title-emblem">🌾</div>
-    <h1 class="title-jp">米づくりゲームブック</h1>
-    <p class="title-sub">きみは米農家。春の準備から秋の収穫まで、<br>一年間の判断を体験しよう。</p>
+    <h1 class="title-jp">${GAME_DATA.meta.title}</h1>
+    <p class="title-sub">${GAME_DATA.meta.lead}</p>
   `;
   const startBtn = document.createElement("button");
   startBtn.className = "primary-btn";
@@ -208,7 +211,7 @@ function renderEnding(){{
   const bar = document.createElement("div");
   bar.className = "stagebar";
   bar.style.background = "#3A4A3E";
-  bar.innerHTML = `<div class="row"><div class="season">あなたの一年</div><div class="month">米づくりゲームブック</div></div>`;
+  bar.innerHTML = `<div class="row"><div class="season">${GAME_DATA.meta.endingLabel}</div><div class="month">${GAME_DATA.meta.title}</div></div>`;
   app.appendChild(bar);
 
   const main = document.createElement("main");
@@ -268,7 +271,7 @@ function renderEnding(){{
 
   const footer = document.createElement("footer");
   footer.className = "note";
-  footer.textContent = "むずかしい判断に「絶対の正解」はありません。結果を見て、次はどうするか考えてみよう。";
+  footer.textContent = GAME_DATA.meta.footerNote;
   app.appendChild(footer);
 }
 
