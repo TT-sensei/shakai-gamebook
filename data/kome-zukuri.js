@@ -3,6 +3,13 @@
  * 将来は自動車づくり・ニュースづくりなどを別データとして追加できます。
  */
 const KOME_ZUKURI_DATA = {
+  meta: {
+    id: "kome-zukuri",
+    title: "米づくりゲームブック",
+    lead: "きみは米農家。春の準備から秋の収穫まで、<br>一年間の判断を体験しよう。",
+    endingLabel: "あなたの一年",
+    footerNote: "むずかしい判断に「絶対の正解」はありません。結果を見て、次はどうするか考えてみよう。"
+  },
   REQUIRED_LEARNING: {
   natural: "自然条件に合わせて仕事をする",
   water:   "水を適切に管理する",
