@@ -129,7 +129,9 @@ function hashString(str){ let h=0; for(let i=0;i<str.length;i++) h=((h<<5)-h)+st
 function renderSceneImage(scene){
   const image = scene.image || (GAME_DATA.meta.stageImages && GAME_DATA.meta.stageImages[scene.stage]);
   if(!image) return "";
-  return '<figure class="scene-image"><img src="'+image.src+'" alt="" loading="eager"><figcaption><span>'+image.credit+'</span> <a href="'+image.url+'" target="_blank" rel="noopener">出典</a></figcaption></figure>';
+  const credit = image.credit ? '<span>'+image.credit+'</span>' : '';
+  const source = image.url ? ' <a href="'+image.url+'" target="_blank" rel="noopener">出典・ライセンス</a>' : '';
+  return '<figure class="scene-image"><img src="'+image.src+'" alt="" loading="eager"><figcaption>'+credit+source+'</figcaption></figure>';
 }
 
 function render(){
@@ -226,8 +228,8 @@ function render(){
 }
 
 
-function renderStatus(){
-  const box=document.createElement("div");box.className="status-panel";
+function renderStatus(final=false){
+  const box=document.createElement("div");box.className="status-panel"+(final?" final-status-panel":"");
   box.innerHTML='<div class="status-title">今年の米づくり</div><div class="status-grid">'+Object.keys(STATUS_META).map(k=>{
     const m=STATUS_META[k],v=state.status[k];
     return '<div class="status-item"><div class="status-label"><span>'+m.icon+'</span>'+m.label+'</div><div class="status-bars">'+Array.from({length:5},(_,i)=>'<span class="status-dot '+(i<v?'on':'')+'"></span>').join('')+'</div></div>';
@@ -293,7 +295,15 @@ function renderEnding(){
     <span class="badge">${GAME_DATA.meta.title} クリア</span>
     <p class="scene-text">${GAME_DATA.meta.endingText.replace("{{eventCount}}", eventCount)}</p>
   `;
-  main.appendChild(renderStatus());
+  const finalTitle = document.createElement("div");
+  finalTitle.className = "final-status-heading";
+  finalTitle.innerHTML = "<span>一年間の結果</span><small>あなたの選択が、この一年の米づくりにどう影響したか</small>";
+  main.appendChild(finalTitle);
+  const finalTitle = document.createElement("div");
+  finalTitle.className = "final-status-heading";
+  finalTitle.innerHTML = "<span>一年間の結果</span><small>あなたの選択が、この一年の米づくりにどう影響したか</small>";
+  main.appendChild(finalTitle);
+  main.appendChild(renderStatus(true));
   main.appendChild(summary);
 
   const logCard = document.createElement("div");
