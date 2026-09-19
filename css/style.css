@@ -469,3 +469,5 @@
 .sequence-correct{font-size:18px;font-weight:800;color:var(--paddy-dark);margin-bottom:2px}
 .sequence-feedback{margin:0;font-size:16px;line-height:1.8}
 .sequence-next{background:var(--gold)}
+
+.sequence-hint{margin-top:14px;padding:11px 13px;border-radius:12px;background:#f7f8f4;border:1px solid rgba(182,92,56,.22);color:var(--warn);font-size:14px;line-height:1.6}
