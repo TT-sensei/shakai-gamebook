@@ -299,10 +299,6 @@ function renderEnding(){
   finalTitle.className = "final-status-heading";
   finalTitle.innerHTML = "<span>一年間の結果</span><small>あなたの選択が、この一年の米づくりにどう影響したか</small>";
   main.appendChild(finalTitle);
-  const finalTitle = document.createElement("div");
-  finalTitle.className = "final-status-heading";
-  finalTitle.innerHTML = "<span>一年間の結果</span><small>あなたの選択が、この一年の米づくりにどう影響したか</small>";
-  main.appendChild(finalTitle);
   main.appendChild(renderStatus(true));
   main.appendChild(summary);
 
