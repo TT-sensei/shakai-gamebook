@@ -12,9 +12,12 @@ const KOME_ZUKURI_DATA = {
     endingText: "一年間、あなたはたくさんの判断をしながら米づくりを進めました。今回は {{eventCount}} 件のできごとを経験しました。",
     footerNote: "むずかしい判断に「絶対の正解」はありません。結果を見て、次はどうするか考えてみよう。",
     navi: [
-      { src: "https://tt-sensei.github.io/edu-kit/assets/navi/riku.png", message: "田んぼの様子をよく見て、考えてみよう。" },
-      { src: "https://tt-sensei.github.io/edu-kit/assets/navi/sora.png", message: "どの方法にも、よさと課題がありそうだね。" },
-      { src: "https://tt-sensei.github.io/edu-kit/assets/navi/kai.png", message: "この選択のあと、何が起こるか考えてみよう。" }
+      { src: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/03-thinking.png", eventSrc: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/05-surprised.png", resultSrc: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/07-encouraging.png", message: "田んぼの様子をよく見て、考えてみよう。" },
+      { src: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/03-thinking.png", eventSrc: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/06-troubled.png", resultSrc: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/07-encouraging.png", message: "どの方法にも、よさと課題がありそうだね。" },
+      { src: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/kai/expressions/04-idea.png", eventSrc: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/kai/expressions/05-surprised.png", resultSrc: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/kai/expressions/10-confident.png", message: "この選択のあと、何が起こるか考えてみよう。" },
+      { src: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/saku/expressions/03-thinking.png", eventSrc: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/saku/expressions/06-troubled.png", resultSrc: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/saku/expressions/07-encouraging.png", message: "「どうして？」を一つ見つけてみよう。" },
+      { src: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/tsuki/expressions/04-idea.png", eventSrc: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/tsuki/expressions/05-surprised.png", resultSrc: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/tsuki/expressions/08-celebrating.png", message: "自然と人の工夫に注目してみよう。" },
+      { src: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/nami/expressions/03-thinking.png", eventSrc: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/nami/expressions/06-troubled.png", resultSrc: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/nami/expressions/07-encouraging.png", message: "選んだ理由を、あとで説明できるかな？" }
     ]
   },
   REQUIRED_LEARNING: {
