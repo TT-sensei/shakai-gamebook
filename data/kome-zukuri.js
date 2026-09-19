@@ -76,7 +76,7 @@ const KOME_ZUKURI_DATA = {
     {
       id:"req_spring_3", title:"田植え",
       text:"いよいよ田植えです。地域の人たちと協力しながら、苗を田んぼに植えていきます。",
-      image:{"src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Rice_transplanter_working_in_a_paddy_field,_Kameoka_-_May_19,_2005.jpg","credit":"cpy / Wikimedia Commons・CC BY-SA 2.0","url":"https://commons.wikimedia.org/wiki/File:Rice_transplanter_working_in_a_paddy_field,_Kameoka_-_May_19,_2005.jpg"},
+      image:{"src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Rice_transplanter_working_in_a_paddy_field,_Kameoka_-_May_19,_2005.jpg","credit":"Peggy (Pei-Yi) Chen / Wikimedia Commons・CC BY-SA 2.0","url":"https://commons.wikimedia.org/wiki/File:Rice_transplanter_working_in_a_paddy_field,_Kameoka_-_May_19,_2005.jpg"},
       requiredLearning:["tech","society"],
       educationalIntent:"田植えには機械や人手、地域のつながりが関わることを考えさせる。",
       choices:[
@@ -152,7 +152,7 @@ const KOME_ZUKURI_DATA = {
     {
       id:"req_autumn_2", title:"稲刈り",
       text:"収穫の日になりました。コンバイン（収穫機）を使って稲を刈り取ります。",
-      image:{"src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Combine_harvester_Kyoto_JPN_001.jpg","credit":"ignis / Wikimedia Commons・CC BY-SA 2.5","url":"https://commons.wikimedia.org/wiki/File:Combine_harvester_Kyoto_JPN_001.jpg"},
+      image:{"src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Combine_harvester_Kyoto_JPN_001.jpg","credit":"ignis / Wikimedia Commons・CC BY-SA 3.0","url":"https://commons.wikimedia.org/wiki/File:Combine_harvester_Kyoto_JPN_001.jpg"},
       requiredLearning:["tech"],
       educationalIntent:"機械化によって収穫の効率が上がる一方、機械の点検が欠かせないことを考えさせる。",
       choices:[
@@ -172,7 +172,7 @@ const KOME_ZUKURI_DATA = {
     {
       id:"req_post_1", title:"乾燥・もみすり",
       text:"収穫した稲は、そのままでは食べられません。乾燥させ、もみすり（もみから米を取り出す作業）を行います。",
-      image:{"src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Rice_drying.jpg","credit":"MartijnL / Wikimedia Commons・CC BY-SA 3.0","url":"https://commons.wikimedia.org/wiki/File:Rice_drying.jpg"},
+      image:{"src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Rice_drying.jpg","credit":"MartijnL / Wikimedia Commons・CC BY-SA 3.0 NL","url":"https://commons.wikimedia.org/wiki/File:Rice_drying.jpg"},
       requiredLearning:["quality"],
       educationalIntent:"品質を保つための乾燥・調整作業の重要性を考えさせる。",
       choices:[
