@@ -211,6 +211,7 @@ const KOME_ZUKURI_DATA = {
   {
     id:"ev_nagame", name:"長雨", stages:["spring","summer"], weight:3,
     title:"長雨", text:"雨が何日も続いています。田んぼを見ると、水が多くたまっているようです。",
+    image:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Grey_cloudy_sky.jpg",credit:"Gnu-Bricoleur / Wikimedia Commons・CC BY 4.0",url:"https://commons.wikimedia.org/wiki/File:Grey_cloudy_sky.jpg"},
     requiredLearning:["natural","water"],
     educationalIntent:"農業は自然条件の影響を受けるため、天候を見ながら対応する必要があることを考えさせる。",
     choices:[
