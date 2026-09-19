@@ -145,6 +145,24 @@ function naviForScene(scene){
 }
 function hashString(str){ let h=0; for(let i=0;i<str.length;i++) h=((h<<5)-h)+str.charCodeAt(i)|0; return h; }
 
+function renderFlowProgress(scene){
+  const steps = [];
+  GAME_DATA.STAGE_ORDER.forEach(stageKey=>{
+    (GAME_DATA.CORE_SCENES[stageKey]||[]).forEach(s=>steps.push({id:s.id,title:s.title,stage:stageKey}));
+  });
+  const currentCoreIndex = steps.findIndex(s=>s.id===scene.id);
+  const completed = currentCoreIndex < 0
+    ? steps.findIndex(s=>s.stage===scene.stage)
+    : currentCoreIndex;
+  const box=document.createElement("div");
+  box.className="flow-progress";
+  box.innerHTML='<div class="flow-progress-title">米づくりの流れ</div><div class="flow-steps">'+steps.map((s,i)=>{
+    const done=i<completed;
+    const now=i===completed;
+    return '<div class="flow-step '+(done?'done ':'')+(now?'now':'')+'"><span class="flow-num">'+(i+1)+'</span><span>'+s.title+'</span></div>';
+  }).join('')+'</div>';
+  return box;
+}
 function renderSceneImage(scene){
   const image = scene.image || (GAME_DATA.meta.stageImages && GAME_DATA.meta.stageImages[scene.stage]);
   if(!image) return "";
@@ -192,7 +210,7 @@ function render(){
     const card = document.createElement("div");
     card.className = "scene-card";
     card.innerHTML = `
-      <p class="scene-title">${scene.kind==="sequence" ? "次のステップを考えよう" : (scene.kind==="event" ? "できごと：" + scene.eventName : scene.title)}</p>
+      <p class="scene-title">${scene.kind==="sequence" ? "次のステップを考えよう" : (scene.kind==="event" ? "できごと：" + scene.eventName : scene.title)}</p>\n      ${scene.kind==="event" ? `<div class="event-badge">予定外のできごと</div>` : ""}
       ${renderSceneImage(scene)}
       <p class="scene-text">${scene.text}</p>
       ${scene.kind==="sequence" && state.sequenceFeedback && !state.sequenceFeedback.correct ? `<div class="sequence-hint">${state.sequenceFeedback.text}</div>` : ""}`;
