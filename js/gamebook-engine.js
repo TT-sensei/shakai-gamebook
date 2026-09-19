@@ -293,6 +293,7 @@ function renderEnding(){
     <span class="badge">${GAME_DATA.meta.title} クリア</span>
     <p class="scene-text">${GAME_DATA.meta.endingText.replace("{{eventCount}}", eventCount)}</p>
   `;
+  main.appendChild(renderStatus());
   main.appendChild(summary);
 
   const logCard = document.createElement("div");
