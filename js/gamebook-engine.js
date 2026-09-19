@@ -16,7 +16,11 @@ function buildTimeline(data){
   const chosen = weightedPick(data.EVENTS, Math.min(targetEventCount, data.EVENTS.length));
   const timeline = [];
   data.STAGE_ORDER.forEach(stageKey=>{
-    const req = data.CORE_SCENES[stageKey].map(s=>({...s, kind:"core", stage:stageKey}));
+    const req = data.CORE_SCENES[stageKey].flatMap(s=>{
+      const core = {...s, kind:"core", stage:stageKey};
+      const flow = data.FLOW_CHECKPOINTS && data.FLOW_CHECKPOINTS.find(f=>f.afterId===s.id);
+      return flow ? [core, {...flow, kind:"sequence", stage:stageKey}] : [core];
+    });
     const evs = chosen.filter(e=>e.stages.includes(stageKey)).map(e=>({
       id:e.id+"_"+stageKey, kind:"event", stage:stageKey,
       title:e.title, text:e.text, choices:e.choices, image:e.image,
@@ -94,6 +98,17 @@ function currentScene(){ return state.timeline[state.index]; }
 
 function chooseOption(choiceIndex){
   const scene=currentScene(),choice=scene.choices[choiceIndex];
+  if(scene.kind==="sequence"){
+    if(choice.correct){
+      state.sequenceFeedback={correct:true,text:choice.feedback||"正解！次の仕事へ進もう。"};
+      state.phase="sequenceResult";
+      saveState();render();
+    }else{
+      state.sequenceFeedback={correct:false,text:choice.hint||"もう一度、米づくりの流れを思い出してみよう。"};
+      saveState();render();
+    }
+    return;
+  }
   const effects=choice.effects||effectForChoice(scene,choiceIndex),before={...state.status};
   applyEffects(effects);
   state.log.push({stage:scene.stage,title:scene.title||scene.eventName,kind:scene.kind,choiceText:choice.text,result:choice.result,effects,before,after:{...state.status}});
@@ -169,11 +184,11 @@ function render(){
       guide.innerHTML = `<div class="navi-bubble">${navi.message || "どうするか、考えてみよう。"}</div><img src="${navi.src}" alt="" class="navi-img">`;
       main.appendChild(guide);
     }
-    main.appendChild(renderStatus());
+    if(scene.kind!=="sequence") main.appendChild(renderStatus());
     const card = document.createElement("div");
     card.className = "scene-card";
     card.innerHTML = `
-      <p class="scene-title">${scene.kind==="event" ? "できごと：" + scene.eventName : scene.title}</p>
+      <p class="scene-title">${scene.kind==="sequence" ? "次のステップを考えよう" : (scene.kind==="event" ? "できごと：" + scene.eventName : scene.title)}</p>
       ${renderSceneImage(scene)}
       <p class="scene-text">${scene.text}</p>`;
     main.appendChild(card);
@@ -188,6 +203,26 @@ function render(){
       choices.appendChild(btn);
     });
     main.appendChild(choices);
+  }
+
+  if(state.phase==="sequenceResult"){
+    const scene = currentScene();
+    const navi = naviForScene(scene);
+    if(navi){
+      const guide = document.createElement("div");
+      guide.className = "navi-guide result-guide";
+      guide.innerHTML = '<div class="navi-bubble">'+(navi.resultMessage || "順番がつながったね。次のステップへ進もう。")+'</div><img src="'+navi.src+'" alt="" class="navi-img">';
+      main.appendChild(guide);
+    }
+    const card=document.createElement("div");
+    card.className="result-card sequence-result-card";
+    card.innerHTML='<div class="sequence-correct">✓ '+(scene.correctLabel || "正解！")+'</div><p class="sequence-feedback">'+(state.sequenceFeedback?.text || "米づくりの次の仕事がわかりました。")+'</p>';
+    main.appendChild(card);
+    const nextBtn=document.createElement("button");
+    nextBtn.className="next-btn sequence-next";
+    nextBtn.textContent="次のステップへ →";
+    nextBtn.onclick=goNext;
+    main.appendChild(nextBtn);
   }
 
   if(state.phase==="result"){
