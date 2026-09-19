@@ -19,7 +19,11 @@ function buildTimeline(data){
     const req = data.CORE_SCENES[stageKey].flatMap(s=>{
       const core = {...s, kind:"core", stage:stageKey};
       const flow = data.FLOW_CHECKPOINTS && data.FLOW_CHECKPOINTS.find(f=>f.afterId===s.id);
-      return flow ? [core, {...flow, kind:"sequence", stage:stageKey}] : [core];
+      if(flow){
+        const sequence = {...flow, kind:"sequence", stage:stageKey, choices:[...flow.choices].sort(()=>Math.random()-0.5)};
+        return [core, sequence];
+      }
+      return [core];
     });
     const evs = chosen.filter(e=>e.stages.includes(stageKey)).map(e=>({
       id:e.id+"_"+stageKey, kind:"event", stage:stageKey,
@@ -190,7 +194,8 @@ function render(){
     card.innerHTML = `
       <p class="scene-title">${scene.kind==="sequence" ? "次のステップを考えよう" : (scene.kind==="event" ? "できごと：" + scene.eventName : scene.title)}</p>
       ${renderSceneImage(scene)}
-      <p class="scene-text">${scene.text}</p>`;
+      <p class="scene-text">${scene.text}</p>
+      ${scene.kind==="sequence" && state.sequenceFeedback && !state.sequenceFeedback.correct ? `<div class="sequence-hint">${state.sequenceFeedback.text}</div>` : ""}`;
     main.appendChild(card);
 
     const choices = document.createElement("div");
