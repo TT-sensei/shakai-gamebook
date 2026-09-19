@@ -39,81 +39,81 @@ const KOME_ZUKURI_DATA = {
   spring: [
     {
       id:"req_spring_1", title:"苗づくり",
-      text:"春になりました。水にひたした種もみから苗を育てます。苗づくりでは、何に気をつけますか。",
+      text:"春になりました。種もみをまき、田植えまで苗を育てます。温度や水の量を見ながら、どんな育て方をするか考えます。",
       image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Paddy_Seedlings.jpg?width=800","credit":"Prajna Prabhu / Wikimedia Commons・CC BY-SA 4.0","url":"https://commons.wikimedia.org/wiki/File:Paddy_Seedlings.jpg"},
       requiredLearning:["observe","natural"],
       educationalIntent:"苗づくりには水量・温度の調整という人の判断が必要なことを考えさせる。",
       choices:[
-        {text:"毎日たっぷり水をやる", effects:{"water":1,"growth":-1},
-         result:"水をやりすぎて、苗が育つのに時間がかかってしまいました。",
-         point:"苗づくりでは、水と温度のちょうどよいバランスが大切です。"},
-        {text:"温度と水の量に気をつけて育てる", effects:{"water":1,"growth":1},
-         result:"苗はすくすくと育ち、田植えの準備が整いました。",
-         point:"温度と水を調整することで、そろった苗を育てることができます。"},
-        {text:"そのまま自然にまかせる", effects:{"water":-1,"growth":-1},
-         result:"苗の育ち方にばらつきが出てしまいました。",
-         point:"苗づくりには、自然だけでなく人の手による調整も必要です。"}
+        {text:"水の量をこまめに確認し、温度も見ながら育てる", effects:{"water":1,"growth":1},
+         result:"苗の状態に合わせて管理でき、田植えに向けて順調に育ちました。",
+         point:"育苗では温度や水分などを調整しながら苗を育てます。"},
+        {text:"水を多めにして、温度はあまり気にしない", effects:{"water":1,"growth":-1},
+         result:"水分は保てましたが、温度の変化への対応が遅れました。",
+         point:"苗は温度や水分など、いくつかの条件を見ながら育てます。"},
+        {text:"水やりを控えめにして、苗の様子を見る", effects:{"water":-1,"growth":0},
+         result:"苗の状態を見ながら調整しましたが、水分が不足する場面もありました。",
+         point:"苗の様子を確かめながら、水分を調整することが大切です。"}
       ]
     },
     {
       id:"req_spring_2", title:"田起こし・代かき",
-      text:"田んぼの土を耕し、水を入れて平らにする「代かき」を行います。田んぼの準備、どう進めますか。",
+      text:"田んぼの土を耕し、水を入れて平らにする「代かき」を行います。田面の状態を見ながら、どのように進めるか考えます。",
       image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Rice_Paddy_Tractor_(27732883990).jpg?width=800","credit":"D-Stanley / Wikimedia Commons・CC BY 2.0","url":"https://commons.wikimedia.org/wiki/File:Rice_Paddy_Tractor_(27732883990).jpg"},
       requiredLearning:["tech","natural"],
       educationalIntent:"田起こし・代かきには機械の力が必要なことと、丁寧さが品質につながることを考えさせる。",
       choices:[
-        {text:"トラクターで手早く済ませる", effects:{"efficiency":1,"growth":-1},
-         result:"作業は早く終わりましたが、土のかたまりが少し残ってしまいました。",
-         point:"機械を使うと作業は早くなりますが、仕上がりの確認も必要です。"},
-        {text:"時間をかけて丁寧に土を平らにする", effects:{"efficiency":-1,"growth":1},
-         result:"時間はかかりましたが、田んぼの土が均一になりました。",
-         point:"丁寧な準備が、その後の稲の育ちやすさにつながります。"},
-        {text:"去年と同じやり方でそのまま行う", effects:{"efficiency":-1,"growth":0},
-         result:"おおむね順調でしたが、一部に水が溜まりやすい場所ができました。",
-         point:"田んぼの状態は毎年少しずつ違うため、様子を見ながらの調整が役立ちます。"}
+        {text:"トラクターで田起こし・代かきを行う", effects:{"efficiency":1,"growth":0},
+         result:"機械の力で広い田んぼを効率よく整えることができました。",
+         point:"現在の米づくりでは、田起こしや代かきにトラクターが使われています。"},
+        {text:"田面の高低や土の状態を確認して仕上げる", effects:{"efficiency":-1,"growth":1},
+         result:"時間はかかりましたが、田面の状態を確かめながら仕上げることができました。",
+         point:"代かきには、田面を平らにし、水を保ちやすくする役割があります。"},
+        {text:"昨年と同じ設定で進め、仕上がりは最後に確認する", effects:{"efficiency":1,"growth":-1},
+         result:"作業は進みましたが、田んぼごとの状態を途中で調整する機会が少なくなりました。",
+         point:"田んぼの状態や天候などに合わせて作業を調整することもあります。"}
       ]
     },
     {
       id:"req_spring_3", title:"田植え",
-      text:"いよいよ田植えです。地域の人たちと協力しながら、苗を田んぼに植えていきます。",
+      text:"育てた苗を田んぼに植える時期になりました。機械と人の手、それぞれの使い方を考えて進めます。",
       image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Rice_transplanter_working_in_a_paddy_field,_Kameoka_-_May_19,_2005.jpg?width=800","credit":"Peggy (Pei-Yi) Chen / Wikimedia Commons・CC BY-SA 2.0","url":"https://commons.wikimedia.org/wiki/File:Rice_transplanter_working_in_a_paddy_field,_Kameoka_-_May_19,_2005.jpg"},
       requiredLearning:["tech","society"],
       educationalIntent:"田植えには機械や人手、地域のつながりが関わることを考えさせる。",
       choices:[
-        {text:"田植え機を使って植える", effects:{"efficiency":1,"cooperation":0},
-         result:"広い田んぼでも、短い時間で植え終えることができました。",
-         point:"機械を使うことで、広い面積の作業も効率よく行えます。"},
-        {text:"手作業で丁寧に植える", effects:{"efficiency":-1,"cooperation":1},
-         result:"時間はかかりましたが、隅々まで丁寧に植えることができました。",
-         point:"場所によっては、今も手作業が活躍することがあります。"},
-        {text:"近所の農家と助け合って植える", effects:{"efficiency":1,"cooperation":1},
-         result:"作業が分担でき、お互いの田んぼを早く終えることができました。",
-         point:"米づくりは一人だけでなく、地域の助け合いで支えられています。"}
+        {text:"田植え機で植える", effects:{"efficiency":1,"cooperation":0},
+         result:"広い面積を機械で植えることができました。",
+         point:"現在の田植えは、田植え機で行うことが多くなっています。"},
+        {text:"機械で植えたあと、植え残しを手で植える", effects:{"efficiency":1,"cooperation":0},
+         result:"機械で植えたあと、機械では植えにくい場所を手で補いました。",
+         point:"田んぼの端など、機械で植えにくい場所は手植えをすることがあります。"},
+        {text:"手植えを中心にして、必要な人に声をかける", effects:{"efficiency":-1,"cooperation":1},
+         result:"人手を集めて植えることができましたが、時間は多くかかりました。",
+         point:"手植えは時間がかかりますが、機械が使えない場所などで行われます。"}
       ]
     }
   ],
   summer: [
     {
       id:"req_summer_1", title:"水管理",
-      text:"夏になり、稲がぐんぐん育っています。田んぼの水の量、どのように管理しますか。",
+      text:"夏になり、稲が育っています。水はいつも同じ量ではなく、生育の段階や天候を見ながら管理します。今の田んぼをどうするか考えます。",
       image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Paddy_field_and_Drainage_System.jpg?width=800","credit":"Kamilmkm / Wikimedia Commons・CC BY-SA 4.0","url":"https://commons.wikimedia.org/wiki/File:Paddy_field_and_Drainage_System.jpg"},
       requiredLearning:["water","natural"],
       educationalIntent:"稲の成長段階に応じて水の量を調整する必要があることを考えさせる。",
       choices:[
-        {text:"毎日同じ量の水を保つ", effects:{"water":-1,"growth":0},
-         result:"安定はしていましたが、成長段階に合わせた調整はできませんでした。",
-         point:"稲の育ち方に合わせて、水の量を変えることが大切です。"},
-        {text:"稲の様子を見ながら水の量を変える", effects:{"water":1,"growth":1},
-         result:"稲の根がしっかりと張り、順調に育ちました。",
-         point:"観察しながら水を管理することで、稲が健康に育ちます。"},
-        {text:"雨が降っているのでしばらく水を止める", effects:{"water":-1,"growth":-1},
-         result:"雨の量を見誤り、田んぼの水が少なくなってしまいました。",
-         point:"天候の変化に合わせて、こまめに確認することが必要です。"}
+        {text:"生育の段階に合わせて水深を調整する", effects:{"water":1,"growth":1},
+         result:"稲の状態を見ながら水を調整し、生育を支えることができました。",
+         point:"水田では、生育に応じて水の量を変えます。中干しや落水を行う時期もあります。"},
+        {text:"水を切らさないよう、できるだけ水をためておく", effects:{"water":0,"growth":-1},
+         result:"水は確保できましたが、生育段階に合わない水管理になりました。",
+         point:"水は多ければよいわけではなく、生育段階に応じた管理が必要です。"},
+        {text:"雨や田んぼの状態を見て、水を入れたり抜いたりする", effects:{"water":1,"growth":0},
+         result:"天候に合わせて水を調整できましたが、こまめな確認が必要でした。",
+         point:"水管理では、天候や稲の状態を見ながら調整します。"}
       ]
     },
     {
       id:"req_summer_2", title:"稲の成長確認",
-      text:"稲の穂が出る時期が近づいてきました。田んぼの様子をどのように確認しますか。",
+      text:"稲の生育が進み、穂が出る時期が近づいてきました。田んぼの様子をどう確かめるか考えます。",
       image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Rice_Paddy_Field.jpg?width=800","credit":"Prathvi Acharya / Wikimedia Commons・CC BY 4.0","url":"https://commons.wikimedia.org/wiki/File:Rice_Paddy_Field.jpg"},
       requiredLearning:["observe"],
       educationalIntent:"定期的な観察が病害虫の早期発見や収穫時期の判断につながることを考えさせる。",
@@ -151,58 +151,58 @@ const KOME_ZUKURI_DATA = {
     },
     {
       id:"req_autumn_2", title:"稲刈り",
-      text:"収穫の日になりました。コンバイン（収穫機）を使って稲を刈り取ります。",
+      text:"稲が実り、収穫の時期になりました。コンバインなどを使って、どのように収穫するか考えます。",
       image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Combine_harvester_Kyoto_JPN_001.jpg?width=800","credit":"ignis / Wikimedia Commons・CC BY-SA 3.0","url":"https://commons.wikimedia.org/wiki/File:Combine_harvester_Kyoto_JPN_001.jpg"},
       requiredLearning:["tech"],
       educationalIntent:"機械化によって収穫の効率が上がる一方、機械の点検が欠かせないことを考えさせる。",
       choices:[
-        {text:"コンバインで一気に刈り取る", effects:{"efficiency":1,"quality":-1},
-         result:"広い田んぼを短時間で刈り取ることができました。",
-         point:"機械化によって、収穫にかかる時間は大きく短縮されました。"},
-        {text:"機械を事前に点検してから作業する", effects:{"efficiency":1,"quality":1},
-         result:"少し時間はかかりましたが、作業中のトラブルなく終えられました。",
-         point:"機械を使う仕事では、事前の点検が安心につながります。"},
-        {text:"人手も合わせて刈り取る", effects:{"efficiency":-1,"cooperation":1},
-         result:"機械が入りにくい場所も、人の手でカバーできました。",
-         point:"場所によっては、機械と人の作業を組み合わせることもあります。"}
+        {text:"コンバインで刈り取り、脱穀まで行う", effects:{"efficiency":1,"quality":0},
+         result:"刈り取りと脱穀を続けて行うことができました。",
+         point:"コンバインは稲を刈り取り、その場で脱穀して、もみを集めます。"},
+        {text:"コンバインを点検してから、収穫を始める", effects:{"efficiency":1,"quality":1},
+         result:"機械の状態を確認してから、収穫作業を進めることができました。",
+         point:"機械を使う農作業では、点検や整備も重要です。"},
+        {text:"機械が入りにくい場所は、鎌で刈り取る", effects:{"efficiency":-1,"cooperation":1},
+         result:"機械では刈りにくい場所を、人の手で収穫しました。",
+         point:"現在でも、機械が作業できない場所などでは手刈りをすることがあります。"}
       ]
     }
   ],
   post: [
     {
       id:"req_post_1", title:"乾燥・もみすり",
-      text:"収穫した稲は、そのままでは食べられません。乾燥させ、もみすり（もみから米を取り出す作業）を行います。",
+      text:"収穫したもみには水分が多く含まれています。乾燥させ、もみすりをして玄米にするまでの進め方を考えます。",
       image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Rice_drying.jpg?width=800","credit":"MartijnL / Wikimedia Commons・CC BY-SA 3.0 NL","url":"https://commons.wikimedia.org/wiki/File:Rice_drying.jpg"},
       requiredLearning:["quality"],
       educationalIntent:"品質を保つための乾燥・調整作業の重要性を考えさせる。",
       choices:[
-        {text:"すぐに出荷できるよう急いで乾燥させる", effects:{"quality":-1,"efficiency":1},
-         result:"時間は短縮できましたが、乾燥にむらが出てしまいました。",
-         point:"急ぎすぎると、米の品質にばらつきが出ることがあります。"},
-        {text:"時間をかけてゆっくり乾燥させる", effects:{"quality":1,"efficiency":-1},
-         result:"むらのない、質の良い米に仕上がりました。",
-         point:"品質を保つためには、適切な時間をかけることが大切です。"},
-        {text:"機械にまかせて数値通りに管理する", effects:{"quality":1,"efficiency":1},
-         result:"安定した仕上がりになり、作業の手間も減りました。",
-         point:"技術を使うことで、品質を保ちながら効率化することができます。"}
+        {text:"乾燥機で一気に高温で乾燥させる", effects:{"quality":-1,"efficiency":1},
+         result:"乾燥は早く進みましたが、米粒に負担がかかりました。",
+         point:"高水分のもみを急速に乾燥すると、胴割れなど品質低下につながることがあります。"},
+        {text:"適切な温度と時間を確認しながら乾燥する", effects:{"quality":1,"efficiency":0},
+         result:"もみの水分を確認しながら、適切な状態に仕上げました。",
+         point:"乾燥では、急ぎすぎたり乾燥しすぎたりしないよう管理します。"},
+        {text:"乾燥の状態を確認せず、機械の設定だけで進める", effects:{"quality":-1,"efficiency":1},
+         result:"作業は進みましたが、もみの状態に合わせた調整ができませんでした。",
+         point:"乾燥は、もみの水分や仕上がりを確認しながら行うことが大切です。"}
       ]
     },
     {
       id:"req_post_2", title:"出荷",
-      text:"米を選別し、袋づめして出荷します。ここから先、米はどのように消費者に届くでしょうか。",
+      text:"玄米などに仕上がった米は、集荷・販売などの仕組みを通って消費者へ届きます。どのように届けるか考えます。",
       image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Five_kg_rice_bags.jpg?width=800","credit":"Marcel Montes / Wikimedia Commons・CC BY-SA 2.0","url":"https://commons.wikimedia.org/wiki/File:Five_kg_rice_bags.jpg"},
       requiredLearning:["society","quality"],
       educationalIntent:"収穫後も多くの人や仕組みが関わって食卓に届くことを考えさせる。",
       choices:[
-        {text:"農協（JA）を通して出荷する", effects:{"cooperation":1,"quality":1},
-         result:"まとめて運んでもらえ、多くの人に届けることができました。",
-         point:"農協などの仕組みが、米を広く届ける役割を果たしています。"},
-        {text:"直接お店やお客さんに販売する", effects:{"cooperation":1,"quality":0},
-         result:"顔の見える関係で届けられましたが、運ぶ手間は自分でかかりました。",
-         point:"直接販売には、良さと大変さの両方があります。"},
-        {text:"品質チェックをしてから出荷する", effects:{"quality":1,"efficiency":-1},
-         result:"少し時間はかかりましたが、安心して届けられる米になりました。",
-         point:"出荷前の確認は、安全・安心を支える大切な工程です。"}
+        {text:"集荷業者や農協などを通して出荷する", effects:{"cooperation":1,"quality":0},
+         result:"集荷の仕組みを通して、次の流通段階へ米を届けました。",
+         point:"米は生産者だけでなく、集荷・販売など多くの仕組みに支えられています。"},
+        {text:"自分で販売先を決めて、直接販売する", effects:{"cooperation":1,"quality":0},
+         result:"販売先とやり取りしながら、米を届けました。",
+         point:"米の販売方法には、集荷を通す方法だけでなく、直接販売などもあります。"},
+        {text:"出荷前の検査や選別の結果を確認してから出す", effects:{"quality":1,"efficiency":0},
+         result:"米の状態を確認してから、次の流通へ届けました。",
+         point:"収穫後も、品質を確認しながら米が流通していきます。"}
       ]
     }
   ]
