@@ -165,6 +165,7 @@ function render(){
     card.className = "scene-card";
     card.innerHTML = `
       <p class="scene-title">${scene.kind==="event" ? "できごと：" + scene.eventName : scene.title}</p>
+      ${renderSceneImage(scene)}
       <p class="scene-text">${scene.text}</p>`;
     main.appendChild(card);
 
