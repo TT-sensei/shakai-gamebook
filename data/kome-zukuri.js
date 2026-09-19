@@ -40,7 +40,7 @@ const KOME_ZUKURI_DATA = {
     {
       id:"req_spring_1", title:"苗づくり",
       text:"春になりました。水にひたした種もみから苗を育てます。苗づくりでは、何に気をつけますか。",
-      image:{"src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Paddy_Seedlings.jpg","credit":"Prajna Prabhu / Wikimedia Commons・CC BY-SA 4.0","url":"https://commons.wikimedia.org/wiki/File:Paddy_Seedlings.jpg"},
+      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Paddy_Seedlings.jpg?width=800","credit":"Prajna Prabhu / Wikimedia Commons・CC BY-SA 4.0","url":"https://commons.wikimedia.org/wiki/File:Paddy_Seedlings.jpg"},
       requiredLearning:["observe","natural"],
       educationalIntent:"苗づくりには水量・温度の調整という人の判断が必要なことを考えさせる。",
       choices:[
@@ -58,7 +58,7 @@ const KOME_ZUKURI_DATA = {
     {
       id:"req_spring_2", title:"田起こし・代かき",
       text:"田んぼの土を耕し、水を入れて平らにする「代かき」を行います。田んぼの準備、どう進めますか。",
-      image:{"src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Rice_Paddy_Tractor_(27732883990).jpg","credit":"D-Stanley / Wikimedia Commons・CC BY 2.0","url":"https://commons.wikimedia.org/wiki/File:Rice_Paddy_Tractor_(27732883990).jpg"},
+      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Rice_Paddy_Tractor_(27732883990).jpg?width=800","credit":"D-Stanley / Wikimedia Commons・CC BY 2.0","url":"https://commons.wikimedia.org/wiki/File:Rice_Paddy_Tractor_(27732883990).jpg"},
       requiredLearning:["tech","natural"],
       educationalIntent:"田起こし・代かきには機械の力が必要なことと、丁寧さが品質につながることを考えさせる。",
       choices:[
@@ -76,7 +76,7 @@ const KOME_ZUKURI_DATA = {
     {
       id:"req_spring_3", title:"田植え",
       text:"いよいよ田植えです。地域の人たちと協力しながら、苗を田んぼに植えていきます。",
-      image:{"src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Rice_transplanter_working_in_a_paddy_field,_Kameoka_-_May_19,_2005.jpg","credit":"Peggy (Pei-Yi) Chen / Wikimedia Commons・CC BY-SA 2.0","url":"https://commons.wikimedia.org/wiki/File:Rice_transplanter_working_in_a_paddy_field,_Kameoka_-_May_19,_2005.jpg"},
+      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Rice_transplanter_working_in_a_paddy_field,_Kameoka_-_May_19,_2005.jpg?width=800","credit":"Peggy (Pei-Yi) Chen / Wikimedia Commons・CC BY-SA 2.0","url":"https://commons.wikimedia.org/wiki/File:Rice_transplanter_working_in_a_paddy_field,_Kameoka_-_May_19,_2005.jpg"},
       requiredLearning:["tech","society"],
       educationalIntent:"田植えには機械や人手、地域のつながりが関わることを考えさせる。",
       choices:[
@@ -96,7 +96,7 @@ const KOME_ZUKURI_DATA = {
     {
       id:"req_summer_1", title:"水管理",
       text:"夏になり、稲がぐんぐん育っています。田んぼの水の量、どのように管理しますか。",
-      image:{"src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Paddy_field_and_Drainage_System.jpg","credit":"Kamilmkm / Wikimedia Commons・CC BY-SA 4.0","url":"https://commons.wikimedia.org/wiki/File:Paddy_field_and_Drainage_System.jpg"},
+      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Paddy_field_and_Drainage_System.jpg?width=800","credit":"Kamilmkm / Wikimedia Commons・CC BY-SA 4.0","url":"https://commons.wikimedia.org/wiki/File:Paddy_field_and_Drainage_System.jpg"},
       requiredLearning:["water","natural"],
       educationalIntent:"稲の成長段階に応じて水の量を調整する必要があることを考えさせる。",
       choices:[
@@ -114,7 +114,7 @@ const KOME_ZUKURI_DATA = {
     {
       id:"req_summer_2", title:"稲の成長確認",
       text:"稲の穂が出る時期が近づいてきました。田んぼの様子をどのように確認しますか。",
-      image:{"src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Rice_Paddy_Field.jpg","credit":"Prathvi Acharya / Wikimedia Commons・CC BY 4.0","url":"https://commons.wikimedia.org/wiki/File:Rice_Paddy_Field.jpg"},
+      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Rice_Paddy_Field.jpg?width=800","credit":"Prathvi Acharya / Wikimedia Commons・CC BY 4.0","url":"https://commons.wikimedia.org/wiki/File:Rice_Paddy_Field.jpg"},
       requiredLearning:["observe"],
       educationalIntent:"定期的な観察が病害虫の早期発見や収穫時期の判断につながることを考えさせる。",
       choices:[
@@ -134,7 +134,7 @@ const KOME_ZUKURI_DATA = {
     {
       id:"req_autumn_1", title:"収穫時期の判断",
       text:"稲穂が黄金色になってきました。天気予報を見ながら、収穫の時期を判断します。",
-      image:{"src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Ricefield.jpg","credit":"Jfi7811 / Wikimedia Commons・CC BY 3.0","url":"https://commons.wikimedia.org/wiki/File:Ricefield.jpg"},
+      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Ricefield.jpg?width=800","credit":"Jfi7811 / Wikimedia Commons・CC BY 3.0","url":"https://commons.wikimedia.org/wiki/File:Ricefield.jpg"},
       requiredLearning:["natural","observe"],
       educationalIntent:"天候と稲の状態の両方を見て収穫時期を判断する必要があることを考えさせる。",
       choices:[
@@ -152,7 +152,7 @@ const KOME_ZUKURI_DATA = {
     {
       id:"req_autumn_2", title:"稲刈り",
       text:"収穫の日になりました。コンバイン（収穫機）を使って稲を刈り取ります。",
-      image:{"src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Combine_harvester_Kyoto_JPN_001.jpg","credit":"ignis / Wikimedia Commons・CC BY-SA 3.0","url":"https://commons.wikimedia.org/wiki/File:Combine_harvester_Kyoto_JPN_001.jpg"},
+      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Combine_harvester_Kyoto_JPN_001.jpg?width=800","credit":"ignis / Wikimedia Commons・CC BY-SA 3.0","url":"https://commons.wikimedia.org/wiki/File:Combine_harvester_Kyoto_JPN_001.jpg"},
       requiredLearning:["tech"],
       educationalIntent:"機械化によって収穫の効率が上がる一方、機械の点検が欠かせないことを考えさせる。",
       choices:[
@@ -172,7 +172,7 @@ const KOME_ZUKURI_DATA = {
     {
       id:"req_post_1", title:"乾燥・もみすり",
       text:"収穫した稲は、そのままでは食べられません。乾燥させ、もみすり（もみから米を取り出す作業）を行います。",
-      image:{"src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Rice_drying.jpg","credit":"MartijnL / Wikimedia Commons・CC BY-SA 3.0 NL","url":"https://commons.wikimedia.org/wiki/File:Rice_drying.jpg"},
+      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Rice_drying.jpg?width=800","credit":"MartijnL / Wikimedia Commons・CC BY-SA 3.0 NL","url":"https://commons.wikimedia.org/wiki/File:Rice_drying.jpg"},
       requiredLearning:["quality"],
       educationalIntent:"品質を保つための乾燥・調整作業の重要性を考えさせる。",
       choices:[
@@ -190,7 +190,7 @@ const KOME_ZUKURI_DATA = {
     {
       id:"req_post_2", title:"出荷",
       text:"米を選別し、袋づめして出荷します。ここから先、米はどのように消費者に届くでしょうか。",
-      image:{"src":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Five_kg_rice_bags.jpg","credit":"Marcel Montes / Wikimedia Commons・CC BY-SA 2.0","url":"https://commons.wikimedia.org/wiki/File:Five_kg_rice_bags.jpg"},
+      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Five_kg_rice_bags.jpg?width=800","credit":"Marcel Montes / Wikimedia Commons・CC BY-SA 2.0","url":"https://commons.wikimedia.org/wiki/File:Five_kg_rice_bags.jpg"},
       requiredLearning:["society","quality"],
       educationalIntent:"収穫後も多くの人や仕組みが関わって食卓に届くことを考えさせる。",
       choices:[
@@ -211,7 +211,7 @@ const KOME_ZUKURI_DATA = {
   {
     id:"ev_nagame", name:"長雨", stages:["spring","summer"], weight:3,
     title:"長雨", text:"雨が何日も続いています。田んぼを見ると、水が多くたまっているようです。",
-    image:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Grey_cloudy_sky.jpg",credit:"Gnu-Bricoleur / Wikimedia Commons・CC BY 4.0",url:"https://commons.wikimedia.org/wiki/File:Grey_cloudy_sky.jpg"},
+    image:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Grey_cloudy_sky.jpg?width=800",credit:"Gnu-Bricoleur / Wikimedia Commons・CC BY 4.0",url:"https://commons.wikimedia.org/wiki/File:Grey_cloudy_sky.jpg"},
     requiredLearning:["natural","water"],
     educationalIntent:"農業は自然条件の影響を受けるため、天候を見ながら対応する必要があることを考えさせる。",
     choices:[
