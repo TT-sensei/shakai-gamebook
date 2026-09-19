@@ -166,7 +166,7 @@ function render(){
       </div>
       <div class="point-block">
         <h3>ここがポイント</h3>
-        <p>${c.point}</p>
+        <p>${c.point || "この選択によって、別の結果や課題が生まれました。"}</p>
       </div>
       ${c.fact ? `<div class="fact-block"><p>${c.fact}</p></div>` : ""}
     `;
@@ -187,7 +187,7 @@ function renderTitle(){{
   const wrap = document.createElement("div");
   wrap.className = "center-screen";
   wrap.innerHTML = `
-    <div class="title-emblem">🌾</div>
+    <div class="title-emblem">${GAME_DATA.meta.icon || "📘"}</div>
     <h1 class="title-jp">${GAME_DATA.meta.title}</h1>
     <p class="title-sub">${GAME_DATA.meta.lead}</p>
   `;
@@ -220,8 +220,8 @@ function renderEnding(){{
   summary.className = "scene-card";
   const eventCount = state.log.filter(l=>l.kind==="event").length;
   summary.innerHTML = `
-    <span class="badge">米づくり クリア</span>
-    <p class="scene-text">一年間、あなたはたくさんの判断をしながら米づくりを進めました。今回は ${eventCount} 件のできごとを経験しました。</p>
+    <span class="badge">${GAME_DATA.meta.title} クリア</span>
+    <p class="scene-text">${GAME_DATA.meta.endingText.replace("{{eventCount}}", eventCount)}</p>
   `;
   main.appendChild(summary);
 
