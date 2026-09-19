@@ -310,3 +310,84 @@
 .navi-img{width:58px;height:58px;object-fit:contain;flex:none;filter:drop-shadow(0 2px 2px rgba(0,0,0,.08))}
 @media (min-width:700px){#app{max-width:900px}.stagebar{padding:14px 28px}.stagebar .season{font-size:24px}main{padding:24px 28px 24px;gap:16px}.scene-card,.result-card{padding:24px}.scene-text{font-size:21px;line-height:1.8}.choices{display:grid;grid-template-columns:1fr 1fr;gap:14px}.choice-btn{min-height:82px;font-size:18px;padding:18px 20px}.choice-btn:last-child:nth-child(odd){grid-column:1 / -1}.navi-guide{margin:0 4px}.navi-img{width:72px;height:72px}.navi-bubble{font-size:16px;padding:12px 16px}}
 @media (max-width:699px){main{min-height:calc(100vh - 78px)}.scene-card{padding:18px 16px}.choice-btn{min-height:68px}}
+
+
+/* ---------- gamebook polish ---------- */
+.navi-guide{
+  animation:naviIn .35s ease-out;
+}
+.navi-bubble{
+  position:relative;
+  border-color:rgba(78,124,74,.22);
+  background:rgba(255,255,255,.96);
+}
+.navi-bubble::after{
+  content:"";
+  position:absolute;
+  right:-7px;
+  bottom:12px;
+  width:12px;
+  height:12px;
+  background:#fff;
+  border-top:1.5px solid rgba(78,124,74,.22);
+  border-right:1.5px solid rgba(78,124,74,.22);
+  transform:rotate(45deg);
+}
+.navi-img{
+  object-position:center bottom;
+  transform-origin:center bottom;
+  animation:naviFloat 2.8s ease-in-out infinite;
+}
+.result-guide .navi-bubble{
+  border-color:rgba(200,155,60,.35);
+}
+.scene-card,.result-card{
+  border:1px solid rgba(78,124,74,.08);
+}
+.choice-btn{
+  box-shadow:0 2px 7px rgba(38,50,41,.06);
+}
+.choice-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(38,50,41,.10);
+}
+@media (min-width:700px){
+  #app{
+    box-shadow:0 0 28px rgba(38,50,41,.08);
+  }
+  .navi-guide{
+    max-width:760px;
+    width:100%;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .scene-card{
+    max-width:760px;
+    width:100%;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .choices{
+    width:100%;
+    max-width:760px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .choice-btn{
+    min-height:88px;
+    display:flex;
+    align-items:center;
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  .navi-guide,.navi-img{animation:none}
+  .choice-btn{transition:none}
+}
+@keyframes naviIn{
+  from{opacity:0;transform:translateY(5px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes naviFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-3px)}
+}
