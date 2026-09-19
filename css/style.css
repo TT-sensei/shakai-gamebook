@@ -494,3 +494,6 @@
   .flow-step{font-size:10px}
   .flow-num{width:24px;height:24px}
 }
+
+.flow-step.future{color:#a7aea7}
+.flow-step.future .flow-num{background:#edf0eb;color:#9aa29a;border:1px dashed #c9cec8}
