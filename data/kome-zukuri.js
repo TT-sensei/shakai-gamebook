@@ -207,6 +207,38 @@ const KOME_ZUKURI_DATA = {
     }
   ]
 },
+  FLOW_CHECKPOINTS: [
+    {id:"flow1",afterId:"req_spring_1",title:"次は、何をする？",text:"苗づくりができました。田植えの前に、次はどんな仕事をするでしょう？",correctLabel:"田起こし・代かき（しろかき）",choices:[
+      {text:"稲刈り",hint:"稲刈りは、稲が十分に育った秋の仕事です。"},
+      {text:"田起こし・代かき（しろかき）",correct:true,feedback:"土を起こして、田んぼを平らに整える仕事だね。次は田植えへ！"},
+      {text:"乾燥・もみすり",hint:"乾燥・もみすりは、稲を刈り取ったあとの仕事です。"},
+      {text:"出荷",hint:"出荷は、米を仕上げたあとに行います。"}]},
+    {id:"flow2",afterId:"req_spring_2",title:"次は、何をする？",text:"田起こし・代かきが終わりました。土を整えた田んぼで、次は何をするでしょう？",correctLabel:"田植え",choices:[
+      {text:"田植え",correct:true,feedback:"土を整えたら、いよいよ田植え。苗を田んぼに植えていこう！"},
+      {text:"稲刈り",hint:"稲刈りは、稲が実った秋に行います。"},
+      {text:"もみすり",hint:"もみすりは、稲刈りのあとに行います。"},
+      {text:"出荷",hint:"出荷は、米を仕上げた最後のほうの仕事です。"}]},
+    {id:"flow3",afterId:"req_spring_3",title:"次は、何をする？",text:"苗を田んぼに植えました。これから稲が育つ間、何を大切にするでしょう？",correctLabel:"水管理",choices:[
+      {text:"水管理",correct:true,feedback:"稲の成長に合わせて水を管理しながら、しっかり育てていこう！"},
+      {text:"出荷",hint:"まだ稲は育っている途中です。"},
+      {text:"乾燥・もみすり",hint:"乾燥・もみすりは、稲刈りのあとです。"},
+      {text:"稲刈り",hint:"稲が実るまで、もう少し時間が必要です。"}]},
+    {id:"flow4",afterId:"req_summer_2",title:"次は、何をする？",text:"稲が大きく育ってきました。穂が実って収穫の時期が近づいたら、次は何をするでしょう？",correctLabel:"稲刈り",choices:[
+      {text:"田植え",hint:"田植えは、苗を育てた春の仕事です。"},
+      {text:"稲刈り",correct:true,feedback:"稲が実ったら稲刈り。収穫のタイミングを考えて刈り取ろう！"},
+      {text:"田起こし・代かき",hint:"田起こし・代かきは、田植えの前に行いました。"},
+      {text:"苗づくり",hint:"苗づくりは、米づくりのはじめの仕事です。"}]},
+    {id:"flow5",afterId:"req_autumn_2",title:"次は、何をする？",text:"稲を刈り取りました。刈った稲から、食べられる米に近づけるため、次は何をするでしょう？",correctLabel:"乾燥・もみすり",choices:[
+      {text:"水管理",hint:"水管理は、稲が田んぼで育っている間の仕事です。"},
+      {text:"田植え",hint:"田植えは、稲刈りよりずっと前の仕事です。"},
+      {text:"乾燥・もみすり",correct:true,feedback:"収穫した稲を乾燥させ、もみすりをして米に近づけます。次は出荷へ！"},
+      {text:"苗づくり",hint:"苗づくりは、米づくりのはじめの仕事です。"}]},
+    {id:"flow6",afterId:"req_post_1",title:"次は、何をする？",text:"乾燥・もみすりを終え、米が仕上がりました。最後の大切な仕事は何でしょう？",correctLabel:"出荷",choices:[
+      {text:"田起こし・代かき",hint:"田起こし・代かきは、春のはじめの仕事です。"},
+      {text:"出荷",correct:true,feedback:"仕上がった米を出荷して、消費者へ届けます。これで一年の流れがつながったね！"},
+      {text:"田植え",hint:"田植えは、苗を田んぼに植える春の仕事です。"},
+      {text:"水管理",hint:"水管理は、稲が田んぼで育つ間の仕事です。"}]}
+  ],
   EVENTS: [
   {
     id:"ev_nagame", name:"長雨", stages:["spring","summer"], weight:3,
