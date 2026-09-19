@@ -19,7 +19,7 @@ function buildTimeline(data){
     const req = data.CORE_SCENES[stageKey].map(s=>({...s, kind:"core", stage:stageKey}));
     const evs = chosen.filter(e=>e.stages.includes(stageKey)).map(e=>({
       id:e.id+"_"+stageKey, kind:"event", stage:stageKey,
-      title:e.title, text:e.text, choices:e.choices,
+      title:e.title, text:e.text, choices:e.choices, image:e.image,
       requiredLearning:e.requiredLearning, educationalIntent:e.educationalIntent,
       eventName:e.name
     }));
