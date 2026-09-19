@@ -109,6 +109,15 @@ function goNext(){
    ========================================================= */
 const app = document.getElementById("app");
 
+function naviForScene(scene){
+  const pool = GAME_DATA.meta.navi || [];
+  if(!pool.length) return null;
+  const key = scene.stage + ":" + scene.kind;
+  const index = Math.abs(hashString(key + scene.id)) % pool.length;
+  return pool[index];
+}
+function hashString(str){ let h=0; for(let i=0;i<str.length;i++) h=((h<<5)-h)+str.charCodeAt(i)|0; return h; }
+
 function render(){
   app.innerHTML = "";
   if(!state){ renderTitle(); return; }
@@ -136,6 +145,13 @@ function render(){
   const main = document.createElement("main");
 
   if(state.phase==="scene"){
+    const navi = naviForScene(scene);
+    if(navi){
+      const guide = document.createElement("div");
+      guide.className = "navi-guide";
+      guide.innerHTML = `<div class="navi-bubble">${navi.message || "どうするか、考えてみよう。"}</div><img src="${navi.src}" alt="" class="navi-img">`;
+      main.appendChild(guide);
+    }
     const card = document.createElement("div");
     card.className = "scene-card";
     card.innerHTML = `
