@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>社会科ゲームブック | TT-sensei</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.portal{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px 18px}
+.portal-inner{width:100%;max-width:760px}
+.portal-kicker{font-size:13px;color:var(--ink-soft);letter-spacing:.08em}
+.portal h1{font-size:30px;margin:8px 0;color:var(--paddy-dark)}
+.portal-lead{line-height:1.8;color:var(--ink-soft);margin:0 0 24px}
+.game-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.game-card{display:block;text-decoration:none;color:inherit;background:#fff;border-radius:16px;padding:20px;box-shadow:var(--card-shadow);border:2px solid transparent;transition:.15s}
+.game-card:hover{border-color:var(--paddy)}
+.game-card .icon{font-size:38px}
+.game-card h2{font-size:19px;margin:10px 0 6px}
+.game-card p{font-size:14px;line-height:1.7;color:var(--ink-soft);margin:0}
+.future{opacity:.58}
+.portal-note{font-size:12px;color:var(--ink-soft);margin-top:24px}
+</style>
+</head>
+<body>
+<div class="portal"><div class="portal-inner">
+<div class="portal-kicker">TT-sensei / SOCIAL GAMEBOOK</div>
+<h1>社会科ゲームブック</h1>
+<p class="portal-lead">読む。考える。選ぶ。<br>社会の中で、人々がどんな判断や工夫をしているのかを体験するゲームブックです。</p>
+<div class="game-grid">
+<a class="game-card" href="kome-zukuri.html"><div class="icon">🌾</div><h2>米づくり</h2><p>春の準備から収穫・出荷まで。自然や天候、技術、地域との関わりを考えながら一年を体験します。</p></a>
+<div class="game-card future"><div class="icon">🚗</div><h2>自動車づくり</h2><p>準備中。部品、組み立て、品質、安全、輸送などを体験します。</p></div>
+<div class="game-card future"><div class="icon">📰</div><h2>ニュースづくり</h2><p>準備中。情報を集め、確かめ、選び、伝えるまでを体験します。</p></div>
+</div>
+<p class="portal-note">※ゲーム本体とシナリオデータを分離し、今後の単元追加に対応できる構造にしています。</p>
+</div></div>
+</body>
+</html>
