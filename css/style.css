@@ -424,3 +424,43 @@
   .status-final{grid-template-columns:repeat(5,1fr);gap:5px}
   .status-final b{font-size:9px}
 }
+
+
+/* ---------- final status ---------- */
+.final-status-heading{
+  width:100%;
+  max-width:760px;
+  margin:2px auto -6px;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  padding:0 2px;
+}
+.final-status-heading span{
+  font-size:18px;
+  font-weight:800;
+  color:var(--paddy-dark);
+}
+.final-status-heading small{
+  font-size:12px;
+  line-height:1.5;
+  color:var(--ink-soft);
+}
+.final-status-panel{
+  margin-bottom:2px;
+  border-color:rgba(200,155,60,.28);
+  background:rgba(255,255,255,.98);
+}
+.final-status-panel .status-title{
+  color:var(--paddy-dark);
+}
+.scene-image figcaption{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  align-items:center;
+}
+.scene-image figcaption a{
+  text-decoration:underline;
+  text-underline-offset:2px;
+}
