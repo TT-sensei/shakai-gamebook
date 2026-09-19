@@ -10,7 +10,7 @@ const KOME_ZUKURI_DATA = {
     lead: "きみは米農家。春の準備から秋の収穫まで、<br>一年間の判断を体験しよう。",
     endingLabel: "あなたの一年",
     endingText: "一年間、あなたはたくさんの判断をしながら米づくりを進めました。今回は {{eventCount}} 件のできごとを経験しました。",
-    footerNote: "むずかしい判断に「絶対の正解」はありません。結果を見て、次はどうするか考えてみよう。",
+    footerNote: "むずかしい判断に「絶対の正解」はありません。結果を見て、次はどうするか考えてみよう。※作業の時期や方法は、地域・天候・品種などによって異なります。",
     navi: [
       { src: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/03-thinking.png", eventSrc: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/05-surprised.png", resultSrc: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/07-encouraging.png", message: "田んぼの様子をよく見て、考えてみよう。" },
       { src: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/03-thinking.png", eventSrc: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/06-troubled.png", resultSrc: "https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/07-encouraging.png", message: "どの方法にも、よさと課題がありそうだね。" },
@@ -151,17 +151,17 @@ const KOME_ZUKURI_DATA = {
     },
     {
       id:"req_autumn_2", title:"稲刈り",
-      text:"稲が実り、収穫の時期になりました。コンバインなどを使って、どのように収穫するか考えます。",
+      text:"稲が実り、収穫の時期になりました。田んぼの状態や使える機械、人手などを考えて、どのように収穫するか決めます。",
       image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Combine_harvester_Kyoto_JPN_001.jpg?width=800","credit":"ignis / Wikimedia Commons・CC BY-SA 3.0","url":"https://commons.wikimedia.org/wiki/File:Combine_harvester_Kyoto_JPN_001.jpg"},
       requiredLearning:["tech"],
       educationalIntent:"機械化によって収穫の効率が上がる一方、機械の点検が欠かせないことを考えさせる。",
       choices:[
-        {text:"コンバインで刈り取り、脱穀まで行う", effects:{"efficiency":1,"quality":0},
+        {text:"コンバインで刈り取り、脱穀まで続けて行う", effects:{"efficiency":1,"quality":0},
          result:"刈り取りと脱穀を続けて行うことができました。",
          point:"コンバインは稲を刈り取り、その場で脱穀して、もみを集めます。"},
-        {text:"コンバインを点検してから、収穫を始める", effects:{"efficiency":1,"quality":1},
-         result:"機械の状態を確認してから、収穫作業を進めることができました。",
-         point:"機械を使う農作業では、点検や整備も重要です。"},
+        {text:"コンバインを点検し、稲の状態も確認してから始める", effects:{"efficiency":1,"quality":1},
+         result:"機械と稲の状態を確認してから、収穫作業を進めました。",
+         point:"コンバインは刈り取りと脱穀を続けて行えます。安全に使うため、点検や整備も重要です。"},
         {text:"機械が入りにくい場所は、鎌で刈り取る", effects:{"efficiency":-1,"cooperation":1},
          result:"機械では刈りにくい場所を、人の手で収穫しました。",
          point:"現在でも、機械が作業できない場所などでは手刈りをすることがあります。"}
@@ -179,7 +179,7 @@ const KOME_ZUKURI_DATA = {
         {text:"乾燥機で一気に高温で乾燥させる", effects:{"quality":-1,"efficiency":1},
          result:"乾燥は早く進みましたが、米粒に負担がかかりました。",
          point:"高水分のもみを急速に乾燥すると、胴割れなど品質低下につながることがあります。"},
-        {text:"適切な温度と時間を確認しながら乾燥する", effects:{"quality":1,"efficiency":0},
+        {text:"もみの水分を確認し、適切な温度と時間で乾燥する", effects:{"quality":1,"efficiency":0},
          result:"もみの水分を確認しながら、適切な状態に仕上げました。",
          point:"乾燥では、急ぎすぎたり乾燥しすぎたりしないよう管理します。"},
         {text:"乾燥の状態を確認せず、機械の設定だけで進める", effects:{"quality":-1,"efficiency":1},
@@ -200,9 +200,9 @@ const KOME_ZUKURI_DATA = {
         {text:"自分で販売先を決めて、直接販売する", effects:{"cooperation":1,"quality":0},
          result:"販売先とやり取りしながら、米を届けました。",
          point:"米の販売方法には、集荷を通す方法だけでなく、直接販売などもあります。"},
-        {text:"出荷前の検査や選別の結果を確認してから出す", effects:{"quality":1,"efficiency":0},
+        {text:"品質や出荷条件を確認してから、次の流通へ届ける", effects:{"quality":1,"efficiency":0},
          result:"米の状態を確認してから、次の流通へ届けました。",
-         point:"収穫後も、品質を確認しながら米が流通していきます。"}
+         point:"米は品質や出荷条件を確認しながら、集荷・販売などの流通へ進みます。"}
       ]
     }
   ]
