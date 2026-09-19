@@ -195,6 +195,7 @@ function render(){
       ${GAME_DATA.STAGE_ORDER.map((k,i)=>`<div class="dot ${i<stageIdx?"done":""} ${i===stageIdx?"now":""}"></div>`).join("")}
     </div>`;
   app.appendChild(bar);
+  app.appendChild(renderFlowProgress(scene));
 
   const main = document.createElement("main");
 
@@ -345,6 +346,11 @@ function renderEnding(){
   app.appendChild(bar);
 
   const main = document.createElement("main");
+
+  const flow = document.createElement("div");
+  flow.className="ending-flow";
+  flow.innerHTML="<div class=\"ending-flow-title\">米づくりの流れ</div><div class=\"ending-flow-line\">"+GAME_DATA.STAGE_ORDER.flatMap(k=>GAME_DATA.CORE_SCENES[k]||[]).map((s,i)=>`<span>${i+1}. ${s.title}</span>`).join("<b>→</b>")+"</div><p>※地域や天候、品種などによって、時期や作業の方法は異なります。</p>";
+  main.appendChild(flow);
 
   const summary = document.createElement("div");
   summary.className = "scene-card";
