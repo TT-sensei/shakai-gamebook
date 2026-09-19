@@ -114,7 +114,10 @@ function naviForScene(scene){
   if(!pool.length) return null;
   const key = scene.stage + ":" + scene.kind;
   const index = Math.abs(hashString(key + scene.id)) % pool.length;
-  return pool[index];
+  const navi = {...pool[index]};
+  if(state && state.phase === "result" && navi.resultSrc) navi.src = navi.resultSrc;
+  else if(scene.kind === "event" && navi.eventSrc) navi.src = navi.eventSrc;
+  return navi;
 }
 function hashString(str){ let h=0; for(let i=0;i<str.length;i++) h=((h<<5)-h)+str.charCodeAt(i)|0; return h; }
 
@@ -173,6 +176,14 @@ function render(){
 
   if(state.phase==="result"){
     const c = state.lastChoice;
+    const scene = currentScene();
+    const navi = naviForScene(scene);
+    if(navi){
+      const guide = document.createElement("div");
+      guide.className = "navi-guide result-guide";
+      guide.innerHTML = `<div class="navi-bubble">${navi.resultMessage || "結果を見て、次の判断につなげよう。"}</div><img src="${navi.src}" alt="" class="navi-img">`;
+      main.appendChild(guide);
+    }
     const card = document.createElement("div");
     card.className = "result-card";
     card.innerHTML = `
@@ -198,7 +209,7 @@ function render(){
   app.appendChild(main);
 }
 
-function renderTitle(){{
+function renderTitle(){
   const s = loadSave();
   const wrap = document.createElement("div");
   wrap.className = "center-screen";
@@ -223,7 +234,7 @@ function renderTitle(){{
   app.appendChild(wrap);
 }
 
-function renderEnding(){{
+function renderEnding(){
   const bar = document.createElement("div");
   bar.className = "stagebar";
   bar.style.background = "#3A4A3E";
