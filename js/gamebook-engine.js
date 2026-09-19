@@ -302,8 +302,6 @@ function renderEnding(){
   app.appendChild(footer);
 }
 
-render();
-
 function start(options){
   GAME_DATA = options.data;
   state = null;
