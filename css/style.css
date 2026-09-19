@@ -303,3 +303,10 @@
     color:var(--ink-soft);
     text-align:center;
   }
+
+/* ---------- tablet / navi ---------- */
+.navi-guide{display:flex;align-items:flex-end;gap:10px;min-height:58px;margin:-4px 4px 0}
+.navi-bubble{flex:1;background:#fff;border:1.5px solid var(--paper-2);border-radius:14px 14px 14px 4px;padding:10px 13px;font-size:14px;line-height:1.5;box-shadow:var(--card-shadow)}
+.navi-img{width:58px;height:58px;object-fit:contain;flex:none;filter:drop-shadow(0 2px 2px rgba(0,0,0,.08))}
+@media (min-width:700px){#app{max-width:900px}.stagebar{padding:14px 28px}.stagebar .season{font-size:24px}main{padding:24px 28px 24px;gap:16px}.scene-card,.result-card{padding:24px}.scene-text{font-size:21px;line-height:1.8}.choices{display:grid;grid-template-columns:1fr 1fr;gap:14px}.choice-btn{min-height:82px;font-size:18px;padding:18px 20px}.choice-btn:last-child:nth-child(odd){grid-column:1 / -1}.navi-guide{margin:0 4px}.navi-img{width:72px;height:72px}.navi-bubble{font-size:16px;padding:12px 16px}}
+@media (max-width:699px){main{min-height:calc(100vh - 78px)}.scene-card{padding:18px 16px}.choice-btn{min-height:68px}}
