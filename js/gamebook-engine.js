@@ -159,7 +159,8 @@ function renderFlowProgress(scene){
   box.innerHTML='<div class="flow-progress-title">米づくりの流れ</div><div class="flow-steps">'+steps.map((s,i)=>{
     const done=i<completed;
     const now=i===completed;
-    return '<div class="flow-step '+(done?'done ':'')+(now?'now':'')+'"><span class="flow-num">'+(i+1)+'</span><span>'+s.title+'</span></div>';
+    const visible=done||now;
+    return '<div class="flow-step '+(done?'done ':'')+(now?'now':'')+(visible?'':'future')+'"><span class="flow-num">'+(visible?(i+1):'?')+'</span><span>'+(visible?s.title:'？')+'</span></div>';
   }).join('')+'</div>';
   return box;
 }
