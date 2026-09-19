@@ -247,12 +247,12 @@ const KOME_ZUKURI_DATA = {
     requiredLearning:["natural","water"],
     educationalIntent:"農業は自然条件の影響を受けるため、天候を見ながら対応する必要があることを考えさせる。",
     choices:[
-      {text:"そのままにしておく", effects:{"water":-1,"growth":-1}, result:"数日後、水はけの悪い場所で根の育ちが悪くなってしまいました。",
-       point:"自然の変化をそのままにすると、後で影響が出ることがあります。"},
-      {text:"排水路を調整して水を減らす", effects:{"water":1,"growth":1}, result:"水の量が落ち着き、稲への影響を抑えることができました。",
-       point:"天候の変化に合わせて、こまめに調整することが大切です。"},
-      {text:"様子を見に行って確認する", effects:{"growth":1,"efficiency":-1}, result:"すぐに大きな問題はないとわかり、安心して次の作業に移れました。",
-       point:"実際に見て確認することで、必要な対応が見えてきます。"}
+      {text:"田んぼの水位と排水の様子を確認する", effects:{"water":1,"growth":0}, result:"水のたまり方を確認し、必要な場所を調整しました。",
+       point:"長雨のときは、田んぼの水の状態を確認して対応します。"},
+      {text:"排水口を調整して水を抜く", effects:{"water":1,"growth":1}, result:"余分な水を抜き、田んぼの状態を整えました。",
+       point:"水が多すぎるときは、排水を調整することがあります。"},
+      {text:"雨がやむまで作業をせず、天候を見守る", effects:{"water":-1,"growth":-1}, result:"雨の間に水位が上がり、対応が後手になりました。",
+       point:"天候を見ながら、必要な管理を行うことが大切です。"}
     ]
   },
   {
@@ -261,12 +261,12 @@ const KOME_ZUKURI_DATA = {
     requiredLearning:["natural"],
     educationalIntent:"台風のような自然災害に対し、収穫のタイミングをどう判断するかを考えさせる。",
     choices:[
-      {text:"予定通り収穫する", effects:{"growth":-1,"quality":-1}, result:"収穫は間に合いましたが、急いだため一部の作業が雑になりました。",
-       point:"予定を守ることと、安全・確実さのバランスが求められます。"},
-      {text:"天気をさらに確認してから決める", effects:{"growth":1,"efficiency":-1}, result:"最新の情報をもとに、無理のない範囲で収穫を終えられました。",
-       point:"最新の天候情報を確認することが、判断の助けになります。"},
-      {text:"地域の農家と相談する", effects:{"cooperation":1,"growth":1}, result:"周りの農家と協力し、被害を抑えながら収穫を進められました。",
-       point:"一人で判断が難しいときは、周囲との相談が力になります。"}
+      {text:"天気予報と稲の状態を確認して収穫日を決める", effects:{"growth":1,"quality":1}, result:"稲の状態と天候を確認して、収穫日を決めました。",
+       point:"収穫は稲の成熟度や天候などを見て判断します。"},
+      {text:"予定していた日に収穫する", effects:{"growth":-1,"quality":-1}, result:"予定通り進めましたが、その後の天候によって対応が必要になりました。",
+       point:"収穫時期は、予定だけでなく稲や天候の状態も見て判断します。"},
+      {text:"近くの農家と情報を共有してから決める", effects:{"cooperation":1,"growth":0}, result:"周りの農家と情報を共有し、収穫の予定を調整しました。",
+       point:"農家どうしで情報を交換することも、判断の助けになります。"}
     ]
   },
   {
@@ -275,12 +275,12 @@ const KOME_ZUKURI_DATA = {
     requiredLearning:["natural","water"],
     educationalIntent:"高温という自然条件の変化に、水管理などで対応する工夫を考えさせる。",
     choices:[
-      {text:"特に何もせず様子を見る", effects:{"water":-1,"growth":-1}, result:"稲が水不足気味になり、生育に少し影響が出ました。",
-       point:"暑さが続くときは、早めの対応が必要になることがあります。"},
-      {text:"水を多めに入れて田んぼを冷やす", effects:{"water":1,"growth":1}, result:"稲への負担が和らぎ、生育が落ち着きました。",
-       point:"水の管理は、暑さから稲を守る工夫にもなります。"},
-      {text:"日中の作業を控え、朝夕に作業する", effects:{"efficiency":-1,"growth":1}, result:"作業の負担を減らしつつ、田んぼの確認もできました。",
-       point:"気候に合わせて、作業の時間帯を工夫することも大切です。"}
+      {text:"田んぼの水の量と稲の様子を確認する", effects:{"water":1,"growth":1}, result:"水の状態を確認し、必要な管理を行いました。",
+       point:"高温の時期は、水管理を含めて稲の状態を確認することが重要です。"},
+      {text:"水をいつもより多く入れて、そのままにする", effects:{"water":1,"growth":0}, result:"水は確保できましたが、生育段階に合わせた調整はできませんでした。",
+       point:"暑い時期でも、水量は生育や田んぼの状態を見て調整します。"},
+      {text:"日中を避け、朝夕に田んぼを確認する", effects:{"efficiency":-1,"growth":1}, result:"暑い時間帯の作業を減らしながら、稲の状態を確認しました。",
+       point:"暑さの中では、作業時間を工夫することもできます。"}
     ]
   },
   {
@@ -289,12 +289,12 @@ const KOME_ZUKURI_DATA = {
     requiredLearning:["water"],
     educationalIntent:"限られた水資源をどう配分し管理するかを考えさせる。",
     choices:[
-      {text:"近くの用水路から多めに水を引く", effects:{"water":1,"cooperation":-1}, result:"田んぼの水は保てましたが、他の田んぼとの調整が必要になりました。",
-       point:"水は地域で共有する資源でもあるため、調整が欠かせません。"},
-      {text:"必要な分だけ水を引き、様子を見る", effects:{"water":1,"growth":0}, result:"最低限の水を保ちながら、大きな影響を防げました。",
-       point:"限られた水を無駄なく使う工夫が求められます。"},
-      {text:"地域で話し合って水を分け合う", effects:{"water":1,"cooperation":1}, result:"みんなで分け合うことで、どの田んぼも大きな被害を防げました。",
-       point:"水の管理には、地域全体の協力が関わっています。"}
+      {text:"必要な量だけ水を引き、田んぼの様子を確認する", effects:{"water":1,"growth":0}, result:"必要な分の水を確保し、稲の状態を確認しました。",
+       point:"水不足のときは、必要な量を考えながら水を使います。"},
+      {text:"地域の農家と水の使い方を相談する", effects:{"water":1,"cooperation":1}, result:"水の使い方を相談し、地域で調整しました。",
+       point:"農業用水は地域で利用するため、調整や話し合いが大切です。"},
+      {text:"できるだけ多くの水を自分の田んぼに入れる", effects:{"water":1,"cooperation":-1}, result:"自分の田んぼの水は確保できましたが、周囲との調整が必要になりました。",
+       point:"水不足のときは、地域全体で水をどう使うかも考える必要があります。"}
     ]
   },
   {
@@ -303,12 +303,12 @@ const KOME_ZUKURI_DATA = {
     requiredLearning:["quality","observe"],
     educationalIntent:"病害虫への対策には複数の方法があり、それぞれに利点と課題があることを考えさせる。",
     choices:[
-      {text:"すぐに農薬を使う", effects:{"quality":1,"efficiency":-1}, result:"被害の広がりは防げましたが、費用と手間がかかりました。",
-       point:"素早い対応にも、コストという別の面があります。"},
-      {text:"被害の範囲をよく確認する", effects:{"quality":1,"growth":1}, result:"被害が一部だけとわかり、必要な範囲だけ対応できました。",
-       point:"まず状況を確認することで、無駄のない対応につながります。"},
-      {text:"しばらく様子を見る", effects:{"quality":-1,"growth":-1}, result:"被害が少し広がってしまい、後から対応が必要になりました。",
-       point:"対応が遅れると、被害が広がる場合もあります。"}
+      {text:"被害の広がりと虫の種類を確認する", effects:{"quality":1,"growth":1}, result:"被害の範囲を確認し、対応を考える材料を集めました。",
+       point:"病害虫への対応では、発生状況を確認してから適切な方法を選びます。"},
+      {text:"発生予察や地域の情報を確認して対応を考える", effects:{"quality":1,"efficiency":0}, result:"周囲の発生状況も確認して、対応を考えました。",
+       point:"病害虫の発生予察などの情報を防除の判断に活用できます。"},
+      {text:"しばらく何もせず、被害の変化を見る", effects:{"quality":-1,"growth":-1}, result:"被害が広がり、あとから対応する必要が出てきました。",
+       point:"病害虫によっては、早めの確認と対応が必要です。"}
     ]
   },
   {
@@ -317,26 +317,26 @@ const KOME_ZUKURI_DATA = {
     requiredLearning:["tech"],
     educationalIntent:"機械化された農業には、故障やメンテナンスという課題も伴うことを考えさせる。",
     choices:[
-      {text:"自分で応急処置をする", effects:{"efficiency":1,"quality":-1}, result:"作業を止めずに済みましたが、根本的な修理は後回しになりました。",
-       point:"応急処置には、その場をしのぐ良さと限界の両方があります。"},
-      {text:"専門の業者に修理を頼む", effects:{"efficiency":-1,"quality":1}, result:"時間はかかりましたが、しっかりと直すことができました。",
-       point:"機械の維持には、専門家の力を借りることも必要です。"},
-      {text:"手作業に切り替えて作業を続ける", effects:{"efficiency":-1,"cooperation":1}, result:"時間はかかりましたが、作業を止めずに終えられました。",
-       point:"機械が使えないときの備えを持つことも大切です。"}
+      {text:"取扱説明書を確認し、自分で対応できる範囲を調べる", effects:{"efficiency":0,"quality":1}, result:"安全にできる範囲を確認してから対応しました。",
+       point:"機械の不調では、安全を確認してから対応することが大切です。"},
+      {text:"専門の業者や整備担当者に相談する", effects:{"efficiency":-1,"quality":1}, result:"時間はかかりましたが、専門家に点検してもらいました。",
+       point:"機械の整備には、専門家の力を借りることもあります。"},
+      {text:"手作業に切り替えられる部分だけ作業を続ける", effects:{"efficiency":-1,"cooperation":1}, result:"できる作業を人の手に切り替え、作業を進めました。",
+       point:"機械が使えない場合に備え、別の方法を考えることもできます。"}
     ]
   },
   {
     id:"ev_drone", name:"ドローン導入", stages:["summer"], weight:2,
-    title:"新しい技術の提案", text:"知り合いの農家から、ドローンを使った農薬散布を試してみないかと誘われました。",
+    title:"新しい技術の提案", text:"知り合いの農家から、農業用ドローンを使った作業を試してみないかと誘われました。導入するかどうか考えます。",
     requiredLearning:["tech"],
     educationalIntent:"新しい技術によって作業を効率化できる一方、導入や利用には条件があることを考えさせる。",
     choices:[
-      {text:"導入してみる", effects:{"efficiency":1,"quality":1}, result:"広い田んぼでも短時間で作業でき、負担が減りました。",
-       point:"新しい技術には、作業を効率化できるという良さがあります。"},
-      {text:"費用や使い方をよく調べてから考える", effects:{"efficiency":-1,"quality":1}, result:"じっくり調べた結果、必要な部分だけ取り入れることにしました。",
-       point:"新しい技術には、費用や操作方法などの条件もあります。"},
-      {text:"今回は見送り、今まで通りにする", effects:{"efficiency":-1}, result:"大きな変化はありませんでしたが、導入のタイミングを見直すことにしました。",
-       point:"新しい技術を使うかどうかも、農家の判断の一つです。"}
+      {text:"すぐに導入して、作業に使ってみる", effects:{"efficiency":1,"quality":0}, result:"新しい機械を使う経験はできましたが、準備や運用の確認も必要でした。",
+       point:"新しい技術は、作業方法や安全面などを確認して使います。"},
+      {text:"費用・効果・使い方を調べてから判断する", effects:{"efficiency":0,"quality":1}, result:"条件を調べたうえで、自分の農業に合うかを考えました。",
+       point:"スマート農業には、費用や使い方などを含めて導入を考える必要があります。"},
+      {text:"今回は導入せず、今の方法を続ける", effects:{"efficiency":-1,"quality":0}, result:"今までの方法で作業を続けました。",
+       point:"新しい技術を導入するかどうかは、農家が条件を考えて判断します。"}
     ]
   },
   {
@@ -345,12 +345,12 @@ const KOME_ZUKURI_DATA = {
     requiredLearning:["society"],
     educationalIntent:"米づくりが個人だけでなく地域のつながりによって支えられていることを考えさせる。",
     choices:[
-      {text:"協力する", effects:{"cooperation":1,"efficiency":1}, result:"作業がはかどり、困ったときに助け合える関係もできました。",
-       point:"地域の助け合いが、米づくりを支える力になっています。"},
-      {text:"自分の作業を優先する", effects:{"cooperation":-1}, result:"自分の田んぼの作業は予定通り進みましたが、協力の機会は逃しました。",
-       point:"協力にはお互いの都合を合わせる難しさもあります。"},
-      {text:"できる範囲で少しだけ協力する", effects:{"cooperation":1,"efficiency":-1}, result:"無理のない範囲で助け合うことができました。",
-       point:"協力の形は一つではなく、状況に合わせて選ぶことができます。"}
+      {text:"自分の作業予定を伝え、できる範囲を決めて協力する", effects:{"cooperation":1,"efficiency":0}, result:"互いの予定を調整し、できる範囲で助け合いました。",
+       point:"農繁期には、作業の予定を調整しながら助け合うことがあります。"},
+      {text:"今回は自分の田んぼの作業を優先する", effects:{"cooperation":-1,"efficiency":1}, result:"自分の作業は進みましたが、今回は協力できませんでした。",
+       point:"地域での協力には、自分の作業との調整も必要です。"},
+      {text:"作業を分担して、お互いの田んぼを順番に手伝う", effects:{"cooperation":1,"efficiency":1}, result:"作業を分担し、互いの負担を減らしました。",
+       point:"農家どうしで作業を助け合うことは、地域の農業を支える方法の一つです。"}
     ]
   }
 ]
