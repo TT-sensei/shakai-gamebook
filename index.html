@@ -11,10 +11,12 @@
 .portal-kicker{font-size:13px;color:var(--ink-soft);letter-spacing:.08em}
 .portal h1{font-size:32px;margin:8px 0;color:var(--paddy-dark)}
 .portal-lead{line-height:1.8;color:var(--ink-soft);margin:0 0 26px}
-.portal-hero{background:rgba(255,255,255,.82);border:1px solid rgba(78,124,74,.12);border-radius:20px;padding:22px 22px 20px;box-shadow:var(--card-shadow);margin-bottom:22px}
+.portal-hero{background:rgba(255,255,255,.82);border:1px solid rgba(78,124,74,.12);border-radius:20px;padding:18px 18px 18px;box-shadow:var(--card-shadow);margin-bottom:22px;display:flex;align-items:center;gap:18px;overflow:hidden}
+.portal-hero-copy{flex:1;min-width:0}
 .portal-hero-label{font-size:12px;color:var(--paddy);letter-spacing:.08em;margin-bottom:5px}
 .portal-hero-title{font-size:20px;font-weight:700;color:var(--ink);margin:0 0 6px}
 .portal-hero-text{font-size:14px;line-height:1.75;color:var(--ink-soft);margin:0}
+.portal-hero-character{width:128px;height:128px;object-fit:contain;object-position:center bottom;flex:0 0 128px}
 .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 2px 10px}
 .section-head h2{font-size:18px;margin:0;color:var(--paddy-dark)}
 .section-head p{font-size:12px;color:var(--ink-soft);margin:0}
@@ -32,8 +34,14 @@
 .portal-footer{font-size:11px;color:var(--ink-soft);text-align:center;margin-top:30px}
 @media (min-width:700px){
   .portal{padding:42px 28px}
-  .portal-hero{padding:24px 26px}
+  .portal-hero{padding:22px 24px;gap:24px}
   .portal h1{font-size:36px}
+  .portal-hero-character{width:150px;height:150px;flex-basis:150px}
+}
+@media (max-width:520px){
+  .portal-hero{gap:10px}
+  .portal-hero-character{width:92px;height:92px;flex-basis:92px}
+  .portal-hero-title{font-size:18px}
 }
 @media (prefers-reduced-motion:reduce){
   .game-card{transition:none}
@@ -48,9 +56,12 @@
     <p class="portal-lead">読む。考える。選ぶ。<br>社会の中で、人々がどんな判断や工夫をしているのかを体験するゲームブックです。</p>
 
     <section class="portal-hero" aria-label="ゲームブックの遊び方">
-      <div class="portal-hero-label">GAMEBOOK</div>
-      <p class="portal-hero-title">正解を当てるのではなく、選んで、その先を体験する。</p>
-      <p class="portal-hero-text">場面を読み、考え、選びます。選んだ結果から、次の判断につなげながら社会のしくみを見ていきます。</p>
+      <div class="portal-hero-copy">
+        <div class="portal-hero-label">GAMEBOOK</div>
+        <p class="portal-hero-title">正解を当てるのではなく、選んで、その先を体験する。</p>
+        <p class="portal-hero-text">場面を読み、考え、選びます。選んだ結果から、次の判断につなげながら社会のしくみを見ていきます。</p>
+      </div>
+      <img class="portal-hero-character" src="https://tt-sensei.github.io/navi-character-/assets/web/groups/learning/group-learning-social-sources.webp" alt="社会②・資料を比べて考える">
     </section>
 
     <div class="section-head">
