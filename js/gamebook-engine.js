@@ -121,6 +121,12 @@ function naviForScene(scene){
 }
 function hashString(str){ let h=0; for(let i=0;i<str.length;i++) h=((h<<5)-h)+str.charCodeAt(i)|0; return h; }
 
+function renderSceneImage(scene){
+  const image = scene.image || (GAME_DATA.meta.stageImages && GAME_DATA.meta.stageImages[scene.stage]);
+  if(!image) return "";
+  return '<figure class="scene-image"><img src="'+image.src+'" alt="" loading="eager"><figcaption><span>'+image.credit+'</span> <a href="'+image.url+'" target="_blank" rel="noopener">出典</a></figcaption></figure>';
+}
+
 function render(){
   app.innerHTML = "";
   if(!state){ renderTitle(); return; }
