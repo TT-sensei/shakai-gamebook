@@ -65,6 +65,8 @@ const STATUS_META={water:{label:"水管理",icon:"💧"},growth:{label:"稲の�
 const LEARNING_TO_STATUS={natural:"growth",water:"water",observe:"growth",tech:"efficiency",quality:"quality",society:"cooperation"};
 function initialStatus(){return{water:3,growth:3,efficiency:3,cooperation:3,quality:3};}
 function effectForChoice(scene,index){
+  // 原則：選択肢側に明示した effects を優先する。
+  // 旧データとの互換用に、未設定の場合だけ学習内容から補完する。
   const keys=[...(new Set((scene.requiredLearning||[]).map(k=>LEARNING_TO_STATUS[k]).filter(Boolean)))];
   if(!keys.length)return{};
   if(keys.length===1)return{[keys[0]]:index===1?1:-1};
