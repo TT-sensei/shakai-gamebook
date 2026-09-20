@@ -91,8 +91,8 @@ function applyEffects(effects){Object.keys(STATUS_META).forEach(k=>{state.status
 function failedStatus(){return Object.keys(STATUS_META).find(k=>state.status[k]<=0)||null;}
 function startNewGame(){
   const pool = GAME_DATA.meta.navi || [];
-  const shuffled = [...pool].sort(()=>Math.random()-0.5);
-  state={timeline:buildTimeline(GAME_DATA),index:0,log:[],phase:"scene",status:initialStatus(),lastChoice:null,failedStatus:null,naviMap:shuffled.map((_,i)=>i)};
+  const naviMap = pool.map((_,i)=>i).sort(()=>Math.random()-0.5);
+  state={timeline:buildTimeline(GAME_DATA),index:0,log:[],phase:"scene",status:initialStatus(),lastChoice:null,failedStatus:null,naviMap};
   saveState();render();
 }
 function resumeGame(){
