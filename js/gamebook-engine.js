@@ -54,7 +54,10 @@ function saveState(){
       timelineData: state.timeline,
       gameId: GAME_DATA.meta.id,
       index: state.index,
-      log: state.log
+      log: state.log,
+      status: state.status,
+      failedStatus: state.failedStatus,
+      naviMap: state.naviMap
     }));
   }catch(e){ /* 保存できなくてもゲームは続行 */ }
 }
@@ -87,14 +90,16 @@ function effectForChoice(scene,index){
 function applyEffects(effects){Object.keys(STATUS_META).forEach(k=>{state.status[k]=Math.max(0,Math.min(5,state.status[k]+Number(effects[k]||0)));});}
 function failedStatus(){return Object.keys(STATUS_META).find(k=>state.status[k]<=0)||null;}
 function startNewGame(){
-  state={timeline:buildTimeline(GAME_DATA),index:0,log:[],phase:"scene",status:initialStatus(),lastChoice:null,failedStatus:null};
+  const pool = GAME_DATA.meta.navi || [];
+  const shuffled = [...pool].sort(()=>Math.random()-0.5);
+  state={timeline:buildTimeline(GAME_DATA),index:0,log:[],phase:"scene",status:initialStatus(),lastChoice:null,failedStatus:null,naviMap:shuffled.map((_,i)=>i)};
   saveState();render();
 }
 function resumeGame(){
   const s = loadSave();
   if(!s){ startNewGame(); return; }
   if(s.gameId && s.gameId !== GAME_DATA.meta.id) { startNewGame(); return; }
-  state={timeline:s.timelineData,index:s.index,log:s.log,phase:"scene",lastChoice:null,status:s.status||initialStatus(),failedStatus:s.failedStatus||null};
+  state={timeline:s.timelineData,index:s.index,log:s.log,phase:"scene",lastChoice:null,status:s.status||initialStatus(),failedStatus:s.failedStatus||null,naviMap:s.naviMap||null};
   render();
 }
 
@@ -136,8 +141,10 @@ const app = document.getElementById("app");
 function naviForScene(scene){
   const pool = GAME_DATA.meta.navi || [];
   if(!pool.length) return null;
-  const key = scene.stage + ":" + scene.kind;
-  const index = Math.abs(hashString(key + scene.id)) % pool.length;
+  const sceneIndex = state.timeline.findIndex(s=>s.id===scene.id);
+  const index = state.naviMap && state.naviMap.length
+    ? state.naviMap[sceneIndex % state.naviMap.length] % pool.length
+    : Math.abs(hashString(scene.id)) % pool.length;
   const navi = {...pool[index]};
   if(state && state.phase === "result" && navi.resultSrc) navi.src = navi.resultSrc;
   else if(scene.kind === "event" && navi.eventSrc) navi.src = navi.eventSrc;
@@ -152,7 +159,7 @@ function renderFlowProgress(scene){
   });
   const currentCoreIndex = steps.findIndex(s=>s.id===scene.id);
   const completed = currentCoreIndex < 0
-    ? steps.findIndex(s=>s.stage===scene.stage)
+    ? Math.max(0, steps.findIndex(s=>s.stage===scene.stage))
     : currentCoreIndex;
   const box=document.createElement("div");
   box.className="flow-progress";
