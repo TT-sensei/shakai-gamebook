@@ -72,7 +72,7 @@ function clearSave(){
   try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
 }
 
-const STATUS_META={water:{label:"水管理",icon:"💧"},growth:{label:"稲の育ち",icon:"🌾"},efficiency:{label:"作業効率",icon:"⚙️"},cooperation:{label:"地域との協力",icon:"🤝"},quality:{label:"米の品質",icon:"📦"}};
+const STATUS_META={water:{label:"水管理"},growth:{label:"稲の育ち"},efficiency:{label:"作業効率"},cooperation:{label:"地域との協力"},quality:{label:"米の品質"}};
 const LEARNING_TO_STATUS={natural:"growth",water:"water",observe:"growth",tech:"efficiency",quality:"quality",society:"cooperation"};
 function initialStatus(){return{water:3,growth:3,efficiency:3,cooperation:3,quality:3};}
 function effectForChoice(scene,index){
@@ -299,14 +299,14 @@ function renderStatus(final=false){
   const box=document.createElement("div");box.className="status-panel"+(final?" final-status-panel":"");
   box.innerHTML='<div class="status-title">今年の米づくり</div><div class="status-grid">'+Object.keys(STATUS_META).map(k=>{
     const m=STATUS_META[k],v=state.status[k];
-    return '<div class="status-item"><div class="status-label"><span>'+m.icon+'</span>'+m.label+'</div><div class="status-bars">'+Array.from({length:5},(_,i)=>'<span class="status-dot '+(i<v?'on':'')+'"></span>').join('')+'</div></div>';
+    return '<div class="status-item"><div class="status-label">'+m.label+'</div><div class="status-bars">'+Array.from({length:5},(_,i)=>'<span class="status-dot '+(i<v?'on':'')+'"></span>').join('')+'</div></div>';
   }).join('')+'</div>';return box;
 }
 function renderEffectSummary(effects){
   if(!effects)return '';
   const html=Object.keys(STATUS_META).filter(k=>effects[k]).map(k=>{
     const d=effects[k],m=STATUS_META[k];
-    return '<span class="effect '+(d>0?'up':'down')+'">'+m.icon+' '+(d>0?'+1':'−1')+'</span>';
+    return '<span class="effect '+(d>0?'up':'down')+'">'+m.label+' '+(d>0?'+1':'−1')+'</span>';
   }).join('');
   return html?'<div class="effect-summary"><span class="effect-title">今回の変化</span>'+html+'</div>':'';
 }
@@ -315,7 +315,7 @@ function renderGameOver(){
   bar.innerHTML='<div class="row"><div class="season">今年の米づくり</div><div class="month">'+GAME_DATA.meta.title+'</div></div>';app.appendChild(bar);
   const main=document.createElement("main"),failed=STATUS_META[state.failedStatus];
   const card=document.createElement("div");card.className="result-card gameover-card";
-  card.innerHTML='<div class="gameover-mark">今年はここで終了</div><h2>'+failed.icon+' '+failed.label+' が0になりました</h2><p>このまま米づくりを続けるのは難しい状態です。けれど、失敗した判断からも、米づくりの工夫や課題を学ぶことができます。</p><div class="status-final">'+Object.keys(STATUS_META).map(k=>'<div><span>'+STATUS_META[k].icon+'</span><b>'+STATUS_META[k].label+'</b><strong>'+state.status[k]+'</strong></div>').join('')+'</div>';
+  card.innerHTML='<div class="gameover-mark">今年はここで終了</div><h2>'+failed.icon+' '+failed.label+' が0になりました</h2><p>このまま米づくりを続けるのは難しい状態です。けれど、失敗した判断からも、米づくりの工夫や課題を学ぶことができます。</p><div class="status-final">'+Object.keys(STATUS_META).map(k=>'<div><b>'+STATUS_META[k].label+'</b><strong>'+state.status[k]+'</strong></div>').join('')+'</div>';
   main.appendChild(card);
   const reflect=document.createElement("div");reflect.className="scene-card";reflect.innerHTML='<p class="reflect-q">どの判断が、この結果につながったと思いますか？</p><textarea class="reflect" placeholder="学びノートに書いてみよう。"></textarea>';main.appendChild(reflect);
   const retry=document.createElement("button");retry.className="next-btn";retry.textContent="もう一度、米づくりに挑戦する";retry.onclick=startNewGame;main.appendChild(retry);app.appendChild(main);
@@ -326,7 +326,7 @@ function renderTitle(){
   const wrap = document.createElement("div");
   wrap.className = "center-screen";
   wrap.innerHTML = `
-    <div class="title-emblem">${GAME_DATA.meta.icon || "📘"}</div>
+    <div class="title-emblem">${GAME_DATA.meta.icon || "米"}</div>
     <h1 class="title-jp">${GAME_DATA.meta.title}</h1>
     <p class="title-sub">${GAME_DATA.meta.lead}</p>
   `;
