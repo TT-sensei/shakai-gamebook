@@ -123,7 +123,7 @@ function chooseOption(choiceIndex){
   }
   const effects=choice.effects||effectForChoice(scene,choiceIndex),before={...state.status};
   applyEffects(effects);
-  state.log.push({stage:scene.stage,title:scene.title||scene.eventName,kind:scene.kind,choiceText:choice.text,result:choice.result,effects,before,after:{...state.status}});
+  state.log.push({stage:scene.stage,id:scene.id,title:scene.title||scene.eventName,kind:scene.kind,choiceText:choice.text,result:choice.result,effects,before,after:{...state.status},sceneLearning:scene.requiredLearning||[]});
   state.lastChoice={...choice,effects,before,after:{...state.status}};
   state.failedStatus=failedStatus();state.phase="result";saveState();render();
 }
@@ -161,9 +161,14 @@ function renderFlowProgress(scene){
     (GAME_DATA.CORE_SCENES[stageKey]||[]).forEach(s=>steps.push({id:s.id,title:s.title,stage:stageKey}));
   });
   const currentCoreIndex = steps.findIndex(s=>s.id===scene.id);
-  const completed = currentCoreIndex < 0
-    ? Math.max(0, steps.findIndex(s=>s.stage===scene.stage))
-    : currentCoreIndex;
+  const sequenceAfterIndex = scene.kind==="sequence"
+    ? steps.findIndex(s=>s.id===scene.afterId)
+    : -1;
+  const completed = scene.kind==="sequence" && sequenceAfterIndex>=0
+    ? sequenceAfterIndex + 1
+    : currentCoreIndex >= 0
+      ? currentCoreIndex
+      : Math.max(0, steps.findIndex(s=>s.stage===scene.stage));
   const box=document.createElement("div");
   box.className="flow-progress";
   box.innerHTML='<div class="flow-progress-title">米づくりの流れ</div><div class="flow-steps">'+steps.map((s,i)=>{
@@ -396,7 +401,19 @@ function renderEnding(){
   learnCard.innerHTML = `<p class="scene-title">今回、体験した学習ポイント</p>`;
   const grid = document.createElement("div");
   grid.className = "learn-grid";
-  Object.values(GAME_DATA.REQUIRED_LEARNING).forEach(label=>{
+  const learnedKeys = new Set();
+  state.log.forEach(item=>{
+    const source = item.sceneLearning || [];
+    source.forEach(key=>learnedKeys.add(key));
+  });
+  state.log.forEach(item=>{
+    const scene = GAME_DATA.CORE_SCENES[item.stage]?.find(s=>s.id===item.id);
+    if(scene && scene.requiredLearning) scene.requiredLearning.forEach(key=>learnedKeys.add(key));
+  });
+  const labels = Object.entries(GAME_DATA.REQUIRED_LEARNING)
+    .filter(([key])=>learnedKeys.has(key))
+    .map(([,label])=>label);
+  (labels.length ? labels : Object.values(GAME_DATA.REQUIRED_LEARNING)).forEach(label=>{
     const chip = document.createElement("span");
     chip.className = "learn-chip";
     chip.textContent = label;
