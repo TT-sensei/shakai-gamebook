@@ -57,7 +57,10 @@ function saveState(){
       log: state.log,
       status: state.status,
       failedStatus: state.failedStatus,
-      naviMap: state.naviMap
+      naviMap: state.naviMap,
+      phase: state.phase,
+      lastChoice: state.lastChoice,
+      sequenceFeedback: state.sequenceFeedback || null
     }));
   }catch(e){ /* 保存できなくてもゲームは続行 */ }
 }
@@ -99,7 +102,7 @@ function resumeGame(){
   const s = loadSave();
   if(!s){ startNewGame(); return; }
   if(s.gameId && s.gameId !== GAME_DATA.meta.id) { startNewGame(); return; }
-  state={timeline:s.timelineData,index:s.index,log:s.log,phase:"scene",lastChoice:null,status:s.status||initialStatus(),failedStatus:s.failedStatus||null,naviMap:s.naviMap||null};
+  state={timeline:s.timelineData,index:s.index,log:s.log,phase:s.phase||"scene",lastChoice:s.lastChoice||null,status:s.status||initialStatus(),failedStatus:s.failedStatus||null,naviMap:s.naviMap||null,sequenceFeedback:s.sequenceFeedback||null};
   render();
 }
 
@@ -315,7 +318,7 @@ function renderGameOver(){
   bar.innerHTML='<div class="row"><div class="season">今年の米づくり</div><div class="month">'+GAME_DATA.meta.title+'</div></div>';app.appendChild(bar);
   const main=document.createElement("main"),failed=STATUS_META[state.failedStatus];
   const card=document.createElement("div");card.className="result-card gameover-card";
-  card.innerHTML='<div class="gameover-mark">今年はここで終了</div><h2>'+failed.icon+' '+failed.label+' が0になりました</h2><p>このまま米づくりを続けるのは難しい状態です。けれど、失敗した判断からも、米づくりの工夫や課題を学ぶことができます。</p><div class="status-final">'+Object.keys(STATUS_META).map(k=>'<div><b>'+STATUS_META[k].label+'</b><strong>'+state.status[k]+'</strong></div>').join('')+'</div>';
+  card.innerHTML='<div class="gameover-mark">今年はここで終了</div><h2>'+failed.label+' が0になりました</h2><p>このまま米づくりを続けるのは難しい状態です。けれど、失敗した判断からも、米づくりの工夫や課題を学ぶことができます。</p><div class="status-final">'+Object.keys(STATUS_META).map(k=>'<div><b>'+STATUS_META[k].label+'</b><strong>'+state.status[k]+'</strong></div>').join('')+'</div>';
   main.appendChild(card);
   const reflect=document.createElement("div");reflect.className="scene-card";reflect.innerHTML='<p class="reflect-q">どの判断が、この結果につながったと思いますか？</p><textarea class="reflect" placeholder="学びノートに書いてみよう。"></textarea>';main.appendChild(reflect);
   const retry=document.createElement("button");retry.className="next-btn";retry.textContent="もう一度、米づくりに挑戦する";retry.onclick=startNewGame;main.appendChild(retry);app.appendChild(main);
