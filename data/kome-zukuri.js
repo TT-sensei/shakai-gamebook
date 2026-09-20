@@ -6,7 +6,7 @@ const KOME_ZUKURI_DATA = {
   meta: {
     id: "kome-zukuri",
     title: "米づくりゲームブック",
-    icon: "🌾",
+    icon: "米",
     lead: "きみは米農家。春の準備から秋の収穫まで、<br>一年間の判断を体験しよう。",
     endingLabel: "あなたの一年",
     endingText: "一年間、あなたはたくさんの判断をしながら米づくりを進めました。今回は {{eventCount}} 件のできごとを経験しました。",
