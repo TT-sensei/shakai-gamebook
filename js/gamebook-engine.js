@@ -301,6 +301,11 @@ function render(){
   }
 
   app.appendChild(main);
+
+  // 外部UI拡張用フック。通常画面の描画後に呼び出す。
+  if (typeof window.GameBook?.onRender === "function") {
+    try { window.GameBook.onRender({ data: GAME_DATA, state }); } catch(e) {}
+  }
 }
 
 
