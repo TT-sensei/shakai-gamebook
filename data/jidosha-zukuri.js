@@ -43,13 +43,13 @@ REQUIRED_LEARNING:{
   global:"国内外の会社・市場とのつながり"
 },
 STAGES:{
-  planning:{label:"企画",short:"企画",color:"#5E748A"},
-  stamping:{label:"プレス",short:"プレス",color:"#587A91"},
-  welding:{label:"溶接",short:"溶接",color:"#6B7564"},
-  painting:{label:"塗装",short:"塗装",color:"#8A6F55"},
-  assembly:{label:"組立",short:"組立",color:"#557C67"},
-  inspection:{label:"検査",short:"検査",color:"#9A713D"},
-  delivery:{label:"出荷",short:"出荷",color:"#765F78"}
+  planning:{label:"企画",short:"企画",color:"#5E748A",image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/CONCEPTUAL_CAR_DESIGN.jpg",imageAlt:"自動車のコンセプトデザイン",credit:"Vincshekhan / Wikimedia Commons / CC BY-SA 4.0",source:"https://commons.wikimedia.org/wiki/File:CONCEPTUAL_CAR_DESIGN.jpg"},
+  stamping:{label:"プレス",short:"プレス",color:"#587A91",image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Coventry_Press_Line_for_HFQ.jpg",imageAlt:"プレス加工のライン",credit:"Arfurjohnthomas / Wikimedia Commons / CC BY-SA 4.0",source:"https://commons.wikimedia.org/wiki/File:Coventry_Press_Line_for_HFQ.jpg"},
+  welding:{label:"溶接",short:"溶接",color:"#6B7564",image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/BMW_Leipzig_MEDIA_050719_Download_Karosseriebau_max.jpg",imageAlt:"自動車車体のスポット溶接",credit:"BMW Werk Leipzig / Wikimedia Commons / CC BY-SA 2.0 DE",source:"https://commons.wikimedia.org/wiki/File:BMW_Leipzig_MEDIA_050719_Download_Karosseriebau_max.jpg"},
+  painting:{label:"塗装",short:"塗装",color:"#8A6F55",image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Automotive_Paint_Booth.jpg",imageAlt:"自動車の塗装ブース",credit:"Wikimedia Commons / CC BY 4.0",source:"https://commons.wikimedia.org/wiki/File:Automotive_Paint_Booth.jpg"},
+  assembly:{label:"組立",short:"組立",color:"#557C67",image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/001_Car_factory_assembly_line_-_Opel_factory_in_Gliwice,_Poland.jpg",imageAlt:"自動車工場の組立ライン",credit:"Marek Ślusarczyk / Wikimedia Commons / CC BY 3.0",source:"https://commons.wikimedia.org/wiki/File:001_Car_factory_assembly_line_-_Opel_factory_in_Gliwice,_Poland.jpg"},
+  inspection:{label:"検査",short:"検査",color:"#9A713D",image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/005_Chassis_dynamometer_car_testing_in_car_factory_-_Opel_Factory_in_Gliwice,_Poland_-_Rollenprüfstand.jpg",imageAlt:"自動車工場での完成車テスト",credit:"Marek Ślusarczyk / Wikimedia Commons / CC BY 3.0",source:"https://commons.wikimedia.org/wiki/File:005_Chassis_dynamometer_car_testing_in_car_factory_-_Opel_Factory_in_Gliwice,_Poland_-_Rollenprüfstand.jpg"},
+  delivery:{label:"出荷",short:"出荷",color:"#765F78",image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Car_container_carrier.webp",imageAlt:"自動車を運ぶキャリア",credit:"Wikideas1 / Wikimedia Commons / CC0 1.0",source:"https://commons.wikimedia.org/wiki/File:Car_container_carrier.webp"}
 },
 STAGE_ORDER:["planning","stamping","welding","painting","assembly","inspection","delivery"],
 FLOW_STAGES:{
