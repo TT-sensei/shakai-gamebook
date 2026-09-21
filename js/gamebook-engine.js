@@ -117,7 +117,7 @@ function chooseOption(choiceIndex){
       state.phase="sequenceResult";
       saveState();render();
     }else{
-      state.sequenceFeedback={correct:false,text:choice.hint||"もう一度、${GAME_DATA.meta.flowTitle||"学習の流れ"}を思い出してみよう。"};
+      state.sequenceFeedback={correct:false,text:choice.hint||`もう一度、${GAME_DATA.meta.flowTitle||"学習の流れ"}を思い出してみよう。`};
       saveState();render();
     }
     return;
