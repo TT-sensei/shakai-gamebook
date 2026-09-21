@@ -377,7 +377,7 @@ function renderEnding(){
   `;
   const finalTitle = document.createElement("div");
   finalTitle.className = "final-status-heading";
-  finalTitle.innerHTML = "<span>一年間の結果</span><small>"+(GAME_DATA.meta.finalStatusText||"あなたの選択が、このゲームにどう影響したか")+"</small>";
+  finalTitle.innerHTML = "<span>今回の結果</span><small>"+(GAME_DATA.meta.finalStatusText||"あなたの選択が、このゲームにどう影響したか")+"</small>";
   main.appendChild(finalTitle);
   main.appendChild(renderStatus(true));
   main.appendChild(summary);
