@@ -30,7 +30,9 @@
       const cls=i<current?'done':(i===current?'now':'future');
       const status=i<current?'完了':(i===current?'いまここ':'これから');
       const subs=(d.substeps||[]).map(x=>'<li>'+x+'</li>').join('');
+      const image=s.image ? '<div class="j-process-image-wrap"><img class="j-process-image" src="'+s.image+'" alt="'+(s.imageAlt||s.label)+'" loading="lazy"><a class="j-process-credit" href="'+(s.source||'#')+'" target="_blank" rel="noopener noreferrer">'+(s.credit||'画像の出典')+'</a></div>' : '';
       return '<article class="j-process-card '+cls+'">'+
+        image+
         '<div class="j-process-card-head"><span class="j-process-num">'+String(i+1).padStart(2,'0')+'</span>'+
         '<div><div class="j-process-status">'+status+'</div><h3>'+s.label+'</h3></div></div>'+
         '<p>'+((d.summary)||'')+'</p><ul>'+subs+'</ul></article>';
@@ -110,7 +112,12 @@
     .j-process-close{width:40px;height:40px;border:0;border-radius:50%;background:#fff;color:var(--ink);font-size:25px;cursor:pointer;flex:none}
     .j-process-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
     .j-process-card{background:#fff;border:1px solid rgba(78,124,74,.12);border-radius:14px;padding:13px;min-width:0}
+    .j-process-image-wrap{margin:-13px -13px 11px;overflow:hidden;border-radius:13px 13px 0 0;background:#eef1ed}
+    .j-process-image{display:block;width:100%;height:118px;object-fit:cover}
+    .j-process-credit{display:block;padding:5px 8px 6px;font-size:8.5px;line-height:1.25;color:var(--ink-soft);text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(255,255,255,.94)}
+    .j-process-credit:hover{text-decoration:underline}
     .j-process-card.now{border:2px solid var(--paddy);padding:12px;box-shadow:0 4px 14px rgba(78,124,74,.12)}
+    .j-process-card.now .j-process-image-wrap{margin:-12px -12px 11px}
     .j-process-card.future{opacity:.62}
     .j-process-card-head{display:flex;gap:9px;align-items:center}
     .j-process-num{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--paper-2);color:var(--ink-soft);font-size:11px;font-weight:800}
@@ -123,7 +130,7 @@
     .j-process-card ul{margin:0;padding-left:17px;color:var(--ink);font-size:11.5px;line-height:1.55}
     .j-process-foot{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-top:15px;font-size:12px;color:var(--ink-soft)}
     .j-process-return{border:0;border-radius:10px;background:var(--paddy-dark);color:#fff;padding:11px 14px;font:700 13px inherit;cursor:pointer}
-    @media(max-width:760px){.j-process-wrap{padding:8px 10px 3px;gap:7px}.j-process-step{font-size:10px;padding:7px 2px}.j-process-arrow{font-size:13px}.j-process-open{padding:8px 9px;font-size:11px}.j-process-sheet{padding:15px;border-radius:16px}.j-process-cards{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:760px){.j-process-wrap{padding:8px 10px 3px;gap:7px}.j-process-step{font-size:10px;padding:7px 2px}.j-process-arrow{font-size:13px}.j-process-open{padding:8px 9px;font-size:11px}.j-process-sheet{padding:15px;border-radius:16px}.j-process-cards{grid-template-columns:repeat(2,1fr)}.j-process-image{height:104px}}
     @media(max-width:520px){.j-process-name{font-size:9px}.j-process-mark{display:none}.j-process-open{font-size:10px;padding:8px 7px}.j-process-head h2{font-size:19px}.j-process-cards{grid-template-columns:1fr}.j-process-card.future{display:none}.j-process-foot span{display:none}}
   `;
   document.head.appendChild(style);
