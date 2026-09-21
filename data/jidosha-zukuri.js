@@ -161,7 +161,7 @@ EVENTS:[
 {id:"ev_compete",name:"ほかのメーカーとの競争",stages:["planning","delivery"],weight:1,title:"ほかのメーカーも新しい車を発表",text:"ほかの自動車メーカーが、新しい車を発表しました。自分たちも急いで対抗するべきか、考えます。",requiredLearning:["quality","technology","global"],educationalIntent:"競争がある中でも、品質や安全などを大切にしながら改善することを考える。",choices:[
 {text:"競争を意識しながら、品質や安全を守って改善する",effects:{quality:1,efficiency:1},result:"競争をきっかけに改善しながら、品質と安全を守る方針にしました。",point:"自動車産業では競争がありますが、速さだけでなく品質や安全も重要です。"},
 {text:"とにかく早く発売することを優先する",effects:{efficiency:1,quality:-1,safety:-1},result:"早く進めましたが、品質や安全を確認する時間が必要になりました。",point:"競争があっても、品質や安全を確かめることを省くことはできません。"},
-{text:"ほかのメーカーの方法を調べ、自分たちの改善に生かす",effects:{technology:1,quality:1},result:"他社の動きを参考にしながら、自分たちの改善点を考えました。",point:"競争の中でも、技術や工夫を学びながらよりよいものを目指すことがあります。"}
+{text:"ほかのメーカーの方法を調べ、自分たちの改善に生かす",effects:{efficiency:1,quality:1},result:"他社の動きを参考にしながら、自分たちの改善点を考えました。",point:"競争の中でも、技術や工夫を学びながらよりよいものを目指すことがあります。"}
 ]}
 ]
 };
