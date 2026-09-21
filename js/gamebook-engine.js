@@ -437,6 +437,11 @@ function renderEnding(){
   footer.className = "note";
   footer.textContent = GAME_DATA.meta.footerNote;
   app.appendChild(footer);
+  
+  // 外部UI拡張用フック。ゲーム本体の描画後に呼び出す。
+  if (typeof window.GameBook?.onRender === "function") {
+    try { window.GameBook.onRender({ data: GAME_DATA, state }); } catch(e) {}
+  }
 }
 
 function start(options){
@@ -444,4 +449,4 @@ function start(options){
   state = null;
   render();
 }
-window.GameBook = { start };
+window.GameBook = { start, onRender: null };
