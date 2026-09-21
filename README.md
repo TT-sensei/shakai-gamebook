@@ -119,3 +119,23 @@
 - 必要に応じて出典・作者を画面上に表示すること
 
 を基本とします。
+
+
+## 工程画像の出典とライセンス
+
+自動車づくりゲームの工程確認画面では、Wikimedia Commons に掲載され、各ファイルの利用条件を確認できる画像のみを使用しています。CC BY / CC BY-SA の画像は画面上に作者・ライセンスを表示し、画像の出典ページへリンクしています。CC0 の画像も出典を記録しています。画像そのものの権利条件は各出典ページを優先します。
+
+- 企画: Vincshekhan, “CONCEPTUAL CAR DESIGN” — CC BY-SA 4.0
+  https://commons.wikimedia.org/wiki/File:CONCEPTUAL_CAR_DESIGN.jpg
+- プレス: Arfurjohnthomas, “Coventry Press Line for HFQ” — CC BY-SA 4.0
+  https://commons.wikimedia.org/wiki/File:Coventry_Press_Line_for_HFQ.jpg
+- 溶接: BMW Werk Leipzig, “BMW Leipzig MEDIA 050719 Download Karosseriebau max.jpg” — CC BY-SA 2.0 DE
+  https://commons.wikimedia.org/wiki/File:BMW_Leipzig_MEDIA_050719_Download_Karosseriebau_max.jpg
+- 塗装: “Automotive Paint Booth.jpg” — CC BY 4.0
+  https://commons.wikimedia.org/wiki/File:Automotive_Paint_Booth.jpg
+- 組立: Marek Ślusarczyk, “001 Car factory assembly line - Opel factory in Gliwice, Poland.jpg” — CC BY 3.0
+  https://commons.wikimedia.org/wiki/File:001_Car_factory_assembly_line_-_Opel_factory_in_Gliwice,_Poland.jpg
+- 検査: Marek Ślusarczyk, “005 Chassis dynamometer car testing in car factory - Opel Factory in Gliwice, Poland - Rollenprüfstand.jpg” — CC BY 3.0
+  https://commons.wikimedia.org/wiki/File:005_Chassis_dynamometer_car_testing_in_car_factory_-_Opel_Factory_in_Gliwice,_Poland_-_Rollenprüfstand.jpg
+- 出荷: Wikideas1, “Car container carrier.webp” — CC0 1.0
+  https://commons.wikimedia.org/wiki/File:Car_container_carrier.webp
