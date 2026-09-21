@@ -75,13 +75,14 @@ function clearSave(){
   try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
 }
 
-const STATUS_META={water:{label:"水管理"},growth:{label:"稲の育ち"},efficiency:{label:"作業効率"},cooperation:{label:"地域との協力"},quality:{label:"米の品質"}};
-const LEARNING_TO_STATUS={natural:"growth",water:"water",observe:"growth",tech:"efficiency",quality:"quality",society:"cooperation"};
-function initialStatus(){return{water:3,growth:3,efficiency:3,cooperation:3,quality:3};}
+function statusMeta(){return GAME_DATA.meta.statuses||{};}
+function learningToStatus(){return GAME_DATA.meta.learningToStatus||{};}
+function initialStatus(){const m=statusMeta(),o={};Object.keys(m).forEach(k=>o[k]=Number(m[k].initial??3));return o;}
 function effectForChoice(scene,index){
   // 原則：選択肢側に明示した effects を優先する。
   // 旧データとの互換用に、未設定の場合だけ学習内容から補完する。
-  const keys=[...(new Set((scene.requiredLearning||[]).map(k=>LEARNING_TO_STATUS[k]).filter(Boolean)))];
+  const map=learningToStatus();
+  const keys=[...(new Set((scene.requiredLearning||[]).map(k=>map[k]).filter(Boolean)))];
   if(!keys.length)return{};
   if(keys.length===1)return{[keys[0]]:index===1?1:-1};
   const e={};
@@ -90,8 +91,8 @@ function effectForChoice(scene,index){
   else{e[keys[0]]=1;e[keys[1]]=-1;}
   return e;
 }
-function applyEffects(effects){Object.keys(STATUS_META).forEach(k=>{state.status[k]=Math.max(0,Math.min(5,state.status[k]+Number(effects[k]||0)));});}
-function failedStatus(){return Object.keys(STATUS_META).find(k=>state.status[k]<=0)||null;}
+function applyEffects(effects){const m=statusMeta();Object.keys(m).forEach(k=>{const min=Number(m[k].min??0),max=Number(m[k].max??5);state.status[k]=Math.max(min,Math.min(max,state.status[k]+Number(effects[k]||0)));});}
+function failedStatus(){if(GAME_DATA.meta.gameOverOnZero===false)return null;const m=statusMeta();return Object.keys(m).find(k=>state.status[k]<=Number(m[k].min??0))||null;}
 function startNewGame(){
   const pool = GAME_DATA.meta.navi || [];
   const naviMap = pool.map((_,i)=>i).sort(()=>Math.random()-0.5);
@@ -116,7 +117,7 @@ function chooseOption(choiceIndex){
       state.phase="sequenceResult";
       saveState();render();
     }else{
-      state.sequenceFeedback={correct:false,text:choice.hint||"もう一度、米づくりの流れを思い出してみよう。"};
+      state.sequenceFeedback={correct:false,text:choice.hint||"もう一度、${GAME_DATA.meta.flowTitle||"学習の流れ"}を思い出してみよう。"};
       saveState();render();
     }
     return;
@@ -129,7 +130,7 @@ function chooseOption(choiceIndex){
 }
 
 function goNext(){
-  if(state.failedStatus){state.phase="gameover";clearSave();render();return;}
+  if(state.failedStatus && GAME_DATA.meta.gameOverOnZero!==false){state.phase="gameover";clearSave();render();return;}
   state.index++;
   if(state.index>=state.timeline.length){state.phase="end";clearSave();}
   else state.phase="scene";
@@ -171,7 +172,7 @@ function renderFlowProgress(scene){
       : Math.max(0, steps.findIndex(s=>s.stage===scene.stage));
   const box=document.createElement("div");
   box.className="flow-progress";
-  box.innerHTML='<div class="flow-progress-title">米づくりの流れ</div><div class="flow-steps">'+steps.map((s,i)=>{
+  box.innerHTML='<div class="flow-progress-title">${GAME_DATA.meta.flowTitle||"学習の流れ"}</div><div class="flow-steps">'+steps.map((s,i)=>{
     const done=i<completed;
     const now=i===completed;
     const visible=done||now;
@@ -256,7 +257,7 @@ function render(){
     }
     const card=document.createElement("div");
     card.className="result-card sequence-result-card";
-    card.innerHTML='<div class="sequence-correct">✓ '+(scene.correctLabel || "正解！")+'</div><p class="sequence-feedback">'+(state.sequenceFeedback?.text || "米づくりの次の仕事がわかりました。")+'</p>';
+    card.innerHTML='<div class="sequence-correct">✓ '+(scene.correctLabel || "正解！")+'</div><p class="sequence-feedback">'+(state.sequenceFeedback?.text || "次のステップがわかりました。")+'</p>';
     main.appendChild(card);
     const nextBtn=document.createElement("button");
     nextBtn.className="next-btn sequence-next";
@@ -304,26 +305,20 @@ function render(){
 
 
 function renderStatus(final=false){
-  const box=document.createElement("div");box.className="status-panel"+(final?" final-status-panel":"");
-  box.innerHTML='<div class="status-title">今年の米づくり</div><div class="status-grid">'+Object.keys(STATUS_META).map(k=>{
-    const m=STATUS_META[k],v=state.status[k];
-    return '<div class="status-item"><div class="status-label">'+m.label+'</div><div class="status-bars">'+Array.from({length:5},(_,i)=>'<span class="status-dot '+(i<v?'on':'')+'"></span>').join('')+'</div></div>';
-  }).join('')+'</div>';return box;
+  const m=statusMeta(),box=document.createElement("div");box.className="status-panel"+(final?" final-status-panel":"");
+  box.innerHTML='<div class="status-title">'+(GAME_DATA.meta.statusTitle||GAME_DATA.meta.title)+'</div><div class="status-grid">'+Object.keys(m).map(k=>{const x=m[k],v=state.status[k],n=Math.max(1,Number(x.max??5)-Number(x.min??0));return '<div class="status-item"><div class="status-label">'+x.label+'</div><div class="status-bars">'+Array.from({length:n},(_,i)=>'<span class="status-dot '+(i<(v-Number(x.min??0))?'on':'')+'"></span>').join('')+'</div></div>';}).join('')+'</div>';return box;
 }
 function renderEffectSummary(effects){
   if(!effects)return '';
-  const html=Object.keys(STATUS_META).filter(k=>effects[k]).map(k=>{
-    const d=effects[k],m=STATUS_META[k];
-    return '<span class="effect '+(d>0?'up':'down')+'">'+m.label+' '+(d>0?'+1':'−1')+'</span>';
-  }).join('');
+  const m=statusMeta(),html=Object.keys(m).filter(k=>effects[k]).map(k=>{const d=effects[k];return '<span class="effect '+(d>0?'up':'down')+'">'+m[k].label+' '+(d>0?'+1':'−1')+'</span>';}).join('');
   return html?'<div class="effect-summary"><span class="effect-title">今回の変化</span>'+html+'</div>':'';
 }
 function renderGameOver(){
   const bar=document.createElement("div");bar.className="stagebar";bar.style.background="#5B5148";
-  bar.innerHTML='<div class="row"><div class="season">今年の米づくり</div><div class="month">'+GAME_DATA.meta.title+'</div></div>';app.appendChild(bar);
-  const main=document.createElement("main"),failed=STATUS_META[state.failedStatus];
+  bar.innerHTML='<div class="row"><div class="season">${GAME_DATA.meta.statusTitle||GAME_DATA.meta.title}</div><div class="month">'+GAME_DATA.meta.title+'</div></div>';app.appendChild(bar);
+  const main=document.createElement("main"),failed=statusMeta()[state.failedStatus];
   const card=document.createElement("div");card.className="result-card gameover-card";
-  card.innerHTML='<div class="gameover-mark">今年はここで終了</div><h2>'+failed.label+' が0になりました</h2><p>このまま米づくりを続けるのは難しい状態です。けれど、失敗した判断からも、米づくりの工夫や課題を学ぶことができます。</p><div class="status-final">'+Object.keys(STATUS_META).map(k=>'<div><b>'+STATUS_META[k].label+'</b><strong>'+state.status[k]+'</strong></div>').join('')+'</div>';
+  card.innerHTML='<div class="gameover-mark">今年はここで終了</div><h2>'+failed.label+' が0になりました</h2><p>このまま米づくりを続けるのは難しい状態です。けれど、失敗した判断からも、米づくりの工夫や課題を学ぶことができます。</p><div class="status-final">'+Object.keys(statusMeta()).map(k=>'<div><b>'+statusMeta()[k].label+'</b><strong>'+state.status[k]+'</strong></div>').join('')+'</div>';
   main.appendChild(card);
   const reflect=document.createElement("div");reflect.className="scene-card";reflect.innerHTML='<p class="reflect-q">どの判断が、この結果につながったと思いますか？</p><textarea class="reflect" placeholder="学びノートに書いてみよう。"></textarea>';main.appendChild(reflect);
   const retry=document.createElement("button");retry.className="next-btn";retry.textContent="もう一度、米づくりに挑戦する";retry.onclick=startNewGame;main.appendChild(retry);app.appendChild(main);
@@ -334,7 +329,7 @@ function renderTitle(){
   const wrap = document.createElement("div");
   wrap.className = "center-screen";
   wrap.innerHTML = `
-    <div class="title-emblem">${GAME_DATA.meta.icon || "米"}</div>
+    <div class="title-emblem">${GAME_DATA.meta.icon || "社会"}</div>
     <h1 class="title-jp">${GAME_DATA.meta.title}</h1>
     <p class="title-sub">${GAME_DATA.meta.lead}</p>
   `;
