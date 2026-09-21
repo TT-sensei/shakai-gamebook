@@ -163,7 +163,7 @@ EVENTS:[
 {text:"とにかく早く発売することを優先する",effects:{efficiency:1,quality:-1,safety:-1},result:"早く進めましたが、品質や安全を確認する時間が必要になりました。",point:"競争があっても、品質や安全を確かめることを省くことはできません。"},
 {text:"ほかのメーカーの方法を調べ、自分たちの改善に生かす",effects:{efficiency:1,quality:1},result:"他社の動きを参考にしながら、自分たちの改善点を考えました。",point:"競争の中でも、技術や工夫を学びながらよりよいものを目指すことがあります。"}
 ]}
-]
+],
 FLOW_CHECKPOINTS:[
 {afterId:"j2",title:"次の工程は？",text:"企画と部品づくりの準備ができました。次は、どの工程へ進むでしょう？",choices:[
 {text:"プレス",correct:true,feedback:"正解。大きな鉄の板から、車体の部品をつくります。"},
