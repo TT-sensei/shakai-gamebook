@@ -172,7 +172,7 @@ function renderFlowProgress(scene){
       : Math.max(0, steps.findIndex(s=>s.stage===scene.stage));
   const box=document.createElement("div");
   box.className="flow-progress";
-  box.innerHTML='<div class="flow-progress-title">${GAME_DATA.meta.flowTitle||"学習の流れ"}</div><div class="flow-steps">'+steps.map((s,i)=>{
+  box.innerHTML='<div class="flow-progress-title">'+(GAME_DATA.meta.flowTitle||"学習の流れ")+'</div><div class="flow-steps">'+steps.map((s,i)=>{
     const done=i<completed;
     const now=i===completed;
     const visible=done||now;
@@ -315,7 +315,7 @@ function renderEffectSummary(effects){
 }
 function renderGameOver(){
   const bar=document.createElement("div");bar.className="stagebar";bar.style.background="#5B5148";
-  bar.innerHTML='<div class="row"><div class="season">${GAME_DATA.meta.statusTitle||GAME_DATA.meta.title}</div><div class="month">'+GAME_DATA.meta.title+'</div></div>';app.appendChild(bar);
+  bar.innerHTML='<div class="row"><div class="season">'+(GAME_DATA.meta.statusTitle||GAME_DATA.meta.title)+'</div><div class="month">'+GAME_DATA.meta.title+'</div></div>';app.appendChild(bar);
   const main=document.createElement("main"),failed=statusMeta()[state.failedStatus];
   const card=document.createElement("div");card.className="result-card gameover-card";
   card.innerHTML='<div class="gameover-mark">今年はここで終了</div><h2>'+failed.label+' が0になりました</h2><p>このまま米づくりを続けるのは難しい状態です。けれど、失敗した判断からも、米づくりの工夫や課題を学ぶことができます。</p><div class="status-final">'+Object.keys(statusMeta()).map(k=>'<div><b>'+statusMeta()[k].label+'</b><strong>'+state.status[k]+'</strong></div>').join('')+'</div>';
@@ -360,7 +360,7 @@ function renderEnding(){
 
   const flow = document.createElement("div");
   flow.className="ending-flow";
-  flow.innerHTML="<div class=\"ending-flow-title\">米づくりの流れ</div><div class=\"ending-flow-line\">"+GAME_DATA.STAGE_ORDER.flatMap(k=>GAME_DATA.CORE_SCENES[k]||[]).map((s,i)=>`<span>${i+1}. ${s.title}</span>`).join("<b>→</b>")+"</div><p>※地域や天候、品種などによって、時期や作業の方法は異なります。</p>";
+  flow.innerHTML="<div class=\"ending-flow-title\">"+(GAME_DATA.meta.flowTitle||"学習の流れ")+"</div><div class=\"ending-flow-line\">"+GAME_DATA.STAGE_ORDER.flatMap(k=>GAME_DATA.CORE_SCENES[k]||[]).map((s,i)=>`<span>${i+1}. ${s.title}</span>`).join("<b>→</b>")+"</div><p>※地域や天候、品種などによって、時期や作業の方法は異なります。</p>";
   main.appendChild(flow);
 
   const summary = document.createElement("div");
@@ -372,7 +372,7 @@ function renderEnding(){
   `;
   const finalTitle = document.createElement("div");
   finalTitle.className = "final-status-heading";
-  finalTitle.innerHTML = "<span>一年間の結果</span><small>あなたの選択が、この一年の米づくりにどう影響したか</small>";
+  finalTitle.innerHTML = "<span>一年間の結果</span><small>"+(GAME_DATA.meta.finalStatusText||"あなたの選択が、このゲームにどう影響したか")+"</small>";
   main.appendChild(finalTitle);
   main.appendChild(renderStatus(true));
   main.appendChild(summary);
