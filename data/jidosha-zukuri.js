@@ -10,7 +10,7 @@ meta:{
   statusTitle:"今回の自動車づくり",
   flowTitle:"クルマができるまでの工程",
   processButtonLabel:"工程を確認",
-  gameOverOnZero:false,
+  gameOverOnZero:true,
   retryLabel:"もう一度つくる",
   statuses:{
     quality:{label:"品質",initial:3,min:0,max:5},
