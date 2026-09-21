@@ -1,65 +1,167 @@
 const JIDOSHA_ZUKURI_DATA={
-meta:{id:"jidosha-zukuri",title:"自動車づくりゲームブック",icon:"🚗",lead:"きみは自動車づくりの現場を体験する。<br>一台の車が完成するまで、どんな判断が必要だろう？",endingLabel:"一台の車が完成",endingText:"企画から部品、生産、検査、輸送・販売まで。さまざまな判断をしながら、一台の車を完成させました。今回は {{eventCount}} 件のできごとを経験しました。",footerNote:"自動車は、一つの工場だけで完成するのではありません。多くの人や企業、技術、輸送などがつながってつくられています。",statusTitle:"今回の自動車づくり",flowTitle:"一台の車が完成するまで",gameOverOnZero:false,retryLabel:"もう一度つくる",
-statuses:{quality:{label:"品質",initial:3,min:0,max:5},safety:{label:"安全",initial:3,min:0,max:5},efficiency:{label:"効率",initial:3,min:0,max:5},environment:{label:"環境への配慮",initial:3,min:0,max:5},cooperation:{label:"分業・協力",initial:3,min:0,max:5}},
-learningToStatus:{division:"cooperation",quality:"quality",safety:"safety",technology:"efficiency",environment:"environment",logistics:"cooperation",global:"cooperation"},
-navi:[
-{src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/05-surprised.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/07-encouraging.png",message:"一台の車ができるまで、どんな仕事がつながっているかな？"},
-{src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/06-troubled.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/07-encouraging.png",message:"効率だけでなく、安全や品質にも注目してみよう。"},
-{src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/kai/expressions/04-idea.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/kai/expressions/05-surprised.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/kai/expressions/10-confident.png",message:"工場の外にも、たくさんの人や会社が関わっているよ。"},
-{src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/saku/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/saku/expressions/06-troubled.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/saku/expressions/07-encouraging.png",message:"その選択は、ほかの仕事にどんな影響を与えるかな？"},
-{src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/tsuki/expressions/04-idea.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/tsuki/expressions/05-surprised.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/tsuki/expressions/08-celebrating.png",message:"日本だけでなく、世界とのつながりにも注目してみよう。"},
-{src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/nami/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/nami/expressions/06-troubled.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/nami/expressions/07-encouraging.png",message:"選んだ理由を、あとで説明できるかな？"}]},
-REQUIRED_LEARNING:{division:"自動車づくりを支える分業と協力",quality:"品質を保つための検査と工夫",safety:"安全を第一に考える仕組み",technology:"機械や情報技術を活用した生産",environment:"環境への配慮と工夫",logistics:"部品や完成車を運ぶ仕組み",global:"国内外の企業・地域とのつながり"},
-STAGES:{planning:{label:"企画・部品",color:"#5E748A"},production:{label:"生産",color:"#557C67"},inspection:{label:"検査・環境",color:"#A27B3D"},delivery:{label:"輸送・販売",color:"#765F78"}},
-STAGE_ORDER:["planning","production","inspection","delivery"],
+meta:{
+  id:"jidosha-zukuri",
+  title:"自動車づくりゲームブック",
+  icon:"🚗",
+  lead:"企画から工場、検査、出荷まで。<br>一台のクルマができるまでの仕事と工夫を体験しよう。",
+  endingLabel:"一台のクルマが完成",
+  endingText:"企画から工場の工程、検査、出荷まで。さまざまな判断をしながら、一台のクルマを完成させました。今回は {{eventCount}} 件のできごとを経験しました。",
+  footerNote:"自動車は、一つの工場だけで完成するのではありません。多くの人や会社、技術、輸送などがつながってつくられています。",
+  statusTitle:"今回の自動車づくり",
+  flowTitle:"クルマができるまでの工程",
+  processButtonLabel:"工程を確認",
+  gameOverOnZero:false,
+  retryLabel:"もう一度つくる",
+  statuses:{
+    quality:{label:"品質",initial:3,min:0,max:5},
+    safety:{label:"安全",initial:3,min:0,max:5},
+    efficiency:{label:"効率",initial:3,min:0,max:5},
+    environment:{label:"環境",initial:3,min:0,max:5},
+    cooperation:{label:"協力",initial:3,min:0,max:5}
+  },
+  learningToStatus:{
+    division:"cooperation",quality:"quality",safety:"safety",
+    technology:"efficiency",environment:"environment",
+    logistics:"cooperation",global:"cooperation"
+  },
+  navi:[
+    {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/05-surprised.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/07-encouraging.png",message:"いま、クルマづくりのどの工程にいるかな？"},
+    {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/06-troubled.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/07-encouraging.png",message:"速さだけでなく、品質や安全とのバランスも見てみよう。"},
+    {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/kai/expressions/04-idea.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/kai/expressions/05-surprised.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/kai/expressions/10-confident.png",message:"工場の外にも、部品をつくる会社などがつながっているよ。"},
+    {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/saku/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/saku/expressions/06-troubled.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/saku/expressions/07-encouraging.png",message:"次の工程で困らないように、今できることを考えよう。"},
+    {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/tsuki/expressions/04-idea.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/tsuki/expressions/05-surprised.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/tsuki/expressions/08-celebrating.png",message:"工場の工夫には、環境を大切にするものもあるよ。"},
+    {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/nami/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/nami/expressions/06-troubled.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/nami/expressions/07-encouraging.png",message:"最後まで、仕事がどうつながるかを見てみよう。"}
+  ]
+},
+REQUIRED_LEARNING:{
+  division:"分業・協力でつくる自動車",
+  quality:"工程の中で品質をつくり込む",
+  safety:"安全を守る仕組み",
+  technology:"人と機械の役割分担",
+  environment:"生産と環境への配慮",
+  logistics:"部品・完成車を運ぶ仕組み",
+  global:"国内外の会社・市場とのつながり"
+},
+STAGES:{
+  planning:{label:"企画",short:"企画",color:"#5E748A"},
+  stamping:{label:"プレス",short:"プレス",color:"#587A91"},
+  welding:{label:"溶接",short:"溶接",color:"#6B7564"},
+  painting:{label:"塗装",short:"塗装",color:"#8A6F55"},
+  assembly:{label:"組立",short:"組立",color:"#557C67"},
+  inspection:{label:"検査",short:"検査",color:"#9A713D"},
+  delivery:{label:"出荷",short:"出荷",color:"#765F78"}
+},
+STAGE_ORDER:["planning","stamping","welding","painting","assembly","inspection","delivery"],
+FLOW_STAGES:{
+  planning:{title:"企画",summary:"どんなクルマをつくるか考える",substeps:["使う人や社会の変化を調べる","デザイン・性能を考える","設計や試作を行う"]},
+  stamping:{title:"プレス",summary:"大きな鋼板から部品をつくる",substeps:["鋼板を準備する","切る・打ち抜く","プレスして形をつくる","部品を次の工程へ送る"]},
+  welding:{title:"溶接",summary:"部品をつないで車体の形にする",substeps:["床・側面・天井を組み上げる","部品を溶接する","車体の状態を確認する","次の工程へ送る"]},
+  painting:{title:"塗装",summary:"車体をきれいに守り、色をつける",substeps:["車体を洗浄する","下塗り・シーラー","中塗り・上塗り・クリア","乾燥・塗装を検査する"]},
+  assembly:{title:"組立",summary:"たくさんの部品を取り付ける",substeps:["必要な部品をそろえる","配線・内装などを取り付ける","エンジン・足回りなどを取り付ける","シート・ガラス・ドアなどを仕上げる"]},
+  inspection:{title:"検査",summary:"一台ずつ品質を確かめる",substeps:["正しい部品か確認する","キズ・へこみを確認する","ライト・メーターなどを確認する","必要な検査に合格させる"]},
+  delivery:{title:"出荷",summary:"完成車を必要な場所へ届ける",substeps:["届け先と台数を確認する","キャリアカーや船などを手配する","販売店や海外へ運ぶ","使う人へつながる"]}
+},
 CORE_SCENES:{
 planning:[
-{id:"j1",title:"どんな車をつくる？",text:"新しい車を企画します。使う人が何を求めているのかを考え、どんな車にするか決めます。",requiredLearning:["division","quality"],educationalIntent:"自動車づくりが使う人のニーズを考える企画から始まることを捉える。",choices:[
-{text:"使う人の求めている機能や使い方を調べて企画する",effects:{quality:1,cooperation:1},result:"使う人のことを考えた企画を立てました。",point:"自動車づくりでは、どんな車が求められているかを考えて企画します。"},
-{text:"これまで売れていた車を参考にして企画する",effects:{efficiency:1},result:"これまでの経験を生かして、企画を進めました。",point:"販売データやこれまでの経験も、新しい車を考える材料になります。"},
-{text:"新しい機能をできるだけ多く入れる",effects:{quality:-1,efficiency:-1},result:"魅力的な案になりましたが、安全や費用も考える必要が出てきました。",point:"機能を増やすときには、安全や品質、費用などとのバランスも考えます。"}]},
-{id:"j2",title:"部品を準備する",text:"車にはたくさんの部品が必要です。自社でつくる部品と、ほかの会社から仕入れる部品があります。",requiredLearning:["division","global"],educationalIntent:"多くの企業による分業で自動車がつくられていることを捉える。",choices:[
-{text:"得意な会社と分担して部品をつくる",effects:{cooperation:1,efficiency:1},result:"それぞれの会社の得意な技術を生かして準備しました。",point:"自動車は多くの部品からできており、関連する会社が分担してつくっています。"},
-{text:"できるだけ自社だけで部品をつくる",effects:{cooperation:-1,efficiency:-1},result:"管理しやすくなりましたが、多くの仕事を自社で抱えることになりました。",point:"専門の会社と分担することで、それぞれの得意な技術を生かせます。"},
-{text:"国内外の会社を含めて調達先を考える",effects:{cooperation:1,efficiency:1},result:"条件に合う部品を国内外から調達する計画を立てました。",point:"自動車産業は国内だけでなく、海外の企業ともつながっています。"}]}],
-production:[
-{id:"j3",title:"組み立てる",text:"部品が工場に届き、組み立てが始まります。機械と人が役割を分担して作業します。",requiredLearning:["technology","division","safety"],educationalIntent:"機械と人が役割を分担し、効率と安全を両立させていることを捉える。",choices:[
-{text:"機械を活用し、人は確認や調整を担当する",effects:{efficiency:1,safety:1},result:"機械の力を使いながら、人が確認することで作業を進めました。",point:"工場では自動化された設備と人の判断を組み合わせて生産しています。"},
-{text:"人の手を中心にして、丁寧に組み立てる",effects:{quality:1,efficiency:-1},result:"時間はかかりましたが、一つ一つを確認しながら作業しました。",point:"自動車工場では、人の技術や判断が必要な仕事もあります。"},
-{text:"できるだけ速く組み立てることを優先する",effects:{efficiency:1,safety:-1},result:"生産は進みましたが、安全確認の重要性が見えてきました。",point:"生産の速さだけでなく、安全や品質を守ることが重要です。"}]},
-{id:"j4",title:"品質をそろえる",text:"同じ車をたくさんつくるには、どの車も決められた品質になっている必要があります。",requiredLearning:["quality","technology"],educationalIntent:"大量生産で品質を一定に保つ仕組みを捉える。",choices:[
-{text:"作業手順をそろえ、途中でも確認する",effects:{quality:1,efficiency:1},result:"作業のばらつきを減らし、安定した生産につなげました。",point:"大量生産では、作業手順や工程での確認によって品質をそろえます。"},
-{text:"最後の検査だけを重視する",effects:{quality:-1,efficiency:1},result:"最後に確認できましたが、途中のミスを見つけにくくなりました。",point:"完成後だけでなく、工程の途中で確認することも品質につながります。"},
-{text:"現場の気づきを共有して改善する",effects:{quality:1,cooperation:1},result:"気づきを共有し、作業方法を改善しました。",point:"現場の人の気づきを共有することも、生産を支える工夫です。"}]}],
+{id:"j1",title:"どんなクルマをつくる？",text:"新しいクルマを企画します。完成するころの社会や、使う人が求めることを考えて、どんなクルマにするか決めます。",requiredLearning:["division","quality"],educationalIntent:"自動車づくりが企画から始まり、社会や使う人の変化を考えて進められることを捉える。",choices:[
+{text:"使う人や社会の変化を調べて企画する",effects:{quality:1,cooperation:1},result:"使う人のことを考えた企画を立てました。",point:"自動車の企画では、使う人のニーズや社会の変化を考えます。"},
+{text:"これまで売れていたクルマを参考にする",effects:{efficiency:1},result:"これまでの経験や販売の情報を生かして企画しました。",point:"これまでの販売情報も新しいクルマを考える材料になります。"},
+{text:"新しい機能をできるだけたくさん入れる",effects:{quality:-1,efficiency:-1},result:"魅力的な案ですが、安全や費用とのバランスを考える必要が出てきました。",point:"機能を増やすときも、安全・品質・費用などを合わせて考えます。"}
+]},
+{id:"j2",title:"部品をつくる会社と協力する",text:"一台のクルマには、たくさんの部品が必要です。自社だけでなく、さまざまな会社が部品の開発や生産に関わります。",requiredLearning:["division","global"],educationalIntent:"自動車づくりが多くの企業による分業と協力で成り立っていることを捉える。",choices:[
+{text:"得意な技術をもつ会社と分担する",effects:{cooperation:1,efficiency:1},result:"それぞれの得意な技術を生かして、部品づくりを分担しました。",point:"一社だけですべてをつくるのではなく、多くの会社が協力して自動車を支えています。"},
+{text:"できるだけ自社だけでつくる",effects:{cooperation:-1,efficiency:-1},result:"管理はしやすくなりましたが、多くの仕事を自社で抱えることになりました。",point:"専門の会社と協力すると、それぞれの得意な技術を生かせます。"},
+{text:"国内外の会社から条件に合う部品を探す",effects:{cooperation:1,efficiency:1},result:"条件に合う会社と連携する計画を立てました。",point:"自動車産業は国内外の企業とのつながりで成り立っています。"}
+]}
+],
+stamping:[
+{id:"j3",title:"鋼板から部品をつくる",text:"大きな鋼板を切ったり、打ち抜いたり、プレスしたりして、ドアや車体などの部品をつくります。ここでは、材料をむだなく使うことも大切です。",requiredLearning:["technology","environment","quality"],educationalIntent:"プレス工程で鋼板から車体部品をつくり、材料の性質や使い方を考えていることを捉える。",choices:[
+{text:"部品の形に合わせて鋼板をできるだけむだなく使う",effects:{environment:1,efficiency:1},result:"材料の使い方を工夫し、余った部分も再利用できるようにしました。",point:"プレスでは材料をむだなく使う工夫も行われています。"},
+{text:"とにかく速く加工することを優先する",effects:{efficiency:1,quality:-1},result:"加工は速く進みましたが、形や精度の確認が必要になりました。",point:"速さだけでなく、正確な形に加工することが品質につながります。"},
+{text:"人がすべて手作業で加工する",effects:{quality:1,efficiency:-1},result:"細かな確認をしながら加工しましたが、時間がかかりました。",point:"機械の力を使う作業と、人が確認・調整する作業を組み合わせます。"}
+]}
+],
+welding:[
+{id:"j4",title:"車体の形にする",text:"プレスでできた部品をつなぎ合わせ、車体の形にしていきます。正しい位置につながっているか、次の工程へ送る前に確認します。",requiredLearning:["technology","quality","safety"],educationalIntent:"溶接によって車体を組み上げ、工程ごとに品質を確認することを捉える。",choices:[
+{text:"機械で溶接し、人が車体を確認する",effects:{efficiency:1,quality:1},result:"機械の力を使いながら、人が車体の状態を確認しました。",point:"人と機械がそれぞれ得意な仕事を分担することで、品質を守ります。"},
+{text:"溶接の速さを優先して、確認を後にする",effects:{efficiency:1,quality:-1},result:"作業は進みましたが、次の工程で直すのが難しい問題が見つかりました。",point:"各工程で確認し、不具合を次の工程へ流さないことが重要です。"},
+{text:"車体を確認してから次の工程へ送る",effects:{quality:1,safety:1},result:"車体を確認してから、次の塗装工程へ送りました。",point:"工程の中で品質をつくり込む考え方があります。"}
+]}
+],
+painting:[
+{id:"j5",title:"車体をきれいに塗る",text:"車体を洗浄してから、下塗りやシーラー、中塗り、上塗り、クリアなどを行います。ほこりや油分が残っていると、塗装の品質に影響します。",requiredLearning:["quality","technology"],educationalIntent:"塗装工程では複数の工程を重ね、品質を守るための細かな管理をしていることを捉える。",choices:[
+{text:"洗浄を丁寧にしてから塗装する",effects:{quality:1,efficiency:-1},result:"時間をかけて汚れを取り除き、安定した塗装につなげました。",point:"塗装は、まず車体をきれいにするところから始まります。"},
+{text:"人とロボットで役割を分担する",effects:{quality:1,efficiency:1},result:"ロボットの正確さと、人の判断を組み合わせて作業しました。",point:"人と機械がそれぞれの得意なことを生かして協力できます。"},
+{text:"色を変えるたびの確認を減らして速く進める",effects:{efficiency:1,quality:-1},result:"速く進みましたが、色残りや色ムラへの確認が必要になりました。",point:"多くの色を扱う工程では、色を正しく切り替える工夫も品質につながります。"}
+]}
+],
+assembly:[
+{id:"j6",title:"必要な部品をそろえる",text:"組立ラインには、注文に合わせて必要な部品を届けます。一台ごとに違う部品を間違えずに取り付けることが大切です。",requiredLearning:["division","technology","quality"],educationalIntent:"多品種の自動車をつくる組立工程で、必要な部品をそろえる仕組みを捉える。",choices:[
+{text:"一台分の部品をあらかじめそろえて届ける",effects:{quality:1,efficiency:1,cooperation:1},result:"必要な部品がすぐ使えるようになり、取り付け作業に集中できました。",point:"必要な部品を必要なときに届ける工夫があります。"},
+{text:"作業する人がその都度部品を探す",effects:{efficiency:-1,quality:-1},result:"部品を探す時間が増え、取り付け間違いにも注意が必要になりました。",point:"部品をあらかじめそろえることで、作業のむだを減らせます。"},
+{text:"たくさんの部品を近くに置いておく",effects:{efficiency:-1},result:"選べる部品は増えましたが、必要な部品を探す手間が増えました。",point:"部品は多ければよいのではなく、必要なものを必要なときに用意する工夫があります。"}
+]},
+{id:"j7",title:"人と機械で組み立てる",text:"組立では、配線、内装、エンジンや足回り、タイヤ、シート、ガラスなど、たくさんの部品を取り付けます。人と機械が役割を分担します。",requiredLearning:["technology","division","safety"],educationalIntent:"組立工程で人と機械が役割を分担し、品質と安全を守りながら作業していることを捉える。",choices:[
+{text:"重い・繰り返しの作業は機械、人は細かな確認をする",effects:{efficiency:1,safety:1,quality:1},result:"機械の力を生かし、人は細かな作業や確認に集中しました。",point:"人の判断が必要な仕事と、機械が得意な仕事を組み合わせています。"},
+{text:"すべてを機械に任せる",effects:{efficiency:1,quality:-1},result:"速く進みましたが、人の確認や判断が必要な場面が残りました。",point:"自動化しても、人の確認や調整が必要な仕事があります。"},
+{text:"すべてを人の手だけで行う",effects:{quality:1,efficiency:-1,safety:-1},result:"丁寧に作業できましたが、負担や時間が大きくなりました。",point:"人の力だけに頼らず、機械の力も生かして働きやすくします。"}
+]},
+{id:"j8",title:"工程の中で品質を確認する",text:"組み立ての途中で部品の取り付けに異常が見つかりました。次の工程へ送る前に、どうするか判断します。",requiredLearning:["quality","safety"],educationalIntent:"異常を見つけたら工程を止めて直すなど、品質を工程の中で守る考え方を捉える。",choices:[
+{text:"いったん止めて原因を確認し、直してから進める",effects:{quality:1,safety:1,efficiency:-1},result:"少し時間はかかりましたが、問題を直してから次へ進めました。",point:"異常を見つけたら、品質を守るために止めて確認する仕組みがあります。"},
+{text:"後の検査で見てもらうことにして進める",effects:{quality:-1,efficiency:1},result:"ラインは進みましたが、後で原因を探す必要が出てきました。",point:"不具合を次の工程へ流さず、その場で確認することが大切です。"},
+{text:"担当者に知らせて、チームで原因を調べる",effects:{quality:1,safety:1,cooperation:1},result:"情報を共有して、チームで原因を確認しました。",point:"問題を見つけた人だけで抱えず、周りと共有して改善につなげます。"}
+]}
+],
 inspection:[
-{id:"j5",title:"完成車を検査する",text:"車が完成しました。安全に走ることができるか、決められた品質になっているかを確かめます。",requiredLearning:["safety","quality"],educationalIntent:"安全を確保するために検査や確認が行われていることを捉える。",choices:[
-{text:"安全に関わる部分を一つずつ確認する",effects:{safety:1,quality:1},result:"安全に関わる部分を確認し、必要な調整を行いました。",point:"自動車は安全に関わる部分を確認してから出荷します。"},
-{text:"問題が起きていないので、そのまま出荷する",effects:{safety:-1,quality:-1},result:"見た目では分からない部分もあるため、追加の確認が必要になりました。",point:"問題が見えていなくても、決められた検査を行うことが安全につながります。"},
-{text:"検査結果をデータとして記録する",effects:{safety:1,quality:1,efficiency:1},result:"検査結果を記録し、後から確認できるようにしました。",point:"データを活用すると、品質を管理しやすくなります。"}]},
-{id:"j6",title:"環境への配慮",text:"車をつくるときにも、工場で使うエネルギーや資源、廃棄物などへの配慮が必要です。",requiredLearning:["environment","technology"],educationalIntent:"生産過程の環境負荷も考えて工夫していることを捉える。",choices:[
-{text:"エネルギーや廃棄物を減らす方法を調べる",effects:{environment:1,efficiency:1},result:"使用量を調べ、無駄を減らす方法を考えました。",point:"工場では省エネルギーや資源の有効利用などの工夫が行われています。"},
-{text:"生産の速さを優先して、環境への対応は後で考える",effects:{environment:-1,efficiency:1},result:"生産は進みましたが、環境への配慮を後回しにしました。",point:"生産活動では、効率だけでなく環境への影響も考える必要があります。"},
-{text:"資源を再利用できるところを探す",effects:{environment:1,cooperation:1},result:"資源を無駄にしない方法を検討しました。",point:"資源を有効に使うことは、環境への負担を減らす工夫の一つです。"}]}],
+{id:"j9",title:"完成車を検査する",text:"組立が終わった車を一台ずつ検査します。正しい部品が付いているか、キズやへこみ、ライトやメーターなどに問題がないかを確かめます。",requiredLearning:["quality","safety"],educationalIntent:"最終検査で一台ずつ厳しく品質を確認してから出荷することを捉える。",choices:[
+{text:"決められた項目を一つずつ確認する",effects:{quality:1,safety:1},result:"必要な検査を順番に行い、問題がないことを確認しました。",point:"完成車は多くの項目を検査してから出荷されます。"},
+{text:"見た目に問題がなければ出荷する",effects:{quality:-1,safety:-1,efficiency:1},result:"見た目だけでは分からない問題もあるため、追加の検査が必要になりました。",point:"見た目だけでなく、決められた検査を行うことが大切です。"},
+{text:"検査結果を記録して、後から確認できるようにする",effects:{quality:1,safety:1,efficiency:1},result:"検査結果を記録し、確認できるようにしました。",point:"情報を記録しておくことも品質管理を支えます。"}
+]},
+{id:"j10",title:"環境への配慮を考える",text:"工場では、エネルギーや材料を使います。生産の効率を高めながら、環境への負担を減らす方法も考えます。",requiredLearning:["environment","technology"],educationalIntent:"生産効率だけでなく、エネルギーや資源、排出などへの配慮も行われることを捉える。",choices:[
+{text:"使うエネルギーや材料を調べ、むだを減らす",effects:{environment:1,efficiency:1},result:"使用量を調べ、むだを減らす改善を進めました。",point:"生産の工夫は、効率だけでなく環境への負担を減らすことにもつながります。"},
+{text:"生産量を優先して、環境のことは後で考える",effects:{environment:-1,efficiency:1},result:"生産は進みましたが、環境への対応を後回しにしました。",point:"ものづくりでは、効率と環境への配慮を合わせて考えることが大切です。"},
+{text:"資源を再利用できるところを探す",effects:{environment:1,cooperation:1},result:"材料の使い方を見直し、再利用できる部分を探しました。",point:"資源を有効に使うことも環境への配慮です。"}
+]}
+],
 delivery:[
-{id:"j7",title:"完成車を運ぶ",text:"完成した車を販売店などへ運びます。必要な台数を、必要な場所へ、効率よく届けます。",requiredLearning:["logistics","global"],educationalIntent:"輸送や販売を支える仕組みを捉える。",choices:[
-{text:"届け先と台数を確認して輸送計画を立てる",effects:{cooperation:1,efficiency:1},result:"必要な場所へ必要な台数を届ける計画を立てました。",point:"工場で完成した後も、輸送や販売の仕組みにつながっています。"},
-{text:"近い販売店から順番に運ぶ",effects:{efficiency:0},result:"分かりやすい順番で運びました。",point:"輸送では距離や台数、時間などを考えて計画します。"},
-{text:"海外への輸送も含めて計画する",effects:{cooperation:1,efficiency:-1},result:"国内だけでなく海外への輸送も考えました。",point:"日本の自動車は海外でも販売され、世界とつながっています。"}]},
-{id:"j8",title:"販売につなげる",text:"販売店に車が届きました。つくった車が使う人へ届くまで、多くの仕事がつながっています。",requiredLearning:["division","global"],educationalIntent:"製造だけでなく販売や輸送まで含めた産業のつながりを捉える。",choices:[
-{text:"販売店からの情報を工場に伝えて次の生産に生かす",effects:{cooperation:1,quality:1},result:"使う人の声を次の車づくりにつなげました。",point:"販売や利用の情報が、次の商品づくりに生かされることがあります。"},
-{text:"つくった後のことは考えず、次の生産だけを進める",effects:{cooperation:-1},result:"生産は続きましたが、販売側との情報共有が少なくなりました。",point:"自動車づくりは、工場だけでなく販売など多くの仕事とつながっています。"},
-{text:"国内外の販売状況を調べて生産計画を調整する",effects:{cooperation:1,efficiency:1},result:"国内外の需要を見ながら、次の生産計画を考えました。",point:"自動車産業は国内外の市場とつながり、生産量などを調整しています。"}]}]},
+{id:"j11",title:"完成車を運ぶ",text:"検査に合格した完成車を、販売店や港へ運びます。届け先や台数、時間を考えて輸送方法を決めます。",requiredLearning:["logistics","global"],educationalIntent:"完成車を国内外へ運ぶ輸送の仕組みと計画性を捉える。",choices:[
+{text:"届け先と台数を確認して輸送計画を立てる",effects:{efficiency:1,cooperation:1},result:"必要な場所へ必要な台数を届ける計画を立てました。",point:"完成車はキャリアカーや船などを使って販売店や海外へ運ばれます。"},
+{text:"近い販売店から順番に運ぶ",effects:{efficiency:0},result:"分かりやすい順番で輸送しました。",point:"輸送では距離、台数、時間などを考えて計画します。"},
+{text:"海外への輸送も含めて計画する",effects:{cooperation:1,efficiency:1},result:"国内だけでなく海外への輸送も考えました。",point:"日本の自動車は海外にも運ばれ、世界の市場とつながっています。"}
+]},
+{id:"j12",title:"販売の情報を次の生産へつなぐ",text:"販売店から、どんな車が求められているかという情報が届きました。次のクルマづくりにどう生かすか考えます。",requiredLearning:["global","division","quality"],educationalIntent:"販売や市場の情報が、次の企画や生産につながることを捉える。",choices:[
+{text:"販売や利用の情報を企画・生産側と共有する",effects:{cooperation:1,quality:1},result:"使う人の声を次のクルマづくりにつなげました。",point:"自動車産業は、企画・生産・販売など多くの仕事がつながっています。"},
+{text:"工場でつくったら、販売側の情報は見ない",effects:{cooperation:-1},result:"生産は続きましたが、販売側との情報共有が少なくなりました。",point:"つくる側と届ける側が情報を共有することも大切です。"},
+{text:"国内外の需要を見ながら次の生産計画を考える",effects:{cooperation:1,efficiency:1},result:"市場の情報を生産計画に生かしました。",point:"国内外の需要を見ながら、生産や販売を調整することがあります。"}
+]}
+]
+},
 EVENTS:[
-{id:"ev_parts",name:"部品の到着が遅れる",stages:["planning","production"],weight:2,title:"部品の遅れ",text:"必要な部品の到着が予定より遅れることが分かりました。どう対応するか考えます。",requiredLearning:["division","logistics"],educationalIntent:"分業では部品をつなぐ輸送や計画も重要であることを考える。",choices:[
-{text:"仕入れ先と連絡を取り、予定を組み直す",effects:{cooperation:1},result:"情報を共有して、生産計画を調整しました。",point:"多くの会社が関わる生産では、情報共有が重要です。"},
+{id:"ev_parts",name:"部品の到着が遅れる",stages:["planning","assembly"],weight:2,title:"部品が予定どおり届かない",text:"組立に使う部品の到着が予定より遅れることが分かりました。多くの会社が関わる中で、どう対応するか考えます。",requiredLearning:["division","logistics"],educationalIntent:"分業では部品の供給や情報共有が生産全体につながることを考える。",choices:[
+{text:"部品メーカーと連絡を取り、予定を組み直す",effects:{cooperation:1},result:"情報を共有して、生産計画を調整しました。",point:"多くの会社が関わる生産では、情報共有が重要です。"},
 {text:"届くまで何もせず待つ",effects:{efficiency:-1},result:"作業を止める時間が生まれました。",point:"部品の供給が生産全体に影響することがあります。"},
-{text:"安全や品質を確認せず別の部品に変更する",effects:{quality:-1,safety:-1},result:"安全や品質を確認せず変更することはできませんでした。",point:"部品を変更するときは、品質や安全の確認が必要です。"}]},
-{id:"ev_robot",name:"生産設備のトラブル",stages:["production"],weight:2,title:"設備のトラブル",text:"組み立てに使う設備が止まりました。作業を続ける方法を考えます。",requiredLearning:["technology","safety"],educationalIntent:"自動化された工場でも人の確認や設備管理が必要であることを考える。",choices:[
-{text:"安全を確認して設備を点検する",effects:{safety:1,efficiency:-1},result:"安全を確かめてから点検し、復旧を進めました。",point:"機械を使う現場でも、安全確認と人の判断が必要です。"},
-{text:"無理に動かして生産を続ける",effects:{efficiency:1,safety:-1},result:"作業は進みましたが、安全上の問題が生じました。",point:"生産を急ぐときでも、安全を優先する必要があります。"},
-{text:"専門の担当者に相談する",effects:{cooperation:1,efficiency:-1},result:"担当者と協力して原因を確認しました。",point:"専門的な仕事を分担することも工場を支える仕組みです。"}]},
-{id:"ev_export",name:"海外からの注文",stages:["delivery"],weight:1,title:"海外から注文が入る",text:"海外の販売先から、予定より多くの車を届けてほしいという連絡が入りました。",requiredLearning:["global","logistics"],educationalIntent:"国内外の需要と輸送が自動車産業につながっていることを考える。",choices:[
-{text:"台数と納期を確認し、輸送計画を調整する",effects:{cooperation:1,efficiency:1},result:"関係する人と情報を共有し、計画を調整しました。",point:"海外への販売では、輸送や販売先との調整も必要です。"},
-{text:"国内の予定をすべて後回しにして海外を優先する",effects:{cooperation:-1,efficiency:-1},result:"海外向けは進みましたが、ほかの予定との調整が必要になりました。",point:"複数の販売先がある場合、それぞれの条件を調整します。"},
-{text:"対応できる台数を確認してから返事をする",effects:{quality:1,cooperation:1},result:"無理のない台数を確認してから返事をしました。",point:"注文に応えるときも、安全や品質を守れる計画を考えることが大切です."}]}
-]};
+{text:"品質を確認せず別の部品に変更する",effects:{quality:-1,safety:-1},result:"安全や品質を確認せずに部品を変更することはできませんでした。",point:"部品を変更するときも、品質や安全の確認が必要です。"}
+]},
+{id:"ev_line",name:"工程の異常",stages:["stamping","welding","painting","assembly"],weight:3,title:"ラインで異常を発見",text:"作業中に、部品の取り付けや設備に異常があることが分かりました。生産を続けるか、止めるかを判断します。",requiredLearning:["quality","safety","technology"],educationalIntent:"異常があれば知らせてラインを止め、品質を守る仕組みを考える。",choices:[
+{text:"いったん止めて、原因を確認してから再開する",effects:{quality:1,safety:1,efficiency:-1},result:"少し時間を使いましたが、原因を確認してから再開しました。",point:"異常があれば、品質を守るためにラインを止める仕組みがあります。"},
+{text:"止めずに、そのまま生産を続ける",effects:{efficiency:1,quality:-1,safety:-1},result:"生産は続きましたが、後から問題を直す必要が出てきました。",point:"速さだけを優先せず、異常を見つけた時点で対応することが重要です。"},
+{text:"周りに知らせて、専門の担当者と確認する",effects:{cooperation:1,quality:1},result:"情報を共有し、担当者と協力して原因を調べました。",point:"異常への対応も、一人ではなくチームで行います。"}
+]},
+{id:"ev_improve",name:"もっと働きやすくできないか",stages:["stamping","assembly"],weight:2,title:"現場から改善案が出る",text:"作業する人から「ここを変えれば、もっと安全で作業しやすくなる」という提案が出ました。どうするか考えます。",requiredLearning:["technology","safety","quality"],educationalIntent:"現場の気づきを改善につなげることが生産を支えていることを捉える。",choices:[
+{text:"提案を試して、安全と品質への効果を確かめる",effects:{quality:1,safety:1,efficiency:1},result:"小さく試して効果を確認し、改善につなげました。",point:"現場の人の気づきや工夫が、生産をよりよくすることがあります。"},
+{text:"今までの方法を変えない",effects:{efficiency:-1},result:"これまでどおりに進めました。",point:"改善では、今の方法を見直してよりよい方法を考えることも大切です。"},
+{text:"速くなることだけを基準に決める",effects:{efficiency:1,safety:-1},result:"作業は速くなりましたが、安全面の確認が必要になりました。",point:"改善は速さだけでなく、安全や品質、働きやすさも考えます。"}
+]},
+{id:"ev_environment",name:"環境への工夫",stages:["painting","inspection"],weight:2,title:"環境への負担を減らしたい",text:"工場で使うエネルギーや材料を見直すことになりました。生産を止めずに、環境への負担を減らす方法を考えます。",requiredLearning:["environment","technology"],educationalIntent:"生産活動の中で環境への負担を減らす工夫を考える。",choices:[
+{text:"材料やエネルギーの使用量を調べ、むだを減らす",effects:{environment:1,efficiency:1},result:"使用量を見えるようにして、むだを減らす改善を進めました。",point:"生産の効率化が環境への負担を減らすことにつながる場合もあります。"},
+{text:"環境への対応を後回しにする",effects:{environment:-1},result:"生産は続きましたが、環境への課題が残りました。",point:"工場では、生産と環境への配慮を両立させる工夫が求められます。"},
+{text:"資源を再利用できる方法を会社と一緒に探す",effects:{environment:1,cooperation:1},result:"関係する会社とも相談し、再利用の方法を検討しました。",point:"環境への取り組みも、会社どうしの協力につながります。"}
+]},
+{id:"ev_compete",name:"ほかのメーカーとの競争",stages:["planning","delivery"],weight:1,title:"ほかのメーカーも新しい車を発表",text:"ほかの自動車メーカーが、新しい車を発表しました。自分たちも急いで対抗するべきか、考えます。",requiredLearning:["quality","technology","global"],educationalIntent:"競争がある中でも、品質や安全などを大切にしながら改善することを考える。",choices:[
+{text:"競争を意識しながら、品質や安全を守って改善する",effects:{quality:1,efficiency:1},result:"競争をきっかけに改善しながら、品質と安全を守る方針にしました。",point:"自動車産業では競争がありますが、速さだけでなく品質や安全も重要です。"},
+{text:"とにかく早く発売することを優先する",effects:{efficiency:1,quality:-1,safety:-1},result:"早く進めましたが、品質や安全を確認する時間が必要になりました。",point:"競争があっても、品質や安全を確かめることを省くことはできません。"},
+{text:"ほかのメーカーの方法を調べ、自分たちの改善に生かす",effects:{technology:1,quality:1},result:"他社の動きを参考にしながら、自分たちの改善点を考えました。",point:"競争の中でも、技術や工夫を学びながらよりよいものを目指すことがあります。"}
+]}
+]
+};
