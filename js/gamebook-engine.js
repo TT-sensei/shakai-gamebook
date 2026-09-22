@@ -12,7 +12,9 @@ function weightedPick(pool, n){
 }
 
 function buildTimeline(data){
-  const targetEventCount = 2 + Math.floor(Math.random()*3);
+  const eventMin = Number(data.meta.eventCountMin ?? 2);
+  const eventMax = Number(data.meta.eventCountMax ?? 4);
+  const targetEventCount = eventMin + Math.floor(Math.random() * Math.max(1, eventMax - eventMin + 1));
   const chosen = weightedPick(data.EVENTS, Math.min(targetEventCount, data.EVENTS.length));
   const timeline = [];
   data.STAGE_ORDER.forEach(stageKey=>{
