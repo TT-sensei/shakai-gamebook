@@ -195,7 +195,6 @@ const NEWS_ZUKURI_DATA = {
         {text:"最初からもう一度取材する",correct:false,hint:"必要な情報が足りない場合を除き、確認後は発信へ進みます。"},
         {text:"未確認の情報を追加する",correct:false,hint:"発信前に、未確認の情報を追加するのは避けます。"}]}
     ],
-    ],
 
   EVENTS:[
     {id:"news_event_post",name:"SNSの投稿",stages:["verify","select","publish"],weight:3,title:"SNSで見つけた情報",text:"SNSに『公園で大きなイベントが始まるらしい』という投稿を見つけました。写真もあります。",requiredLearning:["source","multiple"],educationalIntent:"ネット上の情報も出どころを確認し、別の情報と比べて判断する。",choices:[
