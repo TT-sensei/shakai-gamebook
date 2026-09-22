@@ -30,10 +30,10 @@
 .section-head h2{font-size:18px;margin:0;color:var(--paddy-dark)}
 .section-head p{font-size:12px;color:var(--ink-soft);margin:0}
 .game-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.game-card{display:flex;flex-direction:column;min-height:245px;text-decoration:none;color:inherit;background:#fff;border-radius:17px;padding:18px;box-shadow:var(--card-shadow);border:1.5px solid rgba(78,124,74,.10);transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease;overflow:hidden}
-.game-card:hover{border-color:rgba(78,124,74,.42);transform:translateY(-2px);box-shadow:0 6px 16px rgba(38,50,41,.12)}
+.game-card{display:flex;position:relative;flex-direction:column;min-height:245px;text-decoration:none;color:inherit;background:#fff;border-radius:17px;padding:18px;box-shadow:var(--card-shadow);border:1.5px solid rgba(78,124,74,.10);transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease;overflow:hidden}
+.game-card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--card-accent);}.game-card:hover{border-color:rgba(78,124,74,.42);transform:translateY(-2px);box-shadow:0 6px 16px rgba(38,50,41,.12)}
 .game-card:focus-visible{outline:3px solid rgba(78,124,74,.28);outline-offset:3px}
-.card-visual{height:86px;margin:-18px -18px 14px;background:linear-gradient(180deg,#eef3eb,#f8faf6);display:flex;align-items:flex-end;justify-content:flex-end;overflow:hidden}
+.game-card:nth-child(1){--card-accent:#6f9f5d}.game-card:nth-child(2){--card-accent:#557da8}.game-card:nth-child(3){--card-accent:#8a6aa8}.game-card:nth-child(4){--card-accent:#c4864d}.game-card:nth-child(5){--card-accent:#6a879b}.game-card:nth-child(6){--card-accent:#4f8f87}.card-visual{height:86px;margin:-18px -18px 14px;background:color-mix(in srgb,var(--card-accent) 11%,#fff);display:flex;align-items:flex-end;justify-content:flex-end;overflow:hidden}
 .card-visual img{width:130px;height:100%;object-fit:contain;object-position:center bottom}
 .game-card h3{font-size:19px;margin:0 0 7px;color:var(--ink)}
 .game-card p{font-size:13.5px;line-height:1.7;color:var(--ink-soft);margin:0}
@@ -70,15 +70,6 @@
         <p class="portal-hero-text">生産、工業、情報、物流、水産、防災など、社会の中で人々がどのようにつながり、どんな判断をしているのかをゲームブックで考えます。</p>
       </div>
       <img class="portal-hero-character" src="https://tt-sensei.github.io/navi-character-/assets/web/groups/group-presenting.webp" alt="ナビキャラが学びを案内する">
-    </section>
-
-    <section class="edu-kit" aria-label="edu-kit">
-      <div class="edu-kit-mark">EDU<br>KIT</div>
-      <div class="edu-kit-text">
-        <p class="edu-kit-title">edu-kit の設計を土台にした教材</p>
-        <p>学習の流れを主役にして、ナビキャラや視覚表現は学びを支えるために使っています。</p>
-      </div>
-      <a class="edu-kit-link" href="https://tt-sensei.github.io/edu-kit/" target="_blank" rel="noopener">設計基盤を見る →</a>
     </section>
 
     <div class="section-head">
