@@ -147,6 +147,33 @@ const NEWS_ZUKURI_DATA = {
         {text:"一文をできるだけ長くして全部入れる",effects:{readability:-2},result:"情報は残りましたが、読み取りにくい文章になりました。",point:"情報を整理し、短く区切ることも伝わりやすさにつながります。"}
        ]}
     ],
+    FLOW_CHECKPOINTS:[
+      {afterId:"news_gather_2",title:"次は何をする？",text:"情報を集めました。次は、集めた情報をもとに、どのニュースを扱うか考えます。",choices:[
+        {text:"編集会議で、何をニュースにするか考える",correct:true,feedback:"正解。集めた情報をもとに、何を伝えるか考えます。"},
+        {text:"いきなり放送する",correct:false,hint:"集めた情報をそのまま発信するのではなく、まず何を扱うか考えます。"},
+        {text:"先に原稿を完成させる",correct:false,hint:"原稿を書く前に、どのニュースを扱うか決めます。"}]},
+      {afterId:"news_meeting_2",title:"次は何をする？",text:"扱うニュースと順番を考えました。次は、実際の現場へ行って情報を集めます。",choices:[
+        {text:"取材する",correct:true,feedback:"正解。現場を見たり、話を聞いたりして詳しく調べます。"},
+        {text:"放送する",correct:false,hint:"まだ詳しい情報を集めていません。まず取材します。"},
+        {text:"見出しを決める",correct:false,hint:"まずは現場の事実を確かめるために取材します。"}]},
+      {afterId:"news_interview_2",title:"次は何をする？",text:"現場で話を聞き、情報を集めました。次は、その情報が確かなものか確かめます。",choices:[
+        {text:"情報を確認する",correct:true,feedback:"正解。出どころを調べたり、別の情報と比べたりします。"},
+        {text:"そのまま発信する",correct:false,hint:"取材で聞いたことも、事実を確かめてから伝えます。"},
+        {text:"映像だけを選ぶ",correct:false,hint:"まず、集めた情報が確かなものか確認します。"}]},
+      {afterId:"news_verify_2",title:"次は何をする？",text:"情報を比べて、確かめました。次は、ニュースの中心に必要な情報を選びます。",choices:[
+        {text:"伝える情報を選ぶ",correct:true,feedback:"正解。ニュースの中心に必要な事実を選びます。"},
+        {text:"全部そのまま入れる",correct:false,hint:"集めた情報を全部入れるのではなく、中心となる情報を選びます。"},
+        {text:"すぐ放送する",correct:false,hint:"伝える内容を整理してから、原稿や映像をつくります。"}]},
+      {afterId:"news_select_1",title:"次は何をする？",text:"伝える情報を選びました。次は、選んだ事実をもとに原稿や見出しを整えます。",choices:[
+        {text:"原稿・編集をする",correct:true,feedback:"正解。事実が正確に伝わるように、原稿や映像を整えます。"},
+        {text:"もう一度取材に戻る",correct:false,hint:"必要な情報が足りない場合を除き、次は原稿や編集に進みます。"},
+        {text:"いきなり放送する",correct:false,hint:"発信する前に、原稿や映像を整えます。"}]},
+      {afterId:"news_edit_check",title:"次は何をする？",text:"原稿や映像を整え、内容も確認しました。最後は、ニュースとして発信します。",choices:[
+        {text:"放送・発信する",correct:true,feedback:"正解。最後の確認を終えたら、ニュースを届けます。"},
+        {text:"最初からもう一度取材する",correct:false,hint:"必要な情報が足りない場合を除き、確認後は発信へ進みます。"},
+        {text:"未確認の情報を追加する",correct:false,hint:"発信前に、未確認の情報を追加するのは避けます。"}]}
+    ],
+    ],
     publish:[
       {id:"news_publish_vtr",title:"映像を合わせる",text:"原稿の下読み時間がわかりました。編集担当として、撮影した映像を原稿に合わせてつなぎます。どうしますか？",requiredLearning:["editing"],educationalIntent:"原稿の内容や時間に合わせて映像を選び、編集することを知る。",choices:[
         {text:"原稿の内容に合う映像を選び、読む時間に合わせてつなぐ",effects:{readability:1,accuracy:1},result:"原稿と映像がつながり、ニュースらしい形になりました。",point:"ニュース映像は、原稿の内容や時間に合わせて必要な映像を選び、つなぎます。"},
