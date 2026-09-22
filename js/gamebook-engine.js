@@ -19,7 +19,7 @@ function buildTimeline(data){
   const timeline = [];
   data.STAGE_ORDER.forEach(stageKey=>{
     const req = data.CORE_SCENES[stageKey].flatMap(s=>{
-      const core = {...s, kind:"core", stage:stageKey};
+      const core = {...s, kind:"core", stage:stageKey, choices:[...(s.choices||[])].sort(()=>Math.random()-0.5)};
       const flow = data.FLOW_CHECKPOINTS && data.FLOW_CHECKPOINTS.find(f=>f.afterId===s.id);
       if(flow){
         const sequence = {...flow, kind:"sequence", stage:stageKey, choices:[...flow.choices].sort(()=>Math.random()-0.5)};
@@ -29,7 +29,7 @@ function buildTimeline(data){
     });
     const evs = chosen.filter(e=>e.stages.includes(stageKey)).map(e=>({
       id:e.id+"_"+stageKey, kind:"event", stage:stageKey,
-      title:e.title, text:e.text, choices:e.choices, image:e.image,
+      title:e.title, text:e.text, choices:[...(e.choices||[])].sort(()=>Math.random()-0.5), image:e.image,
       requiredLearning:e.requiredLearning, educationalIntent:e.educationalIntent,
       eventName:e.name
     }));
