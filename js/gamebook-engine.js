@@ -371,7 +371,7 @@ function renderEnding(){
 
   const flow = document.createElement("div");
   flow.className="ending-flow";
-  flow.innerHTML="<div class=\"ending-flow-title\">"+(GAME_DATA.meta.flowTitle||"学習の流れ")+"</div><div class=\"ending-flow-line\">"+GAME_DATA.STAGE_ORDER.flatMap(k=>GAME_DATA.CORE_SCENES[k]||[]).map((s,i)=>`<span>${i+1}. ${s.title}</span>`).join("<b>→</b>")+"</div><p>${GAME_DATA.meta.endingNote||""}</p>";
+  flow.innerHTML="<div class=\"ending-flow-title\">"+(GAME_DATA.meta.flowTitle||"学習の流れ")+"</div><div class=\"ending-flow-line\">"+GAME_DATA.STAGE_ORDER.flatMap(k=>GAME_DATA.CORE_SCENES[k]||[]).map((s,i)=>`<span>${i+1}. ${s.title}</span>`).join("<b>→</b>")+"</div><p>"+(GAME_DATA.meta.endingNote||"")+"</p>";
   main.appendChild(flow);
 
   const summary = document.createElement("div");
