@@ -1,5 +1,6 @@
 const JIDOSHA_ZUKURI_DATA={
 meta:{
+  startImage:"https://tt-sensei.github.io/navi-character-/assets/web/groups/group-moving-forward.webp",
   id:"jidosha-zukuri",
   title:"自動車づくりゲームブック",
   icon:"🚗",
