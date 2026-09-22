@@ -10,7 +10,18 @@ meta:{
   statusTitle:"今回の自動車づくり",
   flowTitle:"クルマができるまでの工程",
   processButtonLabel:"工程を確認",
+  stageImages:{
+    planning:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/CONCEPTUAL_CAR_DESIGN.jpg",credit:"Vincshekhan / Wikimedia Commons / CC BY-SA 4.0",url:"https://commons.wikimedia.org/wiki/File:CONCEPTUAL_CAR_DESIGN.jpg"},
+    stamping:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Coventry_Press_Line_for_HFQ.jpg",credit:"Arfurjohnthomas / Wikimedia Commons / CC BY-SA 4.0",url:"https://commons.wikimedia.org/wiki/File:Coventry_Press_Line_for_HFQ.jpg"},
+    welding:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/BMW_Leipzig_MEDIA_050719_Download_Karosseriebau_max.jpg",credit:"BMW Werk Leipzig / Wikimedia Commons / CC BY-SA 2.0 DE",url:"https://commons.wikimedia.org/wiki/File:BMW_Leipzig_MEDIA_050719_Download_Karosseriebau_max.jpg"},
+    painting:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Automotive_Paint_Booth.jpg",credit:"Wikimedia Commons / CC BY 4.0",url:"https://commons.wikimedia.org/wiki/File:Automotive_Paint_Booth.jpg"},
+    assembly:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/001_Car_factory_assembly_line_-_Opel_factory_in_Gliwice,_Poland.jpg",credit:"Marek Ślusarczyk / Wikimedia Commons / CC BY 3.0",url:"https://commons.wikimedia.org/wiki/File:001_Car_factory_assembly_line_-_Opel_factory_in_Gliwice,_Poland.jpg"},
+    inspection:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/005_Chassis_dynamometer_car_testing_in_car_factory_-_Opel_Factory_in_Gliwice,_Poland_-_Rollenprüfstand.jpg",credit:"Marek Ślusarczyk / Wikimedia Commons / CC BY 3.0",url:"https://commons.wikimedia.org/wiki/File:005_Chassis_dynamometer_car_testing_in_car_factory_-_Opel_Factory_in_Gliwice,_Poland_-_Rollenprüfstand.jpg"},
+    delivery:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Car_container_carrier.webp",credit:"Wikideas1 / Wikimedia Commons / CC0 1.0",url:"https://commons.wikimedia.org/wiki/File:Car_container_carrier.webp"}
+  },
   gameOverOnZero:true,
+  eventCountMin:1,
+  eventCountMax:2,
   retryLabel:"もう一度つくる",
   statuses:{
     quality:{label:"品質",initial:3,min:0,max:5},
