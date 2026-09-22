@@ -7,7 +7,7 @@ const NEWS_ZUKURI_DATA = {
     id:"news-zukuri",
     title:"ニュースづくりゲームブック",
     icon:"ニュース",
-    lead:"きみはニュースをつくる側。<br>情報を集め、確かめ、選び、わかりやすく伝えよう。",
+    lead:"きみはニュースをつくる側。<br>集める → 話し合う → 取材する → 確かめる → 選ぶ → 編集する → 放送する。",
     endingLabel:"あなたのニュース",
     endingText:"あなたは取材から発信まで、ニュースづくりの流れを体験しました。今回は {{eventCount}} 件の予定外のできごとにも対応しました。",
     finalStatusText:"情報を集め、確かめ、伝える中でのバランス",
@@ -15,6 +15,8 @@ const NEWS_ZUKURI_DATA = {
     gameOverOnZero:false,
     statuses:{accuracy:{label:"正確さ",icon:"✓",initial:3,min:0,max:5},source:{label:"根拠",icon:"🔎",initial:3,min:0,max:5},readability:{label:"伝わりやすさ",icon:"▤",initial:3,min:0,max:5},speed:{label:"速さ",icon:"→",initial:3,min:0,max:5},ethics:{label:"配慮",icon:"♡",initial:3,min:0,max:5}},
     flowTitle:"ニュースができるまで",
+    flowStages:[{key:"gather",label:"情報収集"},{key:"meeting",label:"編集会議"},{key:"interview",label:"取材"},{key:"verify",label:"確認"},{key:"select",label:"選ぶ"},{key:"edit",label:"原稿・編集"},{key:"publish",label:"放送"}],
+    endingNote:"ニュースづくりでは、情報を集め、取材し、確かめ、何をどう伝えるかを考えながら、さまざまな人が協力して発信します。これは学習用の架空のニュースを使ったゲームです。",
     navi:[
       {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/05-surprised.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/07-encouraging.png",message:"まずは、現場で何が起きているか確かめよう。"},
       {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/06-troubled.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/07-encouraging.png",message:"聞いた話を、そのまま事実にしていいかな？"},
@@ -89,13 +91,13 @@ const NEWS_ZUKURI_DATA = {
        choices:[
         {text:"元の情報がどこから来たのかをたどって確認する",effects:{accuracy:1,source:1,speed:-1},result:"時間はかかりましたが、情報の出どころを確認できました。",point:"誰かから聞いた話は、そのまま事実とは限りません。出どころを確かめることが重要です。"},
         {text:"『らしい』と書けば、記事に入れてよいことにする",effects:{speed:1,accuracy:-1},result:"早く記事に入れられますが、根拠が弱い情報です。",point:"表現を弱めても、根拠が確認できていない情報を事実のように扱うのは注意が必要です。"},
-        {text:"面白そうなので、見出しに大きく入れる",effects:{speed:1,accuracy:-2,fairness:-1},result:"目を引く見出しになりましたが、確かめていない情報が広がることになります。",point:"目を引くことより、まず情報が確かなものかを確認します。"}
+        {text:"面白そうなので、見出しに大きく入れる",effects:{speed:1,accuracy:-2},result:"目を引く見出しになりましたが、確かめていない情報が広がることになります。",point:"目を引くことより、まず情報が確かなものかを確認します。"}
        ]},
       {id:"news_verify_2",title:"別の情報と比べる",text:"市役所の発表と、地域の人から聞いた話で数字が少し違っています。どうしますか？",
        requiredLearning:["multiple","source"],educationalIntent:"一つの情報だけで判断せず、複数の情報を比べて確認する。",
        choices:[
         {text:"両方の情報を確認し、数字が違う理由を調べる",effects:{accuracy:1,source:1,speed:-1},result:"情報を比べることで、数字の違いがわかりました。",point:"複数の情報を比べると、事実をより確かに捉えられます。"},
-        {text:"公式発表だけを見て、地域の話は無視する",effects:{accuracy:0,source:1,fairness:-1},result:"公式情報は確認できましたが、地域の人の話を生かせませんでした。",point:"公式情報は重要ですが、現場の声も手がかりになります。役割の違う情報を比べることができます。"},
+        {text:"公式発表だけを見て、地域の話は無視する",effects:{accuracy:0,source:1},result:"公式情報は確認できましたが、地域の人の話を生かせませんでした。",point:"公式情報は重要ですが、現場の声も手がかりになります。役割の違う情報を比べることができます。"},
         {text:"数字が大きいほうを採用する",effects:{speed:1,accuracy:-2},result:"数字は決まりましたが、選んだ根拠がありません。",point:"数字の大きさではなく、情報の根拠を確かめて選びます。"}
        ]}
     ],
@@ -120,13 +122,13 @@ const NEWS_ZUKURI_DATA = {
       {id:"news_edit_read",title:"アナウンサーの下読み",text:"原稿を読む人が、実際に声に出して確認します。なぜ下読みをするのでしょう？",requiredLearning:["editing"],educationalIntent:"読み方や時間を確認し、映像編集につなげる下読みの役割を知る。",choices:[
         {text:"読み間違いや読みにくい部分、時間を確認する",effects:{readability:1,speed:1},result:"読み方と時間が確認できました。",point:"下読みでは読み方やアクセント、読み間違いなどを確認し、映像編集にもつなげます。"},
         {text:"本番まで一度も読まない",effects:{readability:-2,accuracy:-1},result:"本番で読みにくいところが見つかるかもしれません。",point:"事前に声に出して確認することで、本番のミスを減らせます。"},
-        {text:"速く読む練習だけする",effects:{speed:1,readability:-1},result:"速さは出ましたが、聞き取りやすさの確認が不足しました。",point:"速さだけでなく、聞き取りやすさや内容とのつながりも大切です。"}]}
+        {text:"速く読む練習だけする",effects:{speed:1,readability:-1},result:"速さは出ましたが、聞き取りやすさの確認が不足しました。",point:"速さだけでなく、聞き取りやすさや内容とのつながりも大切です。"}]},
       {id:"news_edit_1",title:"見出しを考える",text:"記事の中心は『地域の人たちが公園の花壇を整備した』ことです。どの見出しが、内容を正確に伝えやすいでしょう？",
        requiredLearning:["editing"],educationalIntent:"見出しは目を引くだけでなく、本文の内容を正確に表す必要があることを考える。",
        choices:[
         {text:"地域の人たち、公園の花壇を整備",effects:{accuracy:1,readability:1},result:"誰が何をしたのかが伝わる見出しになりました。",point:"見出しは短くても、記事の中心となる事実が伝わるようにします。"},
         {text:"公園が大変なことに！",effects:{speed:1,accuracy:-2,readability:-1},result:"目を引きますが、何が起きたのか正確にはわかりません。",point:"刺激の強い言葉だけで、事実がわからなくなる見出しには注意します。"},
-        {text:"地域史上最大級！？すごすぎる花壇！",effects:{readability:-1,accuracy:-2,fairness:-1},result:"強い印象はありますが、根拠のない表現が含まれています。",point:"根拠のない誇張表現は避け、事実を正確に伝えます。"}
+        {text:"地域史上最大級！？すごすぎる花壇！",effects:{readability:-1,accuracy:-2},result:"強い印象はありますが、根拠のない表現が含まれています。",point:"根拠のない誇張表現は避け、事実を正確に伝えます。"}
        ]},
       {id:"news_edit_2",title:"短くまとめる",text:"本文を短くすることになりました。『いつ・どこで・だれが・何をした』が伝わるようにするには、どうしますか？",
        requiredLearning:["editing","selection"],educationalIntent:"限られた文章量でも、重要な事実を落とさず整理する。",
@@ -168,7 +170,7 @@ const NEWS_ZUKURI_DATA = {
     {id:"news_event_voice",name:"取材相手のお願い",stages:["interview","edit","publish"],weight:2,title:"掲載してほしくない情報",text:"取材相手から『この個人的な話は記事に載せないでほしい』と言われました。その話はニュースの中心ではありません。",requiredLearning:["ethics","selection"],educationalIntent:"取材相手への配慮と、ニュースとして必要な情報の選択を考える。",choices:[
       {text:"ニュースの中心に必要ない個人的な情報は載せない",effects:{ethics:1},result:"必要な情報にしぼって記事をまとめました。",point:"取材で得た情報を何でも公開するのではなく、必要性と相手への配慮を考えます。"},
       {text:"面白いので、名前を出さなければ載せる",effects:{readability:1,ethics:-2},result:"名前を隠しても、本人が特定される可能性があります。",point:"名前を隠せば必ず安全とは限りません。個人が特定されないかも考えます。"},
-      {text:"記事を目立たせるため、詳しく書く",effects:{speed:1,ethics:-2,fairness:-1},result:"記事は目立ちましたが、相手への配慮が不足しました。",point:"ニュースのために必要かどうかを考え、相手の立場にも配慮します。"}
+      {text:"記事を目立たせるため、詳しく書く",effects:{speed:1,ethics:-2},result:"記事は目立ちましたが、相手への配慮が不足しました。",point:"ニュースのために必要かどうかを考え、相手の立場にも配慮します。"}
     ]}
   ]
 };
