@@ -60,58 +60,58 @@ FLOW_STAGES:{
 },
 CORE_SCENES:{
  sea:[
-  {id:"s1",title:"魚はどこにいる？",text:"魚の種類によって、すむ場所はちがいます。最近は海の温度などの変化で、とれる魚の種類や場所が変わることもあります。魚をとる前に、何を考えるとよいでしょう。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Fukuura_Fishing_Port_(Yugawara,_Kanagawa).jpg?width=1000","credit":"妖精書士 / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Fukuura_Fishing_Port_(Yugawara,_Kanagawa).jpg"},requiredLearning:["natural","fishing"],educationalIntent:"魚の種類やすむ場所、海の変化によって、とり方が変わることを考える。",choices:[
+  {id:"s1",title:"魚はどこにいる？",text:"魚をとる場所を決めることになりました。これまでとちがう魚が見つかることもあります。何を見ながら場所を決めますか。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Fukuura_Fishing_Port_(Yugawara,_Kanagawa).jpg?width=1000","credit":"妖精書士 / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Fukuura_Fishing_Port_(Yugawara,_Kanagawa).jpg"},requiredLearning:["natural","fishing"],educationalIntent:"魚の種類やすむ場所、海の変化によって、とり方が変わることを考える。",choices:[
    {text:"魚の種類や、すんでいる場所、海のようすを調べる",effects:{efficiency:1,environment:1},result:"魚と海の変化を確かめて、とり方を考えることにしました。",point:"魚の種類や場所、海のようすを調べることは、とり方を考える手がかりになります。"},
    {text:"今まで魚がとれていた場所だけを見る",effects:{efficiency:-1,environment:-1},result:"魚や海の変化を見落とすことがありました。",point:"海の変化によって、とれる魚の種類や場所が変わることがあります。変化を見ながら考えることが大切です。"},
    {text:"たくさんとれそうな場所だけを見る",effects:{quantity:-1},result:"魚の数だけでなく、海のようすも見る必要がありました。",point:"水産業では、魚のすむ場所や海のようすなども大切です。"}
   ]},
-  {id:"s2",title:"海の広さと魚をとる場所",text:"日本の近くの海から、遠く離れた海まで、魚をとる場所はいろいろあります。どこで、どんな工夫をして魚をとるのでしょう。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Fishing_boat_at_sea_(Hastings).jpg?width=1000","credit":"Poliphilo / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Fishing_boat_at_sea_(Hastings).jpg"},requiredLearning:["fishing","natural"],educationalIntent:"沿岸・沖合・遠洋漁業のちがいと、それぞれの場所に合った工夫を知る。",choices:[
+  {id:"s2",title:"海の広さと魚をとる場所",text:"魚をとる場所を決めます。近くの海、少し離れた海、遠い海では、それぞれどんなちがいがありそうですか。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Fishing_boat_at_sea_(Hastings).jpg?width=1000","credit":"Poliphilo / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Fishing_boat_at_sea_(Hastings).jpg"},requiredLearning:["fishing","natural"],educationalIntent:"沿岸・沖合・遠洋漁業のちがいと、それぞれの場所に合った工夫を知る。",choices:[
    {text:"日本の近くの海（沿岸）で、港へ早く戻れるようにとる",effects:{freshness:1,efficiency:1},result:"「沿岸漁業」です。港に近い海で、一本釣りや定置網など、魚や場所に合った方法を使います。",point:"沿岸漁業は海岸に近い海で行う漁業です。とった魚を早く港へ運べることも特徴です。"},
    {text:"日本から少し離れた海（沖合）で、まき網などを使ってまとめてとる",effects:{quantity:1,efficiency:1,environment:-1},result:"「沖合漁業」です。魚の群れを見つけ、まき網などを使ってまとめてとる方法があります。",point:"沖合漁業では、魚の群れや季節などを見ながら、効率よくとる工夫があります。たくさんとれる分、資源を守ることも大切です。"},
    {text:"遠くの海（遠洋）まで大型船で行き、とった魚を船で冷やして運ぶ",effects:{quantity:1,freshness:1,efficiency:-1},result:"「遠洋漁業」です。遠くの海まで行くため、長い時間や手間がかかります。そのため、船の中で魚を冷やしたり保存したりする工夫があります。",point:"遠洋漁業は遠い海まで行って魚をとる漁業です。長い時間、海の上で過ごすため、大型船や魚を冷やしたり保存したりする工夫があります。"}
   ]},
-  {id:"s3",title:"魚をとりすぎない",text:"ある魚が少なくなってきました。これからも魚を利用していくために、とる量を決めるルールや魚の数を調べることも大切です。どう考えますか。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Choshi_Fishing_Port_03.jpg?width=1000","credit":"Higa4 / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Choshi_Fishing_Port_03.jpg"},requiredLearning:["resource","life"],educationalIntent:"魚をこれからも利用するため、とる量を決める方法を知る。",choices:[
+  {id:"s3",title:"魚をとりすぎない",text:"ある魚が少なくなってきました。今後のとり方を決めることになりました。どのように考えますか。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Choshi_Fishing_Port_03.jpg?width=1000","credit":"Higa4 / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Choshi_Fishing_Port_03.jpg"},requiredLearning:["resource","life"],educationalIntent:"魚をこれからも利用するため、とる量を決める方法を知る。",choices:[
    {text:"魚の数や成長を調べ、とる量を決める",effects:{quantity:1,efficiency:1,environment:1},result:"魚の数や成長を調べ、とる量を考えることにしました。",point:"魚をこれからも利用するため、魚の数や成長を調べ、とる量を決めたり、ルールを作ったりすることがあります。"},
    {text:"魚が少なくても、今までと同じ量をとる",effects:{quantity:-1,environment:-1},result:"今はたくさんとれましたが、これからの魚の数を考える必要が出てきました。",point:"魚をとりすぎると、将来の利用に影響することがあります。"},
    {text:"とる量を大きく減らし、魚の数がもどることを優先する",effects:{quantity:-1,environment:1,efficiency:-1},result:"今とれる量は減りましたが、魚を守ることを優先しました。",point:"魚を守るため、とる量を減らすことがあります。必要な量を届けることとのバランスも考えます。"}
   ]}
  ],
  catch:[
-  {id:"s4",title:"魚を育てる方法",text:"魚をとるだけでなく、人の手で魚を育てる方法もあります。どんな方法があるでしょう。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Port_of_Nejime_-_Fish_tanks_for_aquaculture.jpg?width=1000","credit":"Yoshi Canopus / Wikimedia Commons・CC BY-SA 4.0","url":"https://commons.wikimedia.org/wiki/File:Port_of_Nejime_-_Fish_tanks_for_aquaculture.jpg"},requiredLearning:["aquaculture","cultivation"],educationalIntent:"とる漁業だけでなく、養殖業や栽培漁業があることを知る。",choices:[
+  {id:"s4",title:"魚を育てる方法",text:"魚を増やすための方法を考えることになりました。人の手を使う方法には、どんなものがあるでしょう。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Port_of_Nejime_-_Fish_tanks_for_aquaculture.jpg?width=1000","credit":"Yoshi Canopus / Wikimedia Commons・CC BY-SA 4.0","url":"https://commons.wikimedia.org/wiki/File:Port_of_Nejime_-_Fish_tanks_for_aquaculture.jpg"},requiredLearning:["aquaculture","cultivation"],educationalIntent:"とる漁業だけでなく、養殖業や栽培漁業があることを知る。",choices:[
    {text:"魚をいけすなどで育てる",effects:{quantity:1,efficiency:1},result:"魚を人の手で育てる方法を考えました。",point:"魚をいけすなどで育て、食べられる大きさまで育てるのが「ようしょく」です。"},
    {text:"小さい魚を海へ放す",effects:{quantity:1},result:"小さい魚を育ててから海へかえす方法もあると分かりました。",point:"さいばい漁業では、卵から小さい魚になるまで人が育て、海へ放します。その後は自然の中で大きくなった魚をとります。"},
    {text:"魚は全部、海で自然に育つのを待つ",effects:{quantity:-1},result:"人が育てる方法もあることを見落としていました。",point:"水産業には、とる漁業のほかに、ようしょくやさいばい漁業があります。ようしょくは人が出荷まで育て、さいばい漁業は途中で海へ放します。"}
   ]},
-  {id:"s5",title:"ようしょくで育てる",text:"いけすで魚を育てています。魚が元気に育つように、何を見ておくとよいでしょう。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Port_of_Nejime_-_Fish_tanks_for_aquaculture.jpg?width=1000","credit":"Yoshi Canopus / Wikimedia Commons・CC BY-SA 4.0","url":"https://commons.wikimedia.org/wiki/File:Port_of_Nejime_-_Fish_tanks_for_aquaculture.jpg"},requiredLearning:["aquaculture","natural"],educationalIntent:"ようしょくでは、魚のようすやえさ、水などを見ながら育てることを知る。",choices:[
+  {id:"s5",title:"ようしょくで育てる",text:"いけすで魚を育てています。今日はいつもと少しようすがちがう魚がいます。まず、何を見ますか。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Port_of_Nejime_-_Fish_tanks_for_aquaculture.jpg?width=1000","credit":"Yoshi Canopus / Wikimedia Commons・CC BY-SA 4.0","url":"https://commons.wikimedia.org/wiki/File:Port_of_Nejime_-_Fish_tanks_for_aquaculture.jpg"},requiredLearning:["aquaculture","natural"],educationalIntent:"ようしょくでは、魚のようすやえさ、水などを見ながら育てることを知る。",choices:[
    {text:"魚のようすやえさ、水のようすを確認する",effects:{quantity:1,efficiency:1},result:"魚のようすを見ながら育てることにしました。",point:"ようしょくでは、魚のようすや育つ環境を見ながら育てます。"},
    {text:"えさだけ多くあげればよいと考える",effects:{quantity:-1},result:"えさだけでなく、魚や水の状態も見る必要がありました。",point:"魚のようすや育つ環境も大切です。"},
    {text:"一度決めた方法を変えない",effects:{quantity:-1,efficiency:-1},result:"魚の変化に合わせた対応ができませんでした。",point:"魚の成長や環境の変化を見ながら方法を変えます。"}
   ]},
-  {id:"s6",title:"さいばい漁業",text:"魚の数をふやすために、小さい魚を人の手で育てています。大きくなったら、どうする方法でしょう。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Stocking_fish_in_a_hatchery_pond_(26522843457).jpg?width=1000","credit":"USFWS Mountain-Prairie / Wikimedia Commons・CC BY 2.0","url":"https://commons.wikimedia.org/wiki/File:Stocking_fish_in_a_hatchery_pond_(26522843457).jpg"},requiredLearning:["cultivation","resource"],educationalIntent:"栽培漁業の「育てる→放す→大きくなった魚をとる」という流れを知る。",choices:[
+  {id:"s6",title:"さいばい漁業",text:"人の手で小さい魚を育てています。ある程度の大きさになった魚を、このあとどうする方法でしょう。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Stocking_fish_in_a_hatchery_pond_(26522843457).jpg?width=1000","credit":"USFWS Mountain-Prairie / Wikimedia Commons・CC BY 2.0","url":"https://commons.wikimedia.org/wiki/File:Stocking_fish_in_a_hatchery_pond_(26522843457).jpg"},requiredLearning:["cultivation","resource"],educationalIntent:"栽培漁業の「育てる→放す→大きくなった魚をとる」という流れを知る。",choices:[
    {text:"海へ放して、自然の中で大きくなるのを待つ",effects:{quantity:1},result:"育てた魚を海へかえす流れが分かりました。",point:"さいばい漁業では、魚が小さい時期を人が育て、その後海へ放して、大きくなった魚をとります。"},
    {text:"いけすで食べられる大きさまで育てる",effects:{quantity:1},result:"これは「ようしょく」に近い方法です。",point:"ようしょくでは、いけすなどで魚を育て、店などへ送るまで人が世話をします。さいばい漁業とは、海へ放すところがちがいます。"},
    {text:"小さいまま、とって食べる",effects:{quantity:-1},result:"育てた魚を海へかえす目的が達成できませんでした。",point:"さいばい漁業では、育てた魚を海へ放し、自然の中で成長させます。"}
   ]}
  ],
  grow:[
-  {id:"s7",title:"海へかえす",text:"育てた小さい魚を海へ放すことになりました。何を考えてから放すとよいでしょう。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/USFWS_IMG_1825_(27760183432).jpg?width=1000","credit":"USFWS Pacific Region / Wikimedia Commons・Public Domain","url":"https://commons.wikimedia.org/wiki/File:USFWS_IMG_1825_(27760183432).jpg"},requiredLearning:["cultivation","natural"],educationalIntent:"栽培漁業では、魚のようすや放す場所などを考えて海へ放すことを知る。",choices:[
+  {id:"s7",title:"海へかえす",text:"育てた小さい魚を海へ放す日になりました。放す前に、何を確かめますか。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/USFWS_IMG_1825_(27760183432).jpg?width=1000","credit":"USFWS Pacific Region / Wikimedia Commons・Public Domain","url":"https://commons.wikimedia.org/wiki/File:USFWS_IMG_1825_(27760183432).jpg"},requiredLearning:["cultivation","natural"],educationalIntent:"栽培漁業では、魚のようすや放す場所などを考えて海へ放すことを知る。",choices:[
    {text:"魚の状態や海のようすを確認してから放す",effects:{quantity:1},result:"魚と海のようすを確かめてから放しました。",point:"育てた魚を海へ放すときも、魚の状態や海のようすなどを考えます。"},
    {text:"どんな日でもすぐに放す",effects:{quantity:-1},result:"海のようすを確かめる必要がありました。",point:"放すときも、魚や海の条件を考えることが大切です。"},
    {text:"海ならどこでも同じだと考える",effects:{quantity:-1,efficiency:-1},result:"魚に合う場所を考える必要がありました。",point:"魚の種類や成長などに合わせて考えます。"}
   ]},
-  {id:"s8",title:"魚を長く食べるために",text:"魚をこれからも食べていくためには、「とる」だけでなく「育てる」ことも大切です。どんな考え方ができますか。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Salmon_sold_in_Japan_under_the_brand_%22Emperor_Salmon%22.jpg?width=1000","credit":"Syced / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Salmon_sold_in_Japan_under_the_brand_%22Emperor_Salmon%22.jpg"},requiredLearning:["resource","cultivation","aquaculture"],educationalIntent:"とる漁業、栽培漁業、養殖業のちがいを整理し、魚をこれからも利用するための考え方をもつ。",choices:[
+  {id:"s8",title:"魚を長く食べるために",text:"魚をとる方法や育てる方法には、いくつかの種類があります。これからの水産業について、どんな組み合わせや考え方ができるでしょう。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Salmon_sold_in_Japan_under_the_brand_%22Emperor_Salmon%22.jpg?width=1000","credit":"Syced / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Salmon_sold_in_Japan_under_the_brand_%22Emperor_Salmon%22.jpg"},requiredLearning:["resource","cultivation","aquaculture"],educationalIntent:"とる漁業、栽培漁業、養殖業のちがいを整理し、魚をこれからも利用するための考え方をもつ。",choices:[
    {text:"とる・育てる・海へかえす方法を組み合わせて考える",effects:{quantity:1,efficiency:1},result:"魚の種類や目的に合わせて、いろいろな方法を考えました。",point:"水産業には、とる漁業、ようしょく、さいばい漁業などがあります。"},
    {text:"魚をとる量だけを増やす",effects:{quantity:-1},result:"魚をこれからも利用するためには、量だけでなく魚の数やようすも考える必要がありました。",point:"魚をこれからも利用するには、魚をとりすぎないことも大切です。"},
    {text:"育てる方法だけにする",effects:{quantity:0},result:"育てる方法も大切ですが、とる漁業などとのつながりもあります。",point:"水産業にはいろいろな方法があります。"}
   ]}
  ],
  deliver:[
-  {id:"s9",title:"港へ運ぶ",text:"魚がとれました。食卓へ届けるため、まず港へ運びます。何を大切にしますか。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Matsuura_Fish_Market_260506.jpg?width=1000","credit":"Umako / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Matsuura_Fish_Market_260506.jpg"},requiredLearning:["freshness","distribution"],educationalIntent:"魚は新せんさを保ちながら港や市場へ運ぶことを知る。",choices:[
+  {id:"s9",title:"港へ運ぶ",text:"魚がとれました。港へ運ぶことになりました。どんなことを考えて運びますか。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Matsuura_Fish_Market_260506.jpg?width=1000","credit":"Umako / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Matsuura_Fish_Market_260506.jpg"},requiredLearning:["freshness","distribution"],educationalIntent:"魚は新せんさを保ちながら港や市場へ運ぶことを知る。",choices:[
    {text:"魚に合った方法で急速に冷やし、新せんさを保って運ぶ",effects:{freshness:1,efficiency:1},result:"魚を冷やして新せんさを保ちながら、港へ運びました。",point:"遠くの海から運ぶ場合は、船の中で魚を冷やすなど、長い間でも新せんさを保つ工夫があります。"},
    {text:"時間だけを優先する",effects:{freshness:-1},result:"早く着きましたが、魚の状態も考える必要がありました。",point:"魚を届けるときは、時間だけでなく新せんさも大切です。"},
    {text:"魚の状態を見ずに運ぶ",effects:{freshness:-1,efficiency:-1},result:"魚の状態に合わせた対応ができませんでした。",point:"魚はようすを見ながら、ていねいにあつかうことが大切です。"}
   ]},
-  {id:"s10",title:"港から食卓へ",text:"港に魚が集まりました。魚を分けたり、売ったり、運んだりして、食卓へつながります。最後に何を考えますか。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Salmon_bowl_of_Nakau_2023.jpg?width=1000","credit":"毒島みるく / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Salmon_bowl_of_Nakau_2023.jpg"},requiredLearning:["distribution","freshness","life"],educationalIntent:"魚が港や市場などを通って食卓へ届く流れを知る。",choices:[
+  {id:"s10",title:"港から食卓へ",text:"港に魚が集まりました。ここから先、魚はどんな流れで食卓へ届くでしょう。何を考えてつなぎますか。",\n      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Salmon_bowl_of_Nakau_2023.jpg?width=1000","credit":"毒島みるく / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Salmon_bowl_of_Nakau_2023.jpg"},requiredLearning:["distribution","freshness","life"],educationalIntent:"魚が港や市場などを通って食卓へ届く流れを知る。",choices:[
    {text:"魚の種類や状態を確認し、必要な場所へ届ける",effects:{efficiency:1,freshness:1},result:"魚を確認して、食べる人のもとへつなぐ計画を考えました。",point:"水産物は、とったり育てたりしたあと、港や市場などを通って私たちの食卓へ届きます。"},
    {text:"魚を港に置いたままにする",effects:{efficiency:-1,freshness:-1},result:"食卓へ届けるところまで考える必要がありました。",point:"水産業は、とる・育てるだけでなく、運んだり売ったりすることもつながっています。"},
    {text:"早く売ることだけを考える",effects:{freshness:-1,efficiency:-1},result:"速さだけでなく、魚の状態や届け先も考える必要がありました。",point:"魚を届けるには、新せんさや届け先なども大切です。"}
@@ -119,32 +119,32 @@ CORE_SCENES:{
  ]
 },
 EVENTS:[
- {id:"se_badweather",name:"海の天気が変わった",stages:["sea","catch","grow"],weight:1,title:"海のようすが変わった",text:"海の天気が悪くなりそうです。どうしますか。",requiredLearning:["natural","fishing"],educationalIntent:"海や天気のようすを見ながら、安全に判断することを考える。",choices:[
+ {id:"se_badweather",name:"海の天気が変わった",stages:["sea","catch","grow"],weight:1,title:"海のようすが変わった",text:"海の天気が変わりそうです。出発するか、予定を変えるか、判断することになりました。どうしますか。",requiredLearning:["natural","fishing"],educationalIntent:"海や天気のようすを見ながら、安全に判断することを考える。",choices:[
   {text:"海のようすを確認し、安全を優先して計画を変える",effects:{efficiency:1,quantity:1},result:"海の状態を見て、安全を優先しました。",point:"水産業では、天候や海の状態を見ながら判断します。"},
   {text:"予定どおり、とにかく出る",effects:{efficiency:-1},result:"安全を考えて予定を変える必要がありました。",point:"海や天気が変わったときは、安全を優先します。"},
   {text:"魚が多そうなので無理をする",effects:{efficiency:-1,quantity:-1},result:"魚の数だけでなく、安全も考える必要がありました。",point:"魚をとることより安全を優先する場面があります。"}
  ]},
- {id:"se_fish_small",name:"魚がまだ小さい",stages:["catch","grow"],weight:1,title:"まだ小さい魚が見つかった",text:"とろうとしている魚の中に、まだ小さい魚がいました。どうしますか。",requiredLearning:["resource","cultivation"],educationalIntent:"魚の成長や数を考えて利用することを知る。",choices:[
+ {id:"se_fish_small",name:"魚がまだ小さい",stages:["catch","grow"],weight:1,title:"まだ小さい魚が見つかった",text:"とろうとしている魚の中に、まだ小さい魚がいました。とるか、見送るか、決めることになりました。どうしますか。",requiredLearning:["resource","cultivation"],educationalIntent:"魚の成長や数を考えて利用することを知る。",choices:[
   {text:"小さい魚を逃がし、成長を考える",effects:{quantity:1},result:"小さい魚を逃がして、成長できるようにしました。",point:"魚の成長を考えて、とる量や方法を工夫することがあります。"},
   {text:"小さくても全部とる",effects:{quantity:-1},result:"今は魚をとれましたが、これからの魚の数も考える必要がありました。",point:"魚をこれからも利用するには、成長や魚の数を考えることが大切です。"},
   {text:"今回はとるのをやめ、海のようすを見守る",effects:{quantity:-1,environment:1},result:"今とれる量は減りましたが、海や魚を守ることにつながりました。",point:"魚を守るために、とる量を減らしたり、とるのを休んだりすることがあります。"}
  ]},
- {id:"se_aquaculture_water",name:"魚の元気がない",stages:["catch"],weight:1,title:"育てている魚のようすが変わった",text:"いけすの魚の元気が少しありません。どうしますか。",requiredLearning:["aquaculture","natural"],educationalIntent:"養殖では魚のようすや育つ環境を確認することを知る。",choices:[
+ {id:"se_aquaculture_water",name:"魚の元気がない",stages:["catch"],weight:1,title:"育てている魚のようすが変わった",text:"いけすの魚のようすが、いつもと少しちがいます。まず、どうしますか。",requiredLearning:["aquaculture","natural"],educationalIntent:"養殖では魚のようすや育つ環境を確認することを知る。",choices:[
   {text:"魚と水のようすを確認して、必要な対応を考える",effects:{quantity:1,efficiency:1},result:"魚と水のようすを確認してから対応しました。",point:"ようしょくでは、魚のようすや水のようすを見ながら育てます。"},
   {text:"いつもと同じえさだけをあげる",effects:{quantity:-1},result:"えさだけでなく、魚や水の状態も見る必要がありました。",point:"魚や水のようすを確認することが大切です。"},
   {text:"何も見ず、そのままにする",effects:{quantity:-1,efficiency:-1},result:"変化への対応が遅れました。",point:"変化に気づくため、ようすを見ることが大切です。"}
  ]},
- {id:"se_ocean_temp",name:"海水温の変化",stages:["sea","catch"],weight:1,title:"海の温度が変わってきた？",text:"いつもとちがう種類の魚がとれるようになりました。どう対応しますか。",requiredLearning:["natural","life"],educationalIntent:"海の変化に合わせた水産業の工夫を考える。",choices:[
+ {id:"se_ocean_temp",name:"海水温の変化",stages:["sea","catch"],weight:1,title:"海の温度が変わってきた？",text:"いつもとちがう種類の魚がとれるようになりました。今後のとり方について、どう考えますか。",requiredLearning:["natural","life"],educationalIntent:"海の変化に合わせた水産業の工夫を考える。",choices:[
   {text:"新しくとれる魚に合わせて、とり方や利用のしかたを考える",effects:{efficiency:1,quantity:1},result:"新しい魚の特徴を調べ、利用する方法を考えました。",point:"海のようすが変わると、とれる魚の種類や場所が変わることがあります。変化を見ながら工夫することが大切です。"},
   {text:"今までの魚だけを探して、遠くまで船を出す",effects:{efficiency:-1,safety:-1},result:"遠くまで行くと、時間や燃料、安全について考える必要がありました。",point:"海が変化したときは、無理に遠くへ行くのではなく、そのときのようすに合わせて考えることも大切です。"},
   {text:"魚の変化を記録して、海のようすと合わせて考える",effects:{environment:1,efficiency:1},result:"魚の変化と海のようすを記録しました。",point:"海のようすと魚の変化を調べることは、これからの水産業を考えるヒントになります。"}
  ]},
- {id:"se_ocean_garbage",name:"海のごみ",stages:["sea","catch","grow"],weight:1,title:"海にごみが流れてきた",text:"魚がすむ海にごみが流れてきました。水産業を続けるために、どうしますか。",requiredLearning:["natural","life"],educationalIntent:"海をきれいにすることと水産業のつながりを考える。",choices:[
+ {id:"se_ocean_garbage",name:"海のごみ",stages:["sea","catch","grow"],weight:1,title:"海にごみが流れてきた",text:"魚をとる場所の近くに、ごみが流れてきました。どうしますか。",requiredLearning:["natural","life"],educationalIntent:"海をきれいにすることと水産業のつながりを考える。",choices:[
   {text:"ごみを回収し、魚や海のようすを確認する",effects:{environment:1,safety:1},result:"海のごみを減らし、魚や海のようすを確かめました。",point:"海の環境を守ることは、魚がすむ場所を守ることにもつながります。"},
   {text:"ごみは気にせず、魚をとることを続ける",effects:{environment:-1,safety:-1},result:"魚をとることはできましたが、海のようすへの影響が残りました。",point:"水産業を続けるためには、魚だけでなく、魚がすむ海も大切です。"},
   {text:"ごみの種類や流れてきた場所を調べ、どうすれば減らせるか考える",effects:{environment:1,efficiency:1},result:"ごみがどこから来たのかを調べ、これからどう減らすか考えました。",point:"海をきれいにするには、ごみがどこから来るのかを調べ、減らす工夫につなげることも大切です。"}
  ]},
- {id:"se_freshness",name:"新せんさを守る",stages:["deliver"],weight:1,title:"魚を新せんに保つ",text:"港から先へ運ぶ魚があります。新せんさを守るにはどうしますか。",requiredLearning:["freshness","distribution"],educationalIntent:"魚の新せんさを保って届ける工夫を考える。",choices:[
+ {id:"se_freshness",name:"新せんさを守る",stages:["deliver"],weight:1,title:"魚を新せんに保つ",text:"港から先へ運ぶ魚があります。どのように運ぶか、決めることになりました。どうしますか。",requiredLearning:["freshness","distribution"],educationalIntent:"魚の新せんさを保って届ける工夫を考える。",choices:[
   {text:"魚に合った方法で冷やすなど、状態を確認して運ぶ",effects:{freshness:1,efficiency:1},result:"魚の状態を見ながら、新せんさを保って運ぶことにしました。",point:"魚は新せんさが大切なので、冷やすなどの工夫をして運びます。"},
   {text:"冷やさずに長く置く",effects:{freshness:-1},result:"魚の状態を保つ工夫が足りませんでした。",point:"魚は新せんさを保つための工夫が必要です。"},
   {text:"とにかく急いで運べばよい",effects:{freshness:0,efficiency:-1},result:"時間だけでなく、運び方も考える必要がありました。",point:"早く運ぶことと、新せんさを守ることの両方を考えます。"}
