@@ -342,7 +342,8 @@ function renderTitle(){
   const wrap = document.createElement("div");
   wrap.className = "center-screen";
   wrap.innerHTML = `
-    <div class="title-emblem">${GAME_DATA.meta.icon || "社会"}</div>
+    <div class="title-visual"><img src="https://tt-sensei.github.io/navi-character-/assets/web/groups/group-start-dash.webp" alt="" class="title-navi"></div>
+    <div class="title-label">SOCIAL GAMEBOOK</div>
     <h1 class="title-jp">${GAME_DATA.meta.title}</h1>
     <p class="title-sub">${GAME_DATA.meta.lead}</p>
   `;
