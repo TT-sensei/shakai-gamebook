@@ -168,7 +168,7 @@ function renderFlowProgress(scene){
       const done=i<currentStage;
       const now=i===currentStage;
       const visible=done||now;
-      return '<div class="flow-step '+(done?'done ':'')+(now?'now ':'')+(visible?'':'future')+'><span class="flow-num">'+(visible?(i+1):'?')+'</span><span>'+(visible?s.label:'？')+'</span></div>';
+      return '<div class="flow-step '+(done?'done ':'')+(now?'now ':'')+(visible?'':'future')+'"><span class="flow-num">'+(visible?(i+1):'?')+'</span><span>'+(visible?s.label:'？')+'</span></div>';
     }).join('')+'</div>';
     return box;
   }
