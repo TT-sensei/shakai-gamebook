@@ -13,6 +13,7 @@ const NEWS_ZUKURI_DATA = {
     finalStatusText:"情報を集め、確かめ、伝える中でのバランス",
     footerNote:"ニュースは、速く伝えるだけではありません。事実を確かめ、情報の出どころや伝え方を考えることが大切です。これは学習用の架空のニュースを使ったゲームです。",
     gameOverOnZero:false,
+    statuses:{accuracy:{label:"正確さ",icon:"✓",initial:3,min:0,max:5},source:{label:"根拠",icon:"🔎",initial:3,min:0,max:5},readability:{label:"伝わりやすさ",icon:"▤",initial:3,min:0,max:5},speed:{label:"速さ",icon:"→",initial:3,min:0,max:5},ethics:{label:"配慮",icon:"♡",initial:3,min:0,max:5}},
     flowTitle:"ニュースができるまで",
     navi:[
       {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/05-surprised.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/07-encouraging.png",message:"まずは、現場で何が起きているか確かめよう。"},
@@ -44,16 +45,16 @@ const NEWS_ZUKURI_DATA = {
       {id:"news_interview_1",title:"まず現場へ",text:"学校の近くの公園で、地域の人たちが花壇を整備しています。あなたは地域ニュースの担当記者。まず、どんな情報を集めますか？",
        requiredLearning:["interview"],educationalIntent:"ニュースは現場を取材し、事実を集めるところから始まることを考える。",
        choices:[
-        {text:"いつ・どこで・だれが・何をしているかを確認する",effects:{accuracy:1,interview:1},result:"基本的な事実を整理できました。",point:"取材では、いつ・どこで・だれが・何をしたのかなど、事実を具体的に集めます。"},
+        {text:"いつ・どこで・だれが・何をしているかを確認する",effects:{accuracy:1},result:"基本的な事実を整理できました。",point:"取材では、いつ・どこで・だれが・何をしたのかなど、事実を具体的に集めます。"},
         {text:"一番目立つ場面だけ写真に撮って帰る",effects:{speed:1,accuracy:-1},result:"早く記事にできそうですが、背景の情報が足りません。",point:"目立つ場面だけでなく、ニュース全体を理解するための取材が必要です。"},
-        {text:"近くの人に『大変だった？』だけ聞いて終える",effects:{interview:0,accuracy:-1},result:"感想は聞けましたが、具体的な事実が不足しています。",point:"感想だけでなく、具体的に何が起きたのかを確認することが大切です。"}
+        {text:"近くの人に『大変だった？』だけ聞いて終える",effects:{accuracy:-1},result:"感想は聞けましたが、具体的な事実が不足しています。",point:"感想だけでなく、具体的に何が起きたのかを確認することが大切です。"}
        ]},
       {id:"news_interview_2",title:"話を聞く",text:"花壇を整備している人に話を聞くことにしました。どんな質問から始めますか？",
        requiredLearning:["interview","ethics"],educationalIntent:"取材相手の話を聞き、必要な情報を引き出すとともに、相手への配慮を考える。",
        choices:[
-        {text:"活動を始めた理由と、今日したことを聞く",effects:{interview:1,accuracy:1},result:"活動の目的と具体的な作業がわかりました。",point:"理由と事実の両方を聞くと、ニュースの背景が見えてきます。"},
-        {text:"『地域で一番すごい活動ですよね？』と聞く",effects:{interview:0,fairness:-1},result:"相手は答えてくれましたが、質問に記者の見方が入りました。",point:"質問は、答えを誘導しすぎないようにすることも大切です。"},
-        {text:"名前や個人的な事情を先に詳しく聞く",effects:{interview:0,ethics:-1},result:"必要な情報よりも個人的な情報が多くなりました。",point:"ニュースに必要かどうかを考えながら、相手に配慮して取材します。"}
+        {text:"活動を始めた理由と、今日したことを聞く",effects:{accuracy:1},result:"活動の目的と具体的な作業がわかりました。",point:"理由と事実の両方を聞くと、ニュースの背景が見えてきます。"},
+        {text:"『地域で一番すごい活動ですよね？』と聞く",effects:{accuracy:0,ethics:-1},result:"相手は答えてくれましたが、質問に記者の見方が入りました。",point:"質問は、答えを誘導しすぎないようにすることも大切です。"},
+        {text:"名前や個人的な事情を先に詳しく聞く",effects:{ethics:-1},result:"必要な情報よりも個人的な情報が多くなりました。",point:"ニュースに必要かどうかを考えながら、相手に配慮して取材します。"}
        ]}
     ],
     verify:[
@@ -76,9 +77,9 @@ const NEWS_ZUKURI_DATA = {
       {id:"news_select_1",title:"何を記事にする？",text:"取材メモには、活動の目的、参加人数、作業内容、参加者の感想、関係のない雑談までたくさんあります。記事に必要な情報をどう選びますか？",
        requiredLearning:["selection"],educationalIntent:"集めた情報の中から、ニュースの中心に必要な情報を選ぶ。",
        choices:[
-        {text:"ニュースの中心に関係する事実を優先する",effects:{accuracy:1,selection:1},result:"中心がはっきりした材料になりました。",point:"集めた情報を全部入れるのではなく、ニュースの中心に必要な情報を選びます。"},
-        {text:"面白そうな話をできるだけたくさん入れる",effects:{readability:-1,selection:-1},result:"情報量は増えましたが、何が大切なのかわかりにくくなりました。",point:"情報が多すぎると、伝えたいことがぼやけることがあります。"},
-        {text:"自分が一番おもしろいと思った感想だけで記事を作る",effects:{fairness:-1,accuracy:-1},result:"一人の見方にかたよった記事になりました。",point:"一人の感想だけでなく、事実や複数の声を組み合わせます。"}
+        {text:"ニュースの中心に関係する事実を優先する",effects:{accuracy:1},result:"中心がはっきりした材料になりました。",point:"集めた情報を全部入れるのではなく、ニュースの中心に必要な情報を選びます。"},
+        {text:"面白そうな話をできるだけたくさん入れる",effects:{readability:-1},result:"情報量は増えましたが、何が大切なのかわかりにくくなりました。",point:"情報が多すぎると、伝えたいことがぼやけることがあります。"},
+        {text:"自分が一番おもしろいと思った感想だけで記事を作る",effects:{accuracy:-1,ethics:-1},result:"一人の見方にかたよった記事になりました。",point:"一人の感想だけでなく、事実や複数の声を組み合わせます。"}
        ]}
     ],
     edit:[
@@ -92,9 +93,9 @@ const NEWS_ZUKURI_DATA = {
       {id:"news_edit_2",title:"短くまとめる",text:"本文を短くすることになりました。『いつ・どこで・だれが・何をした』が伝わるようにするには、どうしますか？",
        requiredLearning:["editing","selection"],educationalIntent:"限られた文章量でも、重要な事実を落とさず整理する。",
        choices:[
-        {text:"中心となる事実を残し、重複する説明を削る",effects:{readability:1,selection:1},result:"短くなっても、中心となる事実は残りました。",point:"文章を短くするときも、大切な事実を残し、重複を整理します。"},
+        {text:"中心となる事実を残し、重複する説明を削る",effects:{readability:1},result:"短くなっても、中心となる事実は残りました。",point:"文章を短くするときも、大切な事実を残し、重複を整理します。"},
         {text:"数字や場所を全部削って、感想だけ残す",effects:{readability:1,accuracy:-2},result:"読みやすくなりましたが、何が起きたかがわかりにくくなりました。",point:"事実を伝えるためには、いつ・どこで・何が起きたかなどの情報が必要です。"},
-        {text:"一文をできるだけ長くして全部入れる",effects:{readability:-2,selection:-1},result:"情報は残りましたが、読み取りにくい文章になりました。",point:"情報を整理し、短く区切ることも伝わりやすさにつながります。"}
+        {text:"一文をできるだけ長くして全部入れる",effects:{readability:-2},result:"情報は残りましたが、読み取りにくい文章になりました。",point:"情報を整理し、短く区切ることも伝わりやすさにつながります。"}
        ]}
     ],
     publish:[
@@ -119,7 +120,7 @@ const NEWS_ZUKURI_DATA = {
       {text:"連絡を無視して、翌日まで何もしない",effects:{accuracy:1,speed:-1},result:"確認はできましたが、伝える機会を逃す可能性もあります。",point:"正確さだけでなく、必要な情報を適切なタイミングで伝えることも考えます。"}
     ]},
     {id:"news_event_voice",name:"取材相手のお願い",stages:["interview","edit","publish"],weight:2,title:"掲載してほしくない情報",text:"取材相手から『この個人的な話は記事に載せないでほしい』と言われました。その話はニュースの中心ではありません。",requiredLearning:["ethics","selection"],educationalIntent:"取材相手への配慮と、ニュースとして必要な情報の選択を考える。",choices:[
-      {text:"ニュースの中心に必要ない個人的な情報は載せない",effects:{ethics:1,selection:1},result:"必要な情報にしぼって記事をまとめました。",point:"取材で得た情報を何でも公開するのではなく、必要性と相手への配慮を考えます。"},
+      {text:"ニュースの中心に必要ない個人的な情報は載せない",effects:{ethics:1},result:"必要な情報にしぼって記事をまとめました。",point:"取材で得た情報を何でも公開するのではなく、必要性と相手への配慮を考えます。"},
       {text:"面白いので、名前を出さなければ載せる",effects:{readability:1,ethics:-2},result:"名前を隠しても、本人が特定される可能性があります。",point:"名前を隠せば必ず安全とは限りません。個人が特定されないかも考えます。"},
       {text:"記事を目立たせるため、詳しく書く",effects:{speed:1,ethics:-2,fairness:-1},result:"記事は目立ちましたが、相手への配慮が不足しました。",point:"ニュースのために必要かどうかを考え、相手の立場にも配慮します。"}
     ]}
