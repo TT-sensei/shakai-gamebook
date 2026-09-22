@@ -18,7 +18,7 @@ const NEWS_ZUKURI_DATA = {
     gameOverText:"確認されていない情報や不適切な伝え方が重なり、ニュースへの信頼を失ってしまいました。ここで番組は終了です。どの判断を見直せばよかったか考えて、もう一度挑戦してみよう。",
     gameOverRetryText:"もう一度、ニュースづくりに挑戦する",
     statuses:{accuracy:{label:"正確さ",icon:"✓",initial:3,min:0,max:5},source:{label:"根拠",icon:"🔎",initial:3,min:0,max:5},readability:{label:"伝わりやすさ",icon:"▤",initial:3,min:0,max:5},speed:{label:"速さ",icon:"→",initial:3,min:0,max:5},ethics:{label:"配慮",icon:"♡",initial:3,min:0,max:5}},
-    flowTitle:"ニュースができるまで",
+    flowTitle:"ニュースが届くまで",
     flowStages:[{key:"gather",label:"情報収集"},{key:"meeting",label:"編集会議"},{key:"interview",label:"取材"},{key:"verify",label:"確認"},{key:"select",label:"選ぶ"},{key:"edit",label:"原稿・編集"},{key:"publish",label:"放送"}],
     endingNote:"ニュースづくりでは、情報を集め、取材し、確かめ、何をどう伝えるかを考えながら、さまざまな人が協力して発信します。これは学習用の架空のニュースを使ったゲームです。",
     stageImages:{
