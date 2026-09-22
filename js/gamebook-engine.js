@@ -62,7 +62,8 @@ function saveState(){
       naviMap: state.naviMap,
       phase: state.phase,
       lastChoice: state.lastChoice,
-      sequenceFeedback: state.sequenceFeedback || null
+      sequenceFeedback: state.sequenceFeedback || null,
+      nextSceneId: state.nextSceneId || null
     }));
   }catch(e){ /* 保存できなくてもゲームは続行 */ }
 }
@@ -105,7 +106,7 @@ function resumeGame(){
   const s = loadSave();
   if(!s){ startNewGame(); return; }
   if(s.gameId && s.gameId !== GAME_DATA.meta.id) { startNewGame(); return; }
-  state={timeline:s.timelineData,index:s.index,log:s.log,phase:s.phase||"scene",lastChoice:s.lastChoice||null,status:s.status||initialStatus(),failedStatus:s.failedStatus||null,naviMap:s.naviMap||null,sequenceFeedback:s.sequenceFeedback||null};
+  state={timeline:s.timelineData,index:s.index,log:s.log,phase:s.phase||"scene",lastChoice:s.lastChoice||null,status:s.status||initialStatus(),failedStatus:s.failedStatus||null,naviMap:s.naviMap||null,sequenceFeedback:s.sequenceFeedback||null,nextSceneId:s.nextSceneId||null};
   render();
 }
 
@@ -128,12 +129,20 @@ function chooseOption(choiceIndex){
   applyEffects(effects);
   state.log.push({stage:scene.stage,id:scene.id,title:scene.title||scene.eventName,kind:scene.kind,choiceText:choice.text,result:choice.result,effects,before,after:{...state.status},sceneLearning:scene.requiredLearning||[]});
   state.lastChoice={...choice,effects,before,after:{...state.status}};
-  state.failedStatus=failedStatus();state.phase="result";saveState();render();
+  state.failedStatus=failedStatus();
+  state.nextSceneId=choice.nextSceneId||null;
+  state.phase="result";saveState();render();
 }
 
 function goNext(){
   if(state.failedStatus && GAME_DATA.meta.gameOverOnZero!==false){state.phase="gameover";clearSave();render();return;}
-  state.index++;
+  if(state.nextSceneId){
+    const target=state.timeline.findIndex(s=>s.id===state.nextSceneId);
+    state.index=target>=0?target:state.index+1;
+    state.nextSceneId=null;
+  }else{
+    state.index++;
+  }
   if(state.index>=state.timeline.length){state.phase="end";clearSave();}
   else state.phase="scene";
   saveState();render();
