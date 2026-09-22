@@ -4,6 +4,7 @@
  */
 const KOME_ZUKURI_DATA = {
   meta: {
+    startImage: "https://tt-sensei.github.io/navi-character-/assets/web/groups/group-thinking.webp",
     id: "kome-zukuri",
     title: "米づくりゲームブック",
     icon: "米",
