@@ -17,7 +17,13 @@ meta:{
     {label:"拠点をつなぐ"},
     {label:"届け先へ運ぶ"}
   ],
-  stageImages:{},
+  stageImages:{
+    confirm:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Warehouse_distribution-center-1136510.jpg",credit:"Rsherwin / Wikimedia Commons / CC BY-SA 4.0",url:"https://commons.wikimedia.org/wiki/File:Warehouse_distribution-center-1136510.jpg"},
+    choose:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Container_Ship.jpg",credit:"Muhammad Mahdi Karim / Wikimedia Commons / CC BY-SA 3.0",url:"https://commons.wikimedia.org/wiki/File:Container_Ship.jpg"},
+    combine:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/MAERSK_Intermodal_Container_on_a_Freight_Train%2C_June_27_2026.jpg",credit:"Dillan Payne / Wikimedia Commons / CC BY-SA 4.0",url:"https://commons.wikimedia.org/wiki/File:MAERSK_Intermodal_Container_on_a_Freight_Train,_June_27_2026.jpg"},
+    hub:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Warehouse_and_logistics_hub.jpg",credit:"Naveenp69 / Wikimedia Commons / CC BY-SA 4.0",url:"https://commons.wikimedia.org/wiki/File:Warehouse_and_logistics_hub.jpg"},
+    deliver:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Delivery_truck!_%282400077299%29.jpg",credit:"Curt Smith / Wikimedia Commons / CC BY 2.0",url:"https://commons.wikimedia.org/wiki/File:Delivery_truck!_(2400077299).jpg"}
+  },
   gameOverOnZero:true,
   eventCountMin:1,
   eventCountMax:2,
