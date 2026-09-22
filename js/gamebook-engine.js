@@ -167,7 +167,8 @@ function renderFlowProgress(scene){
     box.innerHTML='<div class="flow-progress-title">'+(GAME_DATA.meta.flowTitle||"学習の流れ")+'</div><div class="flow-steps">'+custom.map((s,i)=>{
       const done=i<currentStage;
       const now=i===currentStage;
-      return '<div class="flow-step '+(done?'done ':'')+(now?'now ':'')+(i>currentStage?'future':'')+'"><span class="flow-num">'+(i+1)+'</span><span>'+s.label+'</span></div>';
+      const visible=done||now;
+      return '<div class="flow-step '+(done?'done ':'')+(now?'now ':'')+(visible?'':'future')+'><span class="flow-num">'+(visible?(i+1):'?')+'</span><span>'+(visible?s.label:'？')+'</span></div>';
     }).join('')+'</div>';
     return box;
   }
