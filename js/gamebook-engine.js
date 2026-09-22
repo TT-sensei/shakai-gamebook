@@ -157,19 +157,25 @@ function naviForScene(scene){
 function hashString(str){ let h=0; for(let i=0;i<str.length;i++) h=((h<<5)-h)+str.charCodeAt(i)|0; return h; }
 
 function renderFlowProgress(scene){
+  const custom = GAME_DATA.meta.flowStages;
+  if(custom && custom.length){
+    const currentStage = GAME_DATA.STAGE_ORDER.indexOf(scene.stage);
+    const box=document.createElement("div");
+    box.className="flow-progress";
+    box.innerHTML='<div class="flow-progress-title">'+(GAME_DATA.meta.flowTitle||"学習の流れ")+'</div><div class="flow-steps">'+custom.map((s,i)=>{
+      const done=i<currentStage;
+      const now=i===currentStage;
+      return '<div class="flow-step '+(done?'done ':'')+(now?'now ':'')+(i>currentStage?'future':'')+'"><span class="flow-num">'+(i+1)+'</span><span>'+s.label+'</span></div>';
+    }).join('')+'</div>';
+    return box;
+  }
   const steps = [];
   GAME_DATA.STAGE_ORDER.forEach(stageKey=>{
     (GAME_DATA.CORE_SCENES[stageKey]||[]).forEach(s=>steps.push({id:s.id,title:s.title,stage:stageKey}));
   });
   const currentCoreIndex = steps.findIndex(s=>s.id===scene.id);
-  const sequenceAfterIndex = scene.kind==="sequence"
-    ? steps.findIndex(s=>s.id===scene.afterId)
-    : -1;
-  const completed = scene.kind==="sequence" && sequenceAfterIndex>=0
-    ? sequenceAfterIndex + 1
-    : currentCoreIndex >= 0
-      ? currentCoreIndex
-      : Math.max(0, steps.findIndex(s=>s.stage===scene.stage));
+  const sequenceAfterIndex = scene.kind==="sequence" ? steps.findIndex(s=>s.id===scene.afterId) : -1;
+  const completed = scene.kind==="sequence" && sequenceAfterIndex>=0 ? sequenceAfterIndex + 1 : currentCoreIndex >= 0 ? currentCoreIndex : Math.max(0, steps.findIndex(s=>s.stage===scene.stage));
   const box=document.createElement("div");
   box.className="flow-progress";
   box.innerHTML='<div class="flow-progress-title">'+(GAME_DATA.meta.flowTitle||"学習の流れ")+'</div><div class="flow-steps">'+steps.map((s,i)=>{
@@ -365,7 +371,7 @@ function renderEnding(){
 
   const flow = document.createElement("div");
   flow.className="ending-flow";
-  flow.innerHTML="<div class=\"ending-flow-title\">"+(GAME_DATA.meta.flowTitle||"学習の流れ")+"</div><div class=\"ending-flow-line\">"+GAME_DATA.STAGE_ORDER.flatMap(k=>GAME_DATA.CORE_SCENES[k]||[]).map((s,i)=>`<span>${i+1}. ${s.title}</span>`).join("<b>→</b>")+"</div><p>※地域や天候、品種などによって、時期や作業の方法は異なります。</p>";
+  flow.innerHTML="<div class=\"ending-flow-title\">"+(GAME_DATA.meta.flowTitle||"学習の流れ")+"</div><div class=\"ending-flow-line\">"+GAME_DATA.STAGE_ORDER.flatMap(k=>GAME_DATA.CORE_SCENES[k]||[]).map((s,i)=>`<span>${i+1}. ${s.title}</span>`).join("<b>→</b>")+"</div><p>${GAME_DATA.meta.endingNote||""}</p>";
   main.appendChild(flow);
 
   const summary = document.createElement("div");
