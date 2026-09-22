@@ -140,58 +140,58 @@ deliver:[
 ]
 },
 EVENTS:[
-{id:"ue_traffic",name:"道路が混みそう",stages:["choose","combine","deliver"],weight:1,title:"予定より時間がかかりそう",text:"道路が混みそうだという情報が入りました。届ける時間に間に合うよう、どう考えますか。",requiredLearning:["distance","time","combination"],educationalIntent:"交通状況などによって計画を調整することを考える。",choices:[
+{id:"ue_traffic",image:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Traffic_jam_trucks.jpg",credit:"Yann / Wikimedia Commons / CC BY-SA 3.0",url:"https://commons.wikimedia.org/wiki/File:Traffic_jam_trucks.jpg"},name:"道路が混みそう",stages:["choose","combine","deliver"],weight:1,title:"予定より時間がかかりそう",text:"道路が混みそうだという情報が入りました。届ける時間に間に合うよう、どう考えますか。",requiredLearning:["distance","time","combination"],educationalIntent:"交通状況などによって計画を調整することを考える。",choices:[
 {text:"時間を確認して、別の輸送方法や順番を検討する",effects:{time:1,accuracy:1},result:"状況を確認し、計画を調整しました。",point:"物流では、予定外の状況に応じて輸送計画を調整することがあります。"},
 {text:"何も変えずに待つ",effects:{time:-1},result:"予定より到着が遅れました。",point:"交通状況などの変化を見ながら計画を調整することも大切です。"},
 {text:"安全を考えず急いで運ぶ",effects:{time:1,safety:-1},result:"速さは上がりましたが、安全を守る必要があります。",point:"急ぐときも安全を優先して運びます。"}
 ]},
-{id:"ue_weather",name:"天候の変化",stages:["choose","combine"],weight:1,title:"天候が変わった",text:"天候の影響で、予定していた輸送に変更が必要になりました。どうしますか。",requiredLearning:["combination","safety","time"],educationalIntent:"天候などの条件を考え、安全を優先しながら輸送方法を調整することを知る。",choices:[
+{id:"ue_weather",image:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Rainy_day_-_Truck_passing_on_Pak-Afghan_international_road..jpg",credit:"Asmatafridi787 / Wikimedia Commons / CC BY-SA 3.0",url:"https://commons.wikimedia.org/wiki/File:Rainy_day_-_Truck_passing_on_Pak-Afghan_international_road..jpg"},name:"天候の変化",stages:["choose","combine"],weight:1,title:"天候が変わった",text:"天候の影響で、予定していた輸送に変更が必要になりました。どうしますか。",requiredLearning:["combination","safety","time"],educationalIntent:"天候などの条件を考え、安全を優先しながら輸送方法を調整することを知る。",choices:[
 {text:"安全を確認し、必要なら別の方法や日程に変更する",effects:{safety:1,accuracy:1,time:-1},result:"安全を優先し、計画を調整しました。",point:"輸送では天候などの条件も考え、安全に届ける計画を立てます。"},
 {text:"予定どおり進めることを優先する",effects:{time:1,safety:-1},result:"予定には近づきましたが、安全面の確認が必要になりました。",point:"予定どおりにすることより、安全を優先する場面があります。"},
 {text:"すべてを飛行機に変更する",effects:{time:1,efficiency:-1},result:"速く運べる可能性はありますが、荷物や状況に合うか確認が必要でした。",point:"方法を変えるときも、荷物の量や条件を合わせて考えます。"}
 ]},
-{id:"ue_goods",name:"荷物が増えた",stages:["confirm","choose","hub"],weight:1,title:"急に荷物が増えた",text:"予定していたより荷物が増えました。今の輸送計画をどうしますか。",requiredLearning:["quantity","transport","logistics"],educationalIntent:"荷物の量が変わると、輸送方法や計画も見直す必要があることを知る。",choices:[
+{id:"ue_goods",image:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Auto_Sorting_Packages.jpg",credit:"R L Sheehan / Wikimedia Commons / Public domain",url:"https://commons.wikimedia.org/wiki/File:Auto_Sorting_Packages.jpg"},name:"荷物が増えた",stages:["confirm","choose","hub"],weight:1,title:"急に荷物が増えた",text:"予定していたより荷物が増えました。今の輸送計画をどうしますか。",requiredLearning:["quantity","transport","logistics"],educationalIntent:"荷物の量が変わると、輸送方法や計画も見直す必要があることを知る。",choices:[
 {text:"量を確認して、まとめて運べる方法を含めて計画し直す",effects:{efficiency:1,accuracy:1},result:"荷物の量を確認し、輸送方法を組み直しました。",point:"荷物の量に応じて、輸送方法や組み合わせを考え直すことがあります。"},
 {text:"予定どおりの車両だけで無理に運ぶ",effects:{efficiency:-1,safety:-1},result:"一度に運べず、計画をやり直すことになりました。",point:"荷物の量に合った車両や輸送方法を選ぶ必要があります。"},
 {text:"急いでいるので量の確認をしない",effects:{accuracy:-1,safety:-1},result:"必要な車両やスペースを判断できませんでした。",point:"まず荷物の量を正確に把握することが計画の出発点です。"}
 ]}
   ,
-{id:"ue_mismatch",name:"荷物が違っていた",stages:["confirm","hub","deliver"],weight:1,title:"荷物の表示と中身が合わない",text:"物流センターで、送り状の表示と荷物の中身が合っていないものが見つかりました。どうしますか。",requiredLearning:["safety","logistics","accuracy"],educationalIntent:"荷物を正確に届けるため、表示や内容を確認することの大切さを考える。",choices:[
+{id:"ue_mismatch",image:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Auto_Sorting_Packages.jpg",credit:"R L Sheehan / Wikimedia Commons / Public domain",url:"https://commons.wikimedia.org/wiki/File:Auto_Sorting_Packages.jpg"},name:"荷物が違っていた",stages:["confirm","hub","deliver"],weight:1,title:"荷物の表示と中身が合わない",text:"物流センターで、送り状の表示と荷物の中身が合っていないものが見つかりました。どうしますか。",requiredLearning:["safety","logistics","accuracy"],educationalIntent:"荷物を正確に届けるため、表示や内容を確認することの大切さを考える。",choices:[
 {text:"いったん止めて、表示と中身を確認する",effects:{accuracy:1,safety:1},result:"荷物を止めて確認し、正しい届け先へつなぎ直しました。",point:"物流では、荷物を正しく届けるために、表示や内容を確認することが大切です。"},
 {text:"急いでいるので、そのまま出荷する",effects:{accuracy:-1,safety:-1,time:1},result:"急いで出荷しましたが、違う荷物が届くおそれがありました。",point:"速さだけでなく、正確に届けることも物流の大切な役割です。"},
 {text:"中身は見ずに、送り状だけを書き直す",effects:{accuracy:-1},result:"表示だけでは、荷物が正しいか確かめられませんでした。",point:"表示と実際の荷物を照らし合わせて確認する必要があります。"}
 ]},
-{id:"ue_blackout",name:"物流センターが停電",stages:["hub"],weight:1,title:"物流センターが停電した",text:"物流センターが停電し、仕分けの機械や設備が一時的に止まりました。どうしますか。",requiredLearning:["safety","logistics","time"],educationalIntent:"物流拠点では、設備が止まったときにも安全を確かめながら対応することを考える。",choices:[
+{id:"ue_blackout",image:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Warehouse_distribution-center-1136510.jpg",credit:"Rsherwin / Wikimedia Commons / CC BY-SA 4.0",url:"https://commons.wikimedia.org/wiki/File:Warehouse_distribution-center-1136510.jpg"},name:"物流センターが停電",stages:["hub"],weight:1,title:"物流センターが停電した",text:"物流センターが停電し、仕分けの機械や設備が一時的に止まりました。どうしますか。",requiredLearning:["safety","logistics","time"],educationalIntent:"物流拠点では、設備が止まったときにも安全を確かめながら対応することを考える。",choices:[
 {text:"安全を確認し、復旧や代替の手順を確認する",effects:{safety:1,accuracy:1,time:-1},result:"安全を確かめてから、復旧と代わりの方法を確認しました。",point:"予想外のトラブルでは、安全を確かめながら、別の方法を考えることがあります。"},
 {text:"機械が止まっていても無理に作業を続ける",effects:{safety:-1,accuracy:-1},result:"安全を確認しないまま作業を進めることになりました。",point:"設備に異常があるときは、まず安全を確認することが大切です。"},
 {text:"全部の荷物をその場に置いたままにする",effects:{time:-1,accuracy:-1},result:"復旧後の仕分けに時間がかかりました。",point:"状況を確認し、荷物や届ける予定に合わせて対応を考えます。"}
 ]},
-{id:"ue_roadclose",name:"道路が通れない",stages:["choose","combine","deliver"],weight:1,title:"予定していた道路が通行止め",text:"大雨などの影響で、予定していた道路が通れなくなりました。どうしますか。",requiredLearning:["combination","safety","time"],educationalIntent:"道路状況などの変化に応じて、輸送方法や経路を見直すことを考える。",choices:[
+{id:"ue_roadclose",image:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Rainy_day_-_Truck_passing_on_Pak-Afghan_international_road..jpg",credit:"Asmatafridi787 / Wikimedia Commons / CC BY-SA 3.0",url:"https://commons.wikimedia.org/wiki/File:Rainy_day_-_Truck_passing_on_Pak-Afghan_international_road..jpg"},name:"道路が通れない",stages:["choose","combine","deliver"],weight:1,title:"予定していた道路が通行止め",text:"大雨などの影響で、予定していた道路が通れなくなりました。どうしますか。",requiredLearning:["combination","safety","time"],educationalIntent:"道路状況などの変化に応じて、輸送方法や経路を見直すことを考える。",choices:[
 {text:"安全を確認して、別の経路や輸送方法を検討する",effects:{safety:1,accuracy:1,time:-1},result:"安全を確認し、別の経路や方法へ計画を切り替えました。",point:"物流では、道路などの状況が変わったときに、経路や方法を調整することがあります。"},
 {text:"通行止めでも予定どおり進む",effects:{safety:-1,time:-1},result:"予定どおりには進めず、計画を見直す必要がありました。",point:"安全を優先して、状況に合った計画へ変更します。"},
 {text:"全部を飛行機に変える",effects:{time:1,efficiency:-1},result:"速く運べる場合もありますが、荷物や距離に合うかを考える必要がありました。",point:"方法を変えるときも、荷物の量や距離、必要な時期などを合わせて考えます。"}
 ]},
-{id:"ue_label",name:"届け先が変わった",stages:["confirm","hub","deliver"],weight:1,title:"届け先の変更",text:"出荷後に、届け先が変更になったという連絡が入りました。どうしますか。",requiredLearning:["logistics","accuracy","time"],educationalIntent:"正確な情報をもとに、荷物の行き先を調整することを考える。",choices:[
+{id:"ue_label",image:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Auto_Sorting_Packages.jpg",credit:"R L Sheehan / Wikimedia Commons / Public domain",url:"https://commons.wikimedia.org/wiki/File:Auto_Sorting_Packages.jpg"},name:"届け先が変わった",stages:["confirm","hub","deliver"],weight:1,title:"届け先の変更",text:"出荷後に、届け先が変更になったという連絡が入りました。どうしますか。",requiredLearning:["logistics","accuracy","time"],educationalIntent:"正確な情報をもとに、荷物の行き先を調整することを考える。",choices:[
 {text:"変更内容を確認して、配送情報を更新する",effects:{accuracy:1,time:1},result:"変更を確認し、荷物が新しい届け先へ向かうように情報を更新しました。",point:"物流では、届け先などの情報を正確に管理することが大切です。"},
 {text:"古い情報のまま運ぶ",effects:{accuracy:-1,time:-1},result:"違う場所へ届くおそれがあり、やり直しが必要になりました。",point:"正しい情報を確認してから運ぶことが大切です。"},
 {text:"変更の連絡を無視する",effects:{accuracy:-1,time:-1},result:"荷物が予定と違う場所へ向かってしまいました。",point:"届け先の変更など、情報の変化にも対応する必要があります。"}
 ]},
-{id:"ue_cold",name:"温度管理が必要",stages:["confirm","choose","hub","deliver"],weight:1,title:"温度に気をつける荷物",text:"食品など、温度管理が必要な荷物を運ぶことになりました。何を考えますか。",requiredLearning:["safety","logistics","transport"],educationalIntent:"荷物の性質に応じて、適切な設備や輸送方法を選ぶことを考える。",choices:[
+{id:"ue_cold",image:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Warehouse_interior_showcasing_organized_shelving_and_packages.jpg",credit:"Shixart1985 / Wikimedia Commons",url:"https://commons.wikimedia.org/wiki/File:Warehouse_interior_showcasing_organized_shelving_and_packages.jpg"},name:"温度管理が必要",stages:["confirm","choose","hub","deliver"],weight:1,title:"温度に気をつける荷物",text:"食品など、温度管理が必要な荷物を運ぶことになりました。何を考えますか。",requiredLearning:["safety","logistics","transport"],educationalIntent:"荷物の性質に応じて、適切な設備や輸送方法を選ぶことを考える。",choices:[
 {text:"荷物に合った温度管理ができる方法を選ぶ",effects:{safety:1,accuracy:1},result:"荷物に合った設備と輸送方法を確認しました。",point:"物流では、荷物の性質に合わせて、温度などを管理しながら運ぶことがあります。"},
 {text:"どの車両でも同じように運ぶ",effects:{safety:-1,accuracy:-1},result:"荷物に合った管理ができない可能性がありました。",point:"荷物によって必要な設備や管理方法が異なります。"},
 {text:"時間だけ短くすれば大丈夫と考える",effects:{time:1,safety:-1},result:"早く運べても、温度管理ができなければ十分ではありません。",point:"速さだけでなく、荷物に合った安全な管理が必要です。"}
 ]},
-{id:"ue_drone",name:"ドローンを使える？",stages:["choose","combine","deliver"],weight:1,title:"新しい輸送技術を使う",text:"山間部の小さな集落へ、軽くて小さな荷物を届けることになりました。道路から届けるのに時間がかかります。ドローンを使う方法も考えられます。どうしますか。",requiredLearning:["transport","combination","safety","environment"],educationalIntent:"新しい輸送技術にも、得意な条件と安全上の確認があることを考える。",choices:[
+{id:"ue_drone",image:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Zipline-package-drop.jpg",credit:"Roksenhorn / Wikimedia Commons / CC BY-SA 4.0",url:"https://commons.wikimedia.org/wiki/File:Zipline-package-drop.jpg"},name:"ドローンを使える？",stages:["choose","combine","deliver"],weight:1,title:"新しい輸送技術を使う",text:"山間部の小さな集落へ、軽くて小さな荷物を届けることになりました。道路から届けるのに時間がかかります。ドローンを使う方法も考えられます。どうしますか。",requiredLearning:["transport","combination","safety","environment"],educationalIntent:"新しい輸送技術にも、得意な条件と安全上の確認があることを考える。",choices:[
 {text:"荷物の重さ、天候、飛行できる場所などを確認して、使えるなら活用する",effects:{time:1,efficiency:1,safety:1},result:"条件を確認し、ドローンを使える場面では活用する計画にしました。",point:"ドローンは、小さな荷物を運ぶなど、新しい輸送方法の一つとして活用が考えられています。ただし、荷物の重さや天候、飛行する場所などを確認する必要があります。"},
 {text:"どんな荷物でもドローンで運ぶ",effects:{safety:-1,accuracy:-1},result:"荷物や天候などの条件を確かめずに使うことはできませんでした。",point:"新しい技術も、使える条件や安全を確認して利用します。"},
 {text:"新しい技術だから、絶対に使わない",effects:{efficiency:-1,time:-1},result:"使える場面があるか調べずに、選択肢を一つ減らしてしまいました。",point:"新しい輸送技術も、特徴や条件を確かめて、適した場面で活用します。"}
 ]},
-{id:"ue_shortage",name:"車両が足りない",stages:["choose","combine","hub"],weight:1,title:"予定していた車両が足りない",text:"急な注文が増え、予定していたトラックだけでは荷物を運びきれなくなりました。どうしますか。",requiredLearning:["quantity","combination","logistics"],educationalIntent:"荷物の量に応じて輸送方法や組み合わせを見直すことを考える。",choices:[
+{id:"ue_shortage",image:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Traffic_jam_trucks.jpg",credit:"Yann / Wikimedia Commons / CC BY-SA 3.0",url:"https://commons.wikimedia.org/wiki/File:Traffic_jam_trucks.jpg"},name:"車両が足りない",stages:["choose","combine","hub"],weight:1,title:"予定していた車両が足りない",text:"急な注文が増え、予定していたトラックだけでは荷物を運びきれなくなりました。どうしますか。",requiredLearning:["quantity","combination","logistics"],educationalIntent:"荷物の量に応じて輸送方法や組み合わせを見直すことを考える。",choices:[
 {text:"荷物の量を確認し、別の輸送方法や便を組み合わせる",effects:{efficiency:1,accuracy:1},result:"荷物の量を確認し、別の便や輸送方法を組み合わせました。",point:"荷物の量に応じて、複数の輸送方法や便を組み合わせることがあります。"},
 {text:"足りないまま一台に無理に積む",effects:{safety:-1,efficiency:-1},result:"安全や積載量を考える必要があり、計画をやり直しました。",point:"荷物の量や安全を考えて、適切な輸送方法を選びます。"},
 {text:"注文を全部断る",effects:{accuracy:-1,time:-1},result:"届ける方法を考える前に、計画を止めてしまいました。",point:"量が変わったときは、輸送方法や便の組み合わせを見直します。"}
 ]},
-{id:"ue_missort",name:"仕分けのミス",stages:["hub","deliver"],weight:1,title:"荷物が別の場所へ仕分けされていた",text:"物流センターで確認すると、一部の荷物が別の地域向けに仕分けされていました。どうしますか。",requiredLearning:["logistics","accuracy","safety"],educationalIntent:"物流拠点での正確な仕分けが、届け先へつなぐために重要であることを考える。",choices:[
+{id:"ue_missort",image:{src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Auto_Sorting_Packages.jpg",credit:"R L Sheehan / Wikimedia Commons / Public domain",url:"https://commons.wikimedia.org/wiki/File:Auto_Sorting_Packages.jpg"},name:"仕分けのミス",stages:["hub","deliver"],weight:1,title:"荷物が別の場所へ仕分けされていた",text:"物流センターで確認すると、一部の荷物が別の地域向けに仕分けされていました。どうしますか。",requiredLearning:["logistics","accuracy","safety"],educationalIntent:"物流拠点での正確な仕分けが、届け先へつなぐために重要であることを考える。",choices:[
 {text:"仕分けを確認し、正しい便へつなぎ直す",effects:{accuracy:1,time:-1},result:"荷物を確認して、正しい便へつなぎ直しました。",point:"物流拠点で正確に仕分けすることが、その後の輸送につながります。"},
 {text:"そのまま出発させる",effects:{accuracy:-1,time:1},result:"別の地域へ届くおそれがありました。",point:"速さだけでなく、正しい届け先へつなぐことが大切です。"},
 {text:"全部の荷物を最初からやり直す",effects:{time:-1,efficiency:-1},result:"必要以上に時間がかかりました。",point:"問題のある荷物を確認し、必要な範囲で修正することも大切です。"}
