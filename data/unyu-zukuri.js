@@ -220,12 +220,4 @@ FLOW_CHECKPOINTS:[
 {text:"工場へ戻す",correct:false,hint:"目的地はお店などです。届ける段階へ進みます。"}
 ]}
 ],
-SOURCES:[
-{id:"jta",title:"全日本トラック協会「トラックミニ百科2026」",url:"https://jta.or.jp/pdf/coho/minihyakka2026.pdf"},
-{id:"kaiji1",title:"海事広報協会「小学5年生 社会」",url:"https://www.kaijipr.or.jp/ict/s5_shakai/001/"},
-{id:"kaiji2",title:"海事広報協会「小学5年生 社会」",url:"https://www.kaijipr.or.jp/ict/s5_shakai/002/"},
-{id:"hitachi1",title:"日立キッズ「物流のひみつ：ものを運ぶためのしくみ」",url:"https://www.hitachi.co.jp/kids/kinopon/kinopontown/logistics/01/page1.html"},
-{id:"hitachi2",title:"日立キッズ「物流のひみつ」",url:"https://www.hitachi.co.jp/kids/kinopon/kinopontown/logistics/01/page2.html"},
-{id:"asahi",title:"朝日新聞「物流大作戦」",url:"https://www.asahi.com/ads/butsuryu_daisakusen/"}
-]
 };
