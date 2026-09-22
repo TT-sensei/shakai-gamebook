@@ -24,6 +24,16 @@ meta:{
   {label:"海のようすを見る"},{label:"魚をとる・育てる"},{label:"魚を海へかえす"},{label:"魚を届ける"}
  ],
  gameOverOnZero:true,eventCountMin:1,eventCountMax:2,
+ statuses:{
+  accuracy:{label:"正確さ",initial:3,min:0,max:5},
+  resource:{label:"海のめぐみ",initial:3,min:0,max:5},
+  cultivation:{label:"育てる",initial:3,min:0,max:5},
+  aquaculture:{label:"ようしょく",initial:3,min:0,max:5},
+  freshness:{label:"新せんさ",initial:3,min:0,max:5},
+  distribution:{label:"届ける",initial:3,min:0,max:5},
+  fishing:{label:"とる",initial:3,min:0,max:5},
+  natural:{label:"海のようす",initial:3,min:0,max:5}
+ },
  retryLabel:"もう一度考える",gameOverTitle:"計画を見直そう",
  gameOverText:"魚をとることだけでなく、海のようすや魚の育ち、届け方まで考える必要がありました。もう一度挑戦してみよう。",
  gameOverRetryText:"もう一度、水産業を考える"
