@@ -1,0 +1,183 @@
+const UNSYU_ZUKURI_DATA={
+meta:{
+  id:"unsyu-zukuri",
+  title:"運輸・物流ゲームブック",
+  icon:"🚚",
+  lead:"つくったものを、必要な人・場所へ。<br>何を、どこから、どう運ぶかを考えよう。",
+  endingLabel:"荷物が届いた",
+  endingText:"工場からお店や人のもとへ、荷物を届ける計画を考えました。運ぶもの、距離、時間、量などを考えて、輸送の方法を選びました。",
+  footerNote:"物流は、原料や材料を工場へ運び、できあがった製品をお店などへ届ける、くらしや産業を支えるしくみです。",
+  statusTitle:"今回の物流計画",
+  flowTitle:"ものが届くまで",
+  processButtonLabel:"工程を確認",
+  flowStages:[
+    {label:"届けるものを確認"},
+    {label:"輸送方法を選ぶ"},
+    {label:"輸送を組み合わせる"},
+    {label:"拠点をつなぐ"},
+    {label:"届け先へ運ぶ"}
+  ],
+  stageImages:{},
+  gameOverOnZero:true,
+  eventCountMin:1,
+  eventCountMax:2,
+  retryLabel:"もう一度計画する",
+  gameOverTitle:"物流の信頼を失いました",
+  gameOverText:"荷物の安全や予定を考えずに進めたため、届ける計画がうまくいきませんでした。どの判断を見直せばよかったか考えて、もう一度挑戦してみよう。",
+  gameOverRetryText:"もう一度、物流計画に挑戦する",
+  statuses:{
+    accuracy:{label:"確実さ",initial:3,min:0,max:5},
+    time:{label:"時間",initial:3,min:0,max:5},
+    efficiency:{label:"効率",initial:3,min:0,max:5},
+    safety:{label:"安全",initial:3,min:0,max:5},
+    environment:{label:"環境",initial:3,min:0,max:5}
+  },
+  learningToStatus:{
+    transport:"efficiency",combination:"efficiency",distance:"time",
+    quantity:"efficiency",safety:"safety",environment:"environment",
+    logistics:"accuracy",life:"accuracy"
+  },
+  navi:[
+    {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/05-surprised.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/07-encouraging.png",message:"荷物の量や距離、時間を見て考えよう。"},
+    {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/06-troubled.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/07-encouraging.png",message:"一つの方法だけでなく、組み合わせる方法もあるよ。"},
+    {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/kai/expressions/04-idea.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/kai/expressions/05-surprised.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/kai/expressions/10-confident.png",message:"工場、駅、港、お店など、いろいろな場所がつながっているよ。"},
+    {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/saku/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/saku/expressions/06-troubled.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/saku/expressions/07-encouraging.png",message:"最後に受け取る人まで考えてみよう。"},
+    {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/tsuki/expressions/04-idea.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/tsuki/expressions/05-surprised.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/tsuki/expressions/08-celebrating.png",message:"運ぶ方法を選ぶときは、環境への影響も考えられるよ。"},
+    {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/nami/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/nami/expressions/06-troubled.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/nami/expressions/07-encouraging.png",message:"物流は、くらしと産業をつなぐ大切なしくみだね。"}
+  ]
+},
+REQUIRED_LEARNING:{
+  transport:"自動車・鉄道・船・飛行機の特徴",
+  combination:"複数の輸送方法を組み合わせる",
+  distance:"距離や時間に応じた輸送",
+  quantity:"荷物の量や重さに応じた輸送",
+  safety:"安全に確実に届ける工夫",
+  environment:"環境への配慮",
+  logistics:"物流拠点や輸送のつながり",
+  life:"物流と私たちのくらし"
+},
+STAGES:{
+  confirm:{label:"確認",short:"確認",color:"#5E748A"},
+  choose:{label:"輸送方法",short:"選ぶ",color:"#587A91"},
+  combine:{label:"組み合わせ",short:"組合せ",color:"#6B7564"},
+  hub:{label:"物流拠点",short:"拠点",color:"#8A6F55"},
+  deliver:{label:"届ける",short:"届ける",color:"#557C67"}
+},
+STAGE_ORDER:["confirm","choose","combine","hub","deliver"],
+FLOW_STAGES:{
+  confirm:{title:"届けるものを確認",summary:"何を、どこへ届けるかを確かめる",substeps:["荷物の種類を確認する","量や重さを確認する","出発地と届け先を確認する"]},
+  choose:{title:"輸送方法を選ぶ",summary:"自動車・鉄道・船・飛行機の特徴を比べる",substeps:["近距離なら自動車","大量・長距離なら鉄道や船","急ぐ荷物なら飛行機","それぞれの得意なことを考える"]},
+  combine:{title:"輸送を組み合わせる",summary:"複数の方法をつないで運ぶ",substeps:["工場から駅・港・空港へ運ぶ","長距離を鉄道・船・飛行機などで運ぶ","最後は届け先に近い方法へつなぐ"]},
+  hub:{title:"物流拠点をつなぐ",summary:"駅・港・空港・物流センターなどを経由する",substeps:["荷物を集める","別の輸送方法へ積み替える","届け先ごとに分ける"]},
+  deliver:{title:"届け先へ運ぶ",summary:"お店や人のもとまで確実に届ける",substeps:["届け先を確認する","最後の区間を運ぶ","受け取る人へ届ける"]}
+},
+CORE_SCENES:{
+confirm:[
+{id:"u1",title:"まず、何を運ぶ？",text:"工場でつくられた商品を、遠くの町のお店へ届けることになりました。まず、何を確認してから輸送計画を立てるとよいでしょう。",requiredLearning:["logistics","quantity","distance"],educationalIntent:"物流では、荷物の種類・量・出発地・届け先などを確認して計画することを知る。",choices:[
+{text:"荷物の量と届け先、いつまでに必要かを確認する",effects:{accuracy:1,time:1},result:"荷物の量、届け先、必要な時期を確認して計画を始めました。",point:"物流では、何を、どこへ、どれくらい、いつまでに運ぶかを確認することが大切です。"},
+{text:"とりあえず一番速い乗り物を決める",effects:{time:1,efficiency:-1},result:"速い方法は見つかりましたが、荷物の量や距離との組み合わせを考え直すことになりました。",point:"速さだけでなく、荷物の量や距離なども考えて輸送方法を選びます。"},
+{text:"荷物のことは考えず、届け先だけ確認する",effects:{accuracy:-1,efficiency:-1},result:"必要な車両や輸送方法を決められず、計画が止まりました。",point:"荷物の種類や量を知ることも、輸送計画の出発点です。"}
+]},
+{id:"u2",title:"どれくらいの量？",text:"今回の荷物は、重くて量も多い商品です。長い距離を運ぶことになりました。どんな特徴の輸送方法が向いているでしょう。",requiredLearning:["quantity","transport","distance"],educationalIntent:"荷物の量や重さ、距離によって、得意な輸送方法が変わることを知る。",choices:[
+{text:"大量・重量の荷物を長距離なら、船や鉄道を候補にする",effects:{efficiency:1,environment:1},result:"大量の荷物を運びやすい方法を候補にしました。",point:"船は大量・重量の荷物が得意で、鉄道もたくさんの荷物を運ぶのに向いています。"},
+{text:"重くて大量でも、全部を飛行機にする",effects:{time:1,efficiency:-1,environment:-1},result:"速く運べそうですが、大量・重量の荷物には向きにくい方法でした。",point:"飛行機は速い一方、重い荷物やかさばる荷物は苦手です。"},
+{text:"長距離でも全部を小型トラックだけで運ぶ",effects:{efficiency:-1,time:-1},result:"届けることはできますが、大量・長距離では別の方法も考えたほうがよさそうです。",point:"トラックは近距離や最後の区間などで力を発揮します。"}
+]}
+],
+choose:[
+{id:"u3",title:"4つの方法を比べる",text:"自動車（トラック）、鉄道、船、飛行機には、それぞれ得意なことがあります。近くのお店へ少量の荷物を届けるなら、どれを選ぶでしょう。",requiredLearning:["transport","distance","quantity"],educationalIntent:"4つの輸送方法にはそれぞれ特徴があり、状況に応じて使い分けることを知る。",choices:[
+{text:"自動車（トラック）",effects:{time:1,efficiency:1},result:"近い場所まで直接届けやすいトラックを選びました。",point:"自動車は少量の荷物を近距離へ運び、家やお店の近くまで届けるのが得意です。"},
+{text:"船",effects:{efficiency:-1,time:-1},result:"大量の荷物には向きますが、近くのお店への少量輸送には別の方法が必要でした。",point:"船は大量・重量の荷物や海外との輸送などで力を発揮します。"},
+{text:"飛行機",effects:{time:1,efficiency:-1},result:"速く運べますが、今回の少量・近距離では大げさな方法でした。",point:"飛行機は速い輸送が得意です。"}
+]},
+{id:"u4",title:"海外から荷物が届く",text:"外国から大量の商品が日本へ届きました。急いで届ける必要はありません。どの方法を中心に考えるとよいでしょう。",requiredLearning:["transport","quantity","distance"],educationalIntent:"海外との大量輸送では船が重要な役割を果たしていることを知る。",choices:[
+{text:"船を使う",effects:{efficiency:1,environment:1},result:"大量の荷物を船で運ぶ計画にしました。",point:"船は大量・重量の荷物を運ぶことができ、海外との輸送にも使われます。"},
+{text:"すべて飛行機で運ぶ",effects:{time:1,efficiency:-1,environment:-1},result:"速く届きますが、大量の荷物では効率を考える必要があります。",point:"飛行機は速い一方、大量・重量の輸送には向きにくい面があります。"},
+{text:"すべて小型トラックで海を越える",effects:{efficiency:-1,accuracy:-1},result:"一つの方法では対応できませんでした。",point:"海外との輸送では、船などを使って日本まで運び、その後別の方法につなぐことがあります。"}
+]}
+],
+combine:[
+{id:"u5",title:"港からお店までどうする？",text:"海外から船で港に届いた大量の商品を、内陸の町のお店へ運びます。港から先はどうしますか。",requiredLearning:["combination","logistics","transport"],educationalIntent:"長距離輸送と近距離輸送を組み合わせ、荷物を目的地までつなぐことを知る。",choices:[
+{text:"港から鉄道やトラックなどにつなぐ",effects:{efficiency:1,accuracy:1},result:"港で荷物を受け取り、鉄道やトラックへつないで届ける計画にしました。",point:"長距離では船や鉄道などを使い、最後はトラックにつなぐなど、輸送方法を組み合わせます。"},
+{text:"船を降ろしたら、また船でお店まで運ぶ",effects:{efficiency:-1,accuracy:-1},result:"お店まで直接つながらないため、別の輸送方法が必要になりました。",point:"輸送では、港や駅などを経由して、次の方法へ荷物をつなぎます。"},
+{text:"全部を飛行機に積み替える",effects:{time:1,efficiency:-1},result:"速く運べますが、今回の大量輸送では効率を考える必要がありました。",point:"輸送方法は、荷物の量や急ぎ具合などに合わせて選びます。"}
+]},
+{id:"u6",title:"最後の区間をどう運ぶ？",text:"大きな物流センターに商品が集まりました。ここから近くのお店へ、必要な数だけ届けます。",requiredLearning:["combination","logistics","life"],educationalIntent:"物流拠点で荷物をまとめたり分けたりし、最後は自動車などで届ける仕組みを知る。",choices:[
+{text:"必要な店ごとに分けて、トラックで届ける",effects:{accuracy:1,time:1},result:"店ごとに荷物を分け、必要な場所へトラックで届けることにしました。",point:"物流拠点では荷物を集めたり分けたりし、最後はトラックなどで届けることがあります。"},
+{text:"物流センターに置いたままにする",effects:{accuracy:-1,time:-1},result:"商品がお店に届かず、販売できませんでした。",point:"物流は、荷物を必要な場所までつなげて届ける仕組みです。"},
+{text:"すべて飛行機で近くのお店へ運ぶ",effects:{time:1,efficiency:-1},result:"速く運べますが、近距離の配送では別の方法が向いていました。",point:"近距離の最後の区間では、トラックなどが重要な役割を果たします。"}
+]}
+],
+hub:[
+{id:"u7",title:"物流センターで仕分ける",text:"たくさんの店から注文が届きました。物流センターでは、荷物をどのようにすると届けやすくなるでしょう。",requiredLearning:["logistics","quantity","accuracy"],educationalIntent:"物流拠点で荷物を集め、届け先ごとに分け、次の輸送につなぐことを知る。",choices:[
+{text:"届け先ごとに分けて、次の輸送へつなぐ",effects:{accuracy:1,efficiency:1},result:"届け先ごとに荷物を分け、次の輸送へつなぎました。",point:"物流拠点では、荷物を集めたり仕分けたりして、次の輸送につなぎます。"},
+{text:"全部を一か所に積んだままにする",effects:{accuracy:-1,efficiency:-1},result:"どの荷物をどこへ送るか分かりにくくなりました。",point:"届け先に応じて分けることが、物流をスムーズにします。"},
+{text:"店ごとに最初から別々の長距離輸送をする",effects:{efficiency:-1},result:"荷物をまとめて運ぶ工夫ができませんでした。",point:"途中でまとめたり分けたりすることで、輸送をつなぎやすくすることがあります。"}
+]},
+{id:"u8",title:"予定どおりに届くようにする",text:"ある店では、明日の朝までに商品が必要です。別の店は数日後でも大丈夫です。どう考えますか。",requiredLearning:["distance","time","logistics"],educationalIntent:"届ける時期や距離などに応じて輸送を計画することを知る。",choices:[
+{text:"必要な時期に合わせて輸送方法や順番を調整する",effects:{time:1,accuracy:1},result:"急ぐ荷物と急がない荷物を分けて、計画を調整しました。",point:"輸送では、いつまでに必要かを考えて方法や順番を決めることがあります。"},
+{text:"すべて同じ方法・同じ日程にする",effects:{time:-1,efficiency:-1},result:"急ぐ荷物への対応が遅れてしまいました。",point:"荷物によって必要な時期や条件が違うため、計画を調整します。"},
+{text:"全部を一番速い方法にする",effects:{time:1,efficiency:-1,environment:-1},result:"早く届きますが、すべてを速い方法にする必要はありませんでした。",point:"速さだけでなく、荷物の量や距離、必要な時期などを合わせて考えます。"}
+]}
+],
+deliver:[
+{id:"u9",title:"安全に届ける",text:"運んでいる途中で、荷物を傷つけないための確認が必要になりました。どうしますか。",requiredLearning:["safety","logistics"],educationalIntent:"荷物を安全・確実に届けるための確認や管理が必要なことを知る。",choices:[
+{text:"荷物の状態や数を確認し、必要な対策をする",effects:{safety:1,accuracy:1},result:"荷物の状態と数を確認し、安全に届けるための対応をしました。",point:"物流では、荷物を安全・確実に届けるための確認が大切です。"},
+{text:"急いでいるので確認を省く",effects:{time:1,safety:-1,accuracy:-1},result:"速く進めましたが、荷物の状態を確認できませんでした。",point:"急いでいても、安全や正確さを守るための確認が必要です。"},
+{text:"荷物の数だけ確認し、状態は見ない",effects:{accuracy:1,safety:-1},result:"数は確認できましたが、荷物の状態を確かめられませんでした。",point:"数だけでなく、荷物の状態なども確認することがあります。"}
+]},
+{id:"u10",title:"くらしにつながる物流",text:"物流が止まると、お店の商品が少なくなったり、工場に材料が届かなかったりすることがあります。物流について考える最後の場面です。",requiredLearning:["life","logistics","environment"],educationalIntent:"物流が産業や私たちのくらしを支えていることを捉える。",choices:[
+{text:"物流は、工場とお店、そして私たちのくらしをつなぐしくみだと考える",effects:{accuracy:1,efficiency:1},result:"物流を、ものを必要な場所へつなぐしくみとして捉えました。",point:"物流は、原料や材料を工場へ運び、製品をお店などへ届けることで、産業やくらしを支えています。"},
+{text:"物流は運ぶ人だけに関係する仕事だと考える",effects:{accuracy:-1},result:"運ぶ仕事だけでなく、産業やくらしとのつながりを考える必要がありました。",point:"物流は工場やお店、私たちのくらしともつながっています。"},
+{text:"速く届けることだけが物流の役割だと考える",effects:{accuracy:-1,environment:-1},result:"速さだけではなく、安全、効率、環境なども考える必要がありました。",point:"物流では、速さだけでなく、安全や効率、環境などを合わせて考えます。"}
+]}
+]
+},
+EVENTS:[
+{id:"ue_traffic",name:"道路が混みそう",stages:["choose","combine","deliver"],weight:1,title:"予定より時間がかかりそう",text:"道路が混みそうだという情報が入りました。届ける時間に間に合うよう、どう考えますか。",requiredLearning:["distance","time","combination"],educationalIntent:"交通状況などによって計画を調整することを考える。",choices:[
+{text:"時間を確認して、別の輸送方法や順番を検討する",effects:{time:1,accuracy:1},result:"状況を確認し、計画を調整しました。",point:"物流では、予定外の状況に応じて輸送計画を調整することがあります。"},
+{text:"何も変えずに待つ",effects:{time:-1},result:"予定より到着が遅れました。",point:"交通状況などの変化を見ながら計画を調整することも大切です。"},
+{text:"安全を考えず急いで運ぶ",effects:{time:1,safety:-1},result:"速さは上がりましたが、安全を守る必要があります。",point:"急ぐときも安全を優先して運びます。"}
+]},
+{id:"ue_weather",name:"天候の変化",stages:["choose","combine"],weight:1,title:"天候が変わった",text:"天候の影響で、予定していた輸送に変更が必要になりました。どうしますか。",requiredLearning:["combination","safety","time"],educationalIntent:"天候などの条件を考え、安全を優先しながら輸送方法を調整することを知る。",choices:[
+{text:"安全を確認し、必要なら別の方法や日程に変更する",effects:{safety:1,accuracy:1,time:-1},result:"安全を優先し、計画を調整しました。",point:"輸送では天候などの条件も考え、安全に届ける計画を立てます。"},
+{text:"予定どおり進めることを優先する",effects:{time:1,safety:-1},result:"予定には近づきましたが、安全面の確認が必要になりました。",point:"予定どおりにすることより、安全を優先する場面があります。"},
+{text:"すべてを飛行機に変更する",effects:{time:1,efficiency:-1},result:"速く運べる可能性はありますが、荷物や状況に合うか確認が必要でした。",point:"方法を変えるときも、荷物の量や条件を合わせて考えます。"}
+]},
+{id:"ue_goods",name:"荷物が増えた",stages:["confirm","choose","hub"],weight:1,title:"急に荷物が増えた",text:"予定していたより荷物が増えました。今の輸送計画をどうしますか。",requiredLearning:["quantity","transport","logistics"],educationalIntent:"荷物の量が変わると、輸送方法や計画も見直す必要があることを知る。",choices:[
+{text:"量を確認して、まとめて運べる方法を含めて計画し直す",effects:{efficiency:1,accuracy:1},result:"荷物の量を確認し、輸送方法を組み直しました。",point:"荷物の量に応じて、輸送方法や組み合わせを考え直すことがあります。"},
+{text:"予定どおりの車両だけで無理に運ぶ",effects:{efficiency:-1,safety:-1},result:"一度に運べず、計画をやり直すことになりました。",point:"荷物の量に合った車両や輸送方法を選ぶ必要があります。"},
+{text:"急いでいるので量の確認をしない",effects:{accuracy:-1,safety:-1},result:"必要な車両やスペースを判断できませんでした。",point:"まず荷物の量を正確に把握することが計画の出発点です。"}
+]}
+],
+FLOW_CHECKPOINTS:[
+{afterId:"u2",title:"次の段階は？",text:"何を運ぶか、量や距離が分かりました。次は、どんな輸送方法が使えるか比べます。",choices:[
+{text:"輸送方法を選ぶ",correct:true,feedback:"正解。自動車・鉄道・船・飛行機の特徴を比べます。"},
+{text:"いきなり届け先へ運ぶ",correct:false,hint:"まず、荷物や距離に合う輸送方法を考えます。"},
+{text:"荷物を工場に戻す",correct:false,hint:"これから届けるための方法を考えます。"}
+]},
+{afterId:"u4",title:"次の段階は？",text:"輸送方法の特徴を比べました。次は、複数の方法をどうつなぐか考えます。",choices:[
+{text:"輸送を組み合わせる",correct:true,feedback:"正解。長距離と最後の区間など、方法をつないで運びます。"},
+{text:"荷物を保管して終わる",correct:false,hint:"荷物を届けるため、次の輸送につなぎます。"},
+{text:"もう一度荷物の種類を決める",correct:false,hint:"荷物はすでに確認できています。"}
+]},
+{afterId:"u6",title:"次の段階は？",text:"輸送方法をつないで、物流センターまで荷物が集まりました。次は何をしますか。",choices:[
+{text:"物流拠点でつなぐ",correct:true,feedback:"正解。荷物を集めたり分けたりして、届け先へつなぎます。"},
+{text:"工場でもう一度つくる",correct:false,hint:"商品はすでにできています。届け先へつなぎます。"},
+{text:"海外へ送り返す",correct:false,hint:"目的地へ届けるために、物流拠点から次の輸送へ進みます。"}
+]},
+{afterId:"u8",title:"次の段階は？",text:"届ける時期や輸送計画を調整しました。最後は、安全に届けます。",choices:[
+{text:"届け先へ運ぶ",correct:true,feedback:"正解。荷物を安全・確実に届けます。"},
+{text:"輸送方法を全部なくす",correct:false,hint:"最後まで荷物を運ぶ必要があります。"},
+{text:"工場へ戻す",correct:false,hint:"目的地はお店などです。届ける段階へ進みます。"}
+]}
+],
+SOURCES:[
+{id:"jta",title:"全日本トラック協会「トラックミニ百科2026」",url:"https://jta.or.jp/pdf/coho/minihyakka2026.pdf"},
+{id:"kaiji1",title:"海事広報協会「小学5年生 社会」",url:"https://www.kaijipr.or.jp/ict/s5_shakai/001/"},
+{id:"kaiji2",title:"海事広報協会「小学5年生 社会」",url:"https://www.kaijipr.or.jp/ict/s5_shakai/002/"},
+{id:"hitachi1",title:"日立キッズ「物流のひみつ：ものを運ぶためのしくみ」",url:"https://www.hitachi.co.jp/kids/kinopon/kinopontown/logistics/01/page1.html"},
+{id:"hitachi2",title:"日立キッズ「物流のひみつ」",url:"https://www.hitachi.co.jp/kids/kinopon/kinopontown/logistics/01/page2.html"},
+{id:"asahi",title:"朝日新聞「物流大作戦」",url:"https://www.asahi.com/ads/butsuryu_daisakusen/"}
+]
+};
