@@ -17,6 +17,15 @@ const NEWS_ZUKURI_DATA = {
     flowTitle:"ニュースができるまで",
     flowStages:[{key:"gather",label:"情報収集"},{key:"meeting",label:"編集会議"},{key:"interview",label:"取材"},{key:"verify",label:"確認"},{key:"select",label:"選ぶ"},{key:"edit",label:"原稿・編集"},{key:"publish",label:"放送"}],
     endingNote:"ニュースづくりでは、情報を集め、取材し、確かめ、何をどう伝えるかを考えながら、さまざまな人が協力して発信します。これは学習用の架空のニュースを使ったゲームです。",
+    stageImages:{
+      gather:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/The%20newsroom%20in%20new%20Broadcasting%20House.jpg",credit:"ニュースルーム（Wikimedia Commons）",url:"https://commons.wikimedia.org/wiki/File:The_newsroom_in_new_Broadcasting_House.jpg"},
+      meeting:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/BBC%20Broadcasting%20House%20newsroom%202013.jpg",credit:"ニュースルーム（Wikimedia Commons）",url:"https://commons.wikimedia.org/wiki/File:BBC_Broadcasting_House_newsroom_2013.jpg"},
+      interview:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Film%20crew%20filming%20camerman%20news%20photo%20reporter%20working.jpg",credit:"取材・撮影の様子（Wikimedia Commons）",url:"https://commons.wikimedia.org/wiki/File:Film_crew_filming_camerman_news_photo_reporter_working.jpg"},
+      verify:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/The%20newsroom%20in%20new%20Broadcasting%20House.jpg",credit:"ニュースルーム（Wikimedia Commons）",url:"https://commons.wikimedia.org/wiki/File:The_newsroom_in_new_Broadcasting_House.jpg"},
+      select:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/BBC%20Broadcasting%20House%20newsroom%202013.jpg",credit:"ニュースルーム（Wikimedia Commons）",url:"https://commons.wikimedia.org/wiki/File:BBC_Broadcasting_House_newsroom_2013.jpg"},
+      edit:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/BBC%20Broadcasting%20House%20newsroom%202013.jpg",credit:"ニュースルーム（Wikimedia Commons）",url:"https://commons.wikimedia.org/wiki/File:BBC_Broadcasting_House_newsroom_2013.jpg"},
+      publish:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Reporter%20%2831770432685%29.jpg",credit:"テレビニュースの取材現場（Wikimedia Commons）",url:"https://commons.wikimedia.org/wiki/File:Reporter_(31770432685).jpg"}
+    },
     navi:[
       {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/05-surprised.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/riku/expressions/07-encouraging.png",message:"まずは、現場で何が起きているか確かめよう。"},
       {src:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/03-thinking.png",eventSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/06-troubled.png",resultSrc:"https://raw.githubusercontent.com/TT-sensei/navi-character-/main/assets/characters/sora/expressions/07-encouraging.png",message:"聞いた話を、そのまま事実にしていいかな？"},
