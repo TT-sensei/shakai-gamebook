@@ -151,6 +151,24 @@ const NEWS_ZUKURI_DATA = {
         {text:"一文をできるだけ長くして全部入れる",effects:{readability:-2},result:"情報は残りましたが、読み取りにくい文章になりました。",point:"情報を整理し、短く区切ることも伝わりやすさにつながります。"}
        ]}
     ],
+    publish:[
+      {id:"news_publish_vtr",title:"映像を合わせる",text:"原稿の下読み時間がわかりました。編集担当として、撮影した映像を原稿に合わせてつなぎます。どうしますか？",requiredLearning:["editing"],educationalIntent:"原稿の内容や時間に合わせて映像を選び、編集することを知る。",choices:[
+        {text:"原稿の内容に合う映像を選び、読む時間に合わせてつなぐ",effects:{readability:1,accuracy:1},result:"原稿と映像がつながり、ニュースらしい形になりました。",point:"ニュース映像は、原稿の内容や時間に合わせて必要な映像を選び、つなぎます。"},
+        {text:"一番きれいな映像だけを長く使う",effects:{readability:-1},result:"映像はきれいですが、原稿と合わない部分があります。",point:"映像の美しさだけでなく、ニュースの内容を伝えられるかを考えます。"},
+        {text:"原稿と関係なく映像を順番につなぐ",effects:{accuracy:-1,readability:-1},result:"映像と原稿の関係がわかりにくくなりました。",point:"映像と原稿が一緒に情報を伝えられるように編集します。"}]},
+      {id:"news_publish_live",title:"放送直前の速報",text:"まもなく放送です。ところが、新しい情報が入りました。番組は生放送です。どうしますか？",requiredLearning:["source","editing"],educationalIntent:"放送直前や放送中にも新しい情報が入り、判断が必要になることを知る。",choices:[
+        {text:"新しい情報を確認し、必要なら順番や原稿を調整する",effects:{accuracy:1,readability:1,speed:-1},result:"新しい情報を確認して番組を調整しました。",point:"ニュースは放送直前や放送中にも新しい情報が入るため、確認しながら対応することがあります。"},
+        {text:"確認せず、予定どおり必ず放送する",effects:{speed:1,accuracy:-2},result:"予定どおり進みましたが、新しい情報を反映できませんでした。",point:"新しい情報が入ったときは、事実を確認して必要な対応を考えます。"},
+        {text:"新情報なら何でもすぐ読み上げる",effects:{speed:1,accuracy:-2,source:-1},result:"速く伝えられますが、確認されていない情報まで広がる可能性があります。",point:"速報でも、まず情報の確かさを確認します。"}]},
+      {id:"news_publish_1",title:"発信する前に",text:"記事が完成しました。公開ボタンを押す前に、最後にどんな確認をしますか？",
+       requiredLearning:["source","editing","ethics"],educationalIntent:"発信前に事実・表現・個人への配慮を確認する。",
+       choices:[
+        {text:"事実、出どころ、表現、相手への配慮を最後に確認する",effects:{accuracy:1,source:1,ethics:1},result:"最後の確認まで行い、安心して発信できる記事に近づきました。",point:"発信前には、事実確認だけでなく、表現や相手への配慮も見直します。"},
+        {text:"早く伝えるため、確認はタイトルだけにする",effects:{speed:1,accuracy:-2,ethics:-1},result:"早く公開できますが、本文の間違いを見落とす可能性があります。",point:"速さは大切な場合がありますが、確認を省きすぎないことも重要です。"},
+        {text:"友達に面白いかだけ見てもらって公開する",effects:{readability:1,accuracy:-1},result:"読みやすさは確認できましたが、事実確認は十分ではありません。",point:"読みやすさだけでなく、情報が確かなものかを確認します。"}
+       ]}
+    ]
+  },
     FLOW_CHECKPOINTS:[
       {afterId:"news_gather_2",title:"次は何をする？",text:"情報を集めました。次は、集めた情報をもとに、どのニュースを扱うか考えます。",choices:[
         {text:"編集会議で、何をニュースにするか考える",correct:true,feedback:"正解。集めた情報をもとに、何を伝えるか考えます。"},
@@ -178,24 +196,7 @@ const NEWS_ZUKURI_DATA = {
         {text:"未確認の情報を追加する",correct:false,hint:"発信前に、未確認の情報を追加するのは避けます。"}]}
     ],
     ],
-    publish:[
-      {id:"news_publish_vtr",title:"映像を合わせる",text:"原稿の下読み時間がわかりました。編集担当として、撮影した映像を原稿に合わせてつなぎます。どうしますか？",requiredLearning:["editing"],educationalIntent:"原稿の内容や時間に合わせて映像を選び、編集することを知る。",choices:[
-        {text:"原稿の内容に合う映像を選び、読む時間に合わせてつなぐ",effects:{readability:1,accuracy:1},result:"原稿と映像がつながり、ニュースらしい形になりました。",point:"ニュース映像は、原稿の内容や時間に合わせて必要な映像を選び、つなぎます。"},
-        {text:"一番きれいな映像だけを長く使う",effects:{readability:-1},result:"映像はきれいですが、原稿と合わない部分があります。",point:"映像の美しさだけでなく、ニュースの内容を伝えられるかを考えます。"},
-        {text:"原稿と関係なく映像を順番につなぐ",effects:{accuracy:-1,readability:-1},result:"映像と原稿の関係がわかりにくくなりました。",point:"映像と原稿が一緒に情報を伝えられるように編集します。"}]},
-      {id:"news_publish_live",title:"放送直前の速報",text:"まもなく放送です。ところが、新しい情報が入りました。番組は生放送です。どうしますか？",requiredLearning:["source","editing"],educationalIntent:"放送直前や放送中にも新しい情報が入り、判断が必要になることを知る。",choices:[
-        {text:"新しい情報を確認し、必要なら順番や原稿を調整する",effects:{accuracy:1,readability:1,speed:-1},result:"新しい情報を確認して番組を調整しました。",point:"ニュースは放送直前や放送中にも新しい情報が入るため、確認しながら対応することがあります。"},
-        {text:"確認せず、予定どおり必ず放送する",effects:{speed:1,accuracy:-2},result:"予定どおり進みましたが、新しい情報を反映できませんでした。",point:"新しい情報が入ったときは、事実を確認して必要な対応を考えます。"},
-        {text:"新情報なら何でもすぐ読み上げる",effects:{speed:1,accuracy:-2,source:-1},result:"速く伝えられますが、確認されていない情報まで広がる可能性があります。",point:"速報でも、まず情報の確かさを確認します。"}]},
-      {id:"news_publish_1",title:"発信する前に",text:"記事が完成しました。公開ボタンを押す前に、最後にどんな確認をしますか？",
-       requiredLearning:["source","editing","ethics"],educationalIntent:"発信前に事実・表現・個人への配慮を確認する。",
-       choices:[
-        {text:"事実、出どころ、表現、相手への配慮を最後に確認する",effects:{accuracy:1,source:1,ethics:1},result:"最後の確認まで行い、安心して発信できる記事に近づきました。",point:"発信前には、事実確認だけでなく、表現や相手への配慮も見直します。"},
-        {text:"早く伝えるため、確認はタイトルだけにする",effects:{speed:1,accuracy:-2,ethics:-1},result:"早く公開できますが、本文の間違いを見落とす可能性があります。",point:"速さは大切な場合がありますが、確認を省きすぎないことも重要です。"},
-        {text:"友達に面白いかだけ見てもらって公開する",effects:{readability:1,accuracy:-1},result:"読みやすさは確認できましたが、事実確認は十分ではありません。",point:"読みやすさだけでなく、情報が確かなものかを確認します。"}
-       ]}
-    ]
-  },
+
   EVENTS:[
     {id:"news_event_post",name:"SNSの投稿",stages:["verify","select","publish"],weight:3,title:"SNSで見つけた情報",text:"SNSに『公園で大きなイベントが始まるらしい』という投稿を見つけました。写真もあります。",requiredLearning:["source","multiple"],educationalIntent:"ネット上の情報も出どころを確認し、別の情報と比べて判断する。",choices:[
       {text:"投稿者と元の情報を確認し、公式情報などとも比べる",effects:{accuracy:1,source:1,speed:-1},result:"写真だけで判断せず、情報の出どころを確認しました。",point:"ネット上の情報も、誰がいつ発信したのかを確かめることが大切です。"},
