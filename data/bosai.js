@@ -80,7 +80,7 @@ prepare:[
 ],
 action:[
 {id:"rain1",title:"大雨・洪水：雨が強くなった",text:"雨が強くなり、川の水位も上がってきました。避難を考えるため、まず何をしますか。",requiredLearning:["information","action"],choices:[
-{text:"雨・川・避難情報などを確認し、状況を見ながら判断する",effects:{information:1,action:1},result:"複数の情報を確認して、次の行動を考えました。",point:"雨や川の情報、自治体からの避難情報などを確認し、状況に合わせて判断します。"},
+{text:"雨・川・避難情報などを確認し、状況を見ながら判断する",effects:{information:1,action:1},result:"複数の情報を確認して、次の行動を考えました。",point:"雨や川の情報、自治体からの避難情報などを確認し、状況に合わせて判断します。",nextSceneId:"rain2"},
 {text:"雨がやむまで何も確認せず待つ",effects:{information:-1,action:-1},result:"状況の変化を見逃す可能性があります。",point:"災害時は新しい情報を確認しながら行動を考えます。"},
 {text:"近所の人が動くまで待つ",effects:{information:-1,action:-1},result:"自分で情報を確認するのが遅れました。",point:"周りの様子だけでなく、自分でも情報を確認します。"}
 ]},
