@@ -33,15 +33,41 @@ const NEWS_ZUKURI_DATA = {
     ethics:"相手への配慮を考えて伝える"
   },
   STAGES:{
+    gather:{label:"情報収集",color:"#56758A"},
+    meeting:{label:"編集会議",color:"#76624C"},
     interview:{label:"取材",color:"#496D8A"},
     verify:{label:"確認",color:"#4E7C4A"},
     select:{label:"選ぶ",color:"#8B6B4A"},
     edit:{label:"編集",color:"#806A9B"},
     publish:{label:"発信",color:"#B36A3C"}
   },
-  STAGE_ORDER:["interview","verify","select","edit","publish"],
+  STAGE_ORDER:["gather","meeting","interview","verify","select","edit","publish"],
   CORE_SCENES:{
+    gather:[
+      {id:"news_gather_1",title:"ニュースの種を見つける",text:"朝、ニュースセンターにいくつかの情報が入ってきました。地域の花壇整備、駅前のイベント、学校近くの道路工事。まず、どんな情報に注目しますか？",requiredLearning:["interview"],educationalIntent:"ニュースは現場で突然見つかるだけでなく、日ごろから情報を集めていることを知る。",choices:[
+        {text:"社会で起きていることや、人々が関心をもちそうなことを調べる",effects:{accuracy:1},result:"ニュースの種を集めました。",point:"記者は日ごろからさまざまな情報を集め、何を伝えるかを考えています。"},
+        {text:"自分が一番おもしろいと思った話だけを選ぶ",effects:{accuracy:-1},result:"自分の興味だけにかたよってしまいました。",point:"ニュースは自分がおもしろいと思うだけでなく、社会で起きていることや人々の関心も考えます。"},
+        {text:"何も調べず、届いた情報をすべて記事にする",effects:{accuracy:-2},result:"情報は多いものの、ニュースとして整理できません。",point:"集まった情報をそのまま発信するのではなく、必要な情報を見極めます。"}]},
+      {id:"news_gather_2",title:"情報の入口を広げる",text:"情報は、市役所などの機関だけでなく、地域の人からの連絡やSNS、写真などからも入ってきます。どうしますか？",requiredLearning:["source","multiple"],educationalIntent:"ニュースの情報源が一つではなく、さまざまなところにあることを理解する。",choices:[
+        {text:"情報源を記録し、あとで確かめられるようにする",effects:{source:1,accuracy:1},result:"どこから来た情報なのかがわかるようになりました。",point:"情報源を記録しておくと、あとで事実を確かめやすくなります。"},
+        {text:"SNSならすぐ使えるので、出どころは記録しない",effects:{source:-2,accuracy:-1},result:"あとから確かめるのが難しくなりました。",point:"ネット上の情報も、誰から、いつ、どのように得たかを確認します。"},
+        {text:"公式情報だけ集めて、ほかは見ない",effects:{source:0,accuracy:-1},result:"一つの種類の情報にかたよりました。",point:"公式情報だけでなく、現場の声や目撃情報なども手がかりになります。ただし、確かめることが必要です。"}]}
+    ],
+    meeting:[
+      {id:"news_meeting_1",title:"編集会議",text:"集めた情報を持って編集会議へ。花壇整備、駅前イベント、道路工事の3つがあります。限られた時間で、どれを取材するか決めます。何を考えますか？",requiredLearning:["selection"],educationalIntent:"編集会議で、ニュースとして何を取材・放送するかを話し合って決めることを知る。",choices:[
+        {text:"今問題になっていることや、これから問題になりそうなこと、人々の関心を考える",effects:{accuracy:1},result:"取材するニュースを理由をもって選べました。",point:"編集会議では、社会で問題になっていることや人々の関心などを考えて取材するニュースを決めます。"},
+        {text:"一番派手な映像が撮れそうなものだけを選ぶ",effects:{readability:-1,accuracy:-1},result:"映像は目立ちそうですが、ニュースとして大切な視点が抜けています。",point:"映像の派手さだけでなく、何を伝える必要があるかを考えます。"},
+        {text:"先着順で決める",effects:{accuracy:-1},result:"早く決まりましたが、ニュースの重要性を考えていません。",point:"限られた時間の中でも、何を伝えるべきかを考えることが大切です。"}]},
+      {id:"news_meeting_2",title:"ニュースの順番",text:"今日は3本のニュースを放送します。どの順番で伝えるかも考えます。どうしますか？",requiredLearning:["selection","editing"],educationalIntent:"ニュース番組全体の流れを考え、伝わりやすい順番を決める。",choices:[
+        {text:"重要性や緊急性、視聴者に伝わりやすい流れを考える",effects:{readability:1,accuracy:1},result:"番組全体の流れを考えて順番を決めました。",point:"ニュースは一つの記事だけでなく、番組全体の順番も考えて編集されます。"},
+        {text:"全部ジャンケンで決める",effects:{readability:-1},result:"順番は決まりましたが、伝え方の理由がありません。",point:"ニュースの順番にも、伝えるための考えがあります。"},
+        {text:"長いニュースから順番にする",effects:{readability:-1},result:"長さだけで順番を決めてしまいました。",point:"ニュースの長さだけでなく、内容や重要性も考えます。"}]}
+    ],
     interview:[
+      {id:"news_interview_video",title:"映像も取材する",text:"現場に着きました。テレビニュースでは、記者のメモだけでなく、現場の様子を伝える映像やインタビューも大切です。何を集めますか？",requiredLearning:["interview"],educationalIntent:"テレビニュースでは記者の取材、映像、インタビューなどを組み合わせて伝えることを理解する。",choices:[
+        {text:"現場の様子、必要な映像、関係する人へのインタビューを集める",effects:{accuracy:1,readability:1},result:"文章だけでは伝わらない現場の様子も集まりました。",point:"テレビニュースでは、映像やインタビューを組み合わせて出来事を伝えます。"},
+        {text:"映像は目立てば何でもよいので、内容とは関係なく撮る",effects:{readability:-1,accuracy:-1},result:"目立つ映像ですが、ニュースの内容と合いません。",point:"映像もニュースの内容を伝えるために選びます。"},
+        {text:"映像だけ撮って、事実確認はしない",effects:{accuracy:-2},result:"映像は残りましたが、何が起きたのかの確認が不足しています。",point:"映像があっても、事実を確認する取材は必要です。"}]},
       {id:"news_interview_1",title:"まず現場へ",text:"学校の近くの公園で、地域の人たちが花壇を整備しています。あなたは地域ニュースの担当記者。まず、どんな情報を集めますか？",
        requiredLearning:["interview"],educationalIntent:"ニュースは現場を取材し、事実を集めるところから始まることを考える。",
        choices:[
@@ -83,6 +109,18 @@ const NEWS_ZUKURI_DATA = {
        ]}
     ],
     edit:[
+      {id:"news_edit_script",title:"ニュース原稿を書く",text:"取材メモと資料がそろいました。記者として原稿を書きます。まず何を大切にしますか？",requiredLearning:["editing"],educationalIntent:"取材メモや資料をもとにニュース原稿を作ることを知る。",choices:[
+        {text:"確認した事実を中心に、短くわかりやすく整理する",effects:{accuracy:1,readability:1},result:"放送する原稿の形に近づきました。",point:"ニュース原稿は取材したメモや資料をもとに、事実をわかりやすく整理します。"},
+        {text:"記者の感想をたくさん入れる",effects:{accuracy:-1,readability:-1},result:"感想が多く、ニュースの事実が見えにくくなりました。",point:"ニュース原稿では、確認した事実を中心に伝えます。"},
+        {text:"できるだけ長く書いて情報を全部入れる",effects:{readability:-2},result:"情報が多すぎて、放送時間に収まりません。",point:"ニュース原稿は決められた時間も考えて整理します。"}]},
+      {id:"news_edit_check",title:"デスクのチェック",text:"原稿ができました。デスクが確認します。どこをチェックしますか？",requiredLearning:["source","editing"],educationalIntent:"ニュース原稿はチェックや校正を経て放送されることを理解する。",choices:[
+        {text:"事実に間違いがないか、時間に収まるか、見出しは適切かを確認する",effects:{accuracy:1,source:1,readability:1},result:"原稿を放送に向けて整えられました。",point:"原稿は事実確認だけでなく、時間やタイトル、番組全体とのバランスも確認します。"},
+        {text:"誤りがあっても時間優先でそのままにする",effects:{speed:1,accuracy:-2},result:"速く進みましたが、誤りを残す可能性があります。",point:"速さが必要な場面でも、確認すべきところを確認します。"},
+        {text:"見出しだけ派手にして本文は見ない",effects:{readability:-1,accuracy:-2},result:"タイトルは目立ちましたが、本文の確認が不足しています。",point:"タイトルだけでなく、本文の事実も確認します。"}]},
+      {id:"news_edit_read",title:"アナウンサーの下読み",text:"原稿を読む人が、実際に声に出して確認します。なぜ下読みをするのでしょう？",requiredLearning:["editing"],educationalIntent:"読み方や時間を確認し、映像編集につなげる下読みの役割を知る。",choices:[
+        {text:"読み間違いや読みにくい部分、時間を確認する",effects:{readability:1,speed:1},result:"読み方と時間が確認できました。",point:"下読みでは読み方やアクセント、読み間違いなどを確認し、映像編集にもつなげます。"},
+        {text:"本番まで一度も読まない",effects:{readability:-2,accuracy:-1},result:"本番で読みにくいところが見つかるかもしれません。",point:"事前に声に出して確認することで、本番のミスを減らせます。"},
+        {text:"速く読む練習だけする",effects:{speed:1,readability:-1},result:"速さは出ましたが、聞き取りやすさの確認が不足しました。",point:"速さだけでなく、聞き取りやすさや内容とのつながりも大切です。"}]}
       {id:"news_edit_1",title:"見出しを考える",text:"記事の中心は『地域の人たちが公園の花壇を整備した』ことです。どの見出しが、内容を正確に伝えやすいでしょう？",
        requiredLearning:["editing"],educationalIntent:"見出しは目を引くだけでなく、本文の内容を正確に表す必要があることを考える。",
        choices:[
@@ -99,6 +137,14 @@ const NEWS_ZUKURI_DATA = {
        ]}
     ],
     publish:[
+      {id:"news_publish_vtr",title:"映像を合わせる",text:"原稿の下読み時間がわかりました。編集担当として、撮影した映像を原稿に合わせてつなぎます。どうしますか？",requiredLearning:["editing"],educationalIntent:"原稿の内容や時間に合わせて映像を選び、編集することを知る。",choices:[
+        {text:"原稿の内容に合う映像を選び、読む時間に合わせてつなぐ",effects:{readability:1,accuracy:1},result:"原稿と映像がつながり、ニュースらしい形になりました。",point:"ニュース映像は、原稿の内容や時間に合わせて必要な映像を選び、つなぎます。"},
+        {text:"一番きれいな映像だけを長く使う",effects:{readability:-1},result:"映像はきれいですが、原稿と合わない部分があります。",point:"映像の美しさだけでなく、ニュースの内容を伝えられるかを考えます。"},
+        {text:"原稿と関係なく映像を順番につなぐ",effects:{accuracy:-1,readability:-1},result:"映像と原稿の関係がわかりにくくなりました。",point:"映像と原稿が一緒に情報を伝えられるように編集します。"}]},
+      {id:"news_publish_live",title:"放送直前の速報",text:"まもなく放送です。ところが、新しい情報が入りました。番組は生放送です。どうしますか？",requiredLearning:["source","editing"],educationalIntent:"放送直前や放送中にも新しい情報が入り、判断が必要になることを知る。",choices:[
+        {text:"新しい情報を確認し、必要なら順番や原稿を調整する",effects:{accuracy:1,readability:1,speed:-1},result:"新しい情報を確認して番組を調整しました。",point:"ニュースは放送直前や放送中にも新しい情報が入るため、確認しながら対応することがあります。"},
+        {text:"確認せず、予定どおり必ず放送する",effects:{speed:1,accuracy:-2},result:"予定どおり進みましたが、新しい情報を反映できませんでした。",point:"新しい情報が入ったときは、事実を確認して必要な対応を考えます。"},
+        {text:"新情報なら何でもすぐ読み上げる",effects:{speed:1,accuracy:-2,source:-1},result:"速く伝えられますが、確認されていない情報まで広がる可能性があります。",point:"速報でも、まず情報の確かさを確認します。"}]},
       {id:"news_publish_1",title:"発信する前に",text:"記事が完成しました。公開ボタンを押す前に、最後にどんな確認をしますか？",
        requiredLearning:["source","editing","ethics"],educationalIntent:"発信前に事実・表現・個人への配慮を確認する。",
        choices:[
