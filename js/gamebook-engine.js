@@ -242,7 +242,7 @@ function render(){
       guide.innerHTML = `<div class="navi-bubble">${navi.message || "どうするか、考えてみよう。"}</div><img src="${navi.src}" alt="" class="navi-img">`;
       main.appendChild(guide);
     }
-    if(scene.kind!=="sequence") main.appendChild(renderStatus());
+    main.appendChild(renderStatus());
     const card = document.createElement("div");
     card.className = "scene-card";
     card.innerHTML = `
