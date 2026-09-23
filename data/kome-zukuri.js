@@ -8,6 +8,17 @@ const KOME_ZUKURI_DATA = {
     id: "kome-zukuri",
     title: "米づくりゲームブック",
     icon: "米",
+    statusTitle: "今年の米づくり",
+    statuses:{
+      water:{label:"水管理",icon:"💧",initial:3,min:0,max:5},
+      growth:{label:"稲の育ち",icon:"🌾",initial:3,min:0,max:5},
+      efficiency:{label:"作業効率",icon:"⚙️",initial:3,min:0,max:5},
+      cooperation:{label:"地域との協力",icon:"🤝",initial:3,min:0,max:5},
+      quality:{label:"米の品質",icon:"📦",initial:3,min:0,max:5}
+    },
+    gameOverOnZero:true,
+    gameOverTitle:"米づくりを続けられない状態です",
+    gameOverText:"水管理、稲の育ち、作業効率、地域との協力、米の品質のどれかが大きく下がってしまいました。どの判断を見直せばよかったか考えて、もう一度挑戦してみよう。",
     lead: "きみは米農家。春の準備から秋の収穫まで、<br>一年間の判断を体験しよう。",
     endingLabel: "あなたの一年",
     endingText: "一年間、あなたはたくさんの判断をしながら米づくりを進めました。今回は {{eventCount}} 件のできごとを経験しました。",
