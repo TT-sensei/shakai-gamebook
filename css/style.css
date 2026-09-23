@@ -664,3 +664,60 @@
   .scene-image img{height:150px}
   .choice-btn{padding:14px;font-size:16px}
 }
+
+
+/* ---------- tablet layout correction ---------- */
+@media (min-width:700px){
+  main{
+    grid-template-columns:minmax(0,1fr) clamp(280px,32vw,360px);
+    grid-template-rows:auto minmax(0,1fr) auto;
+  }
+  .navi-guide{
+    grid-column:1;
+    grid-row:1;
+  }
+  .scene-card{
+    grid-column:1;
+    grid-row:2;
+  }
+  .status-panel{
+    grid-column:1;
+    grid-row:3;
+  }
+  .choices{
+    grid-column:2;
+    grid-row:1 / 4;
+  }
+
+  main:has(.result-card),
+  main:has(.sequence-result-card){
+    grid-template-columns:minmax(0,1fr) clamp(280px,32vw,340px);
+    grid-template-rows:auto minmax(0,1fr) auto;
+  }
+  main:has(.result-card) .navi-guide,
+  main:has(.sequence-result-card) .navi-guide{
+    grid-column:2;
+    grid-row:1;
+  }
+  main:has(.result-card) .result-card,
+  main:has(.sequence-result-card) .sequence-result-card{
+    grid-column:1;
+    grid-row:1 / 4;
+  }
+  main:has(.result-card) .status-panel{
+    grid-column:1;
+    grid-row:3;
+    z-index:3;
+    width:calc(100% - 40px);
+    margin:0 20px;
+    align-self:end;
+  }
+  main:has(.result-card) .next-btn,
+  main:has(.sequence-result-card) .next-btn{
+    grid-column:2;
+    grid-row:2;
+    align-self:center;
+    width:100%;
+    margin:0;
+  }
+}
