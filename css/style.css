@@ -755,7 +755,7 @@
   /* 学習画面は「読む→考える→選ぶ」を主役にする */
   #app:has(.flow-progress) main:not(:has(.result-card)):not(:has(.sequence-result-card)){
     grid-template-columns:minmax(0,1fr) clamp(320px,34vw,400px);
-    grid-template-rows:minmax(0,1fr);
+    grid-template-rows:auto minmax(0,1fr);
     gap:16px 24px;
     padding:10px 28px 22px;
   }
@@ -767,20 +767,15 @@
   #app:has(.flow-progress) .status-panel{
     grid-column:1 / -1;
     grid-row:1;
-    position:absolute;
-    top:0;
-    left:0;
-    transform:translateY(-100%);
-  }
-
-  #app:has(.flow-progress) main{
-    position:relative;
+    position:static;
+    transform:none;
+    margin:0;
   }
 
   /* 問題文を左側の中心に */
   #app:has(.flow-progress) .scene-card{
     grid-column:1;
-    grid-row:1;
+    grid-row:2;
     margin:0;
     padding:28px 30px 22px;
     border-radius:18px;
@@ -830,7 +825,7 @@
   /* 判断エリア */
   #app:has(.flow-progress) .choices{
     grid-column:2;
-    grid-row:1;
+    grid-row:2;
     height:100%;
     margin:0;
     padding:4px 0;
