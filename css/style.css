@@ -748,3 +748,137 @@
     font-size:15px;
   }
 }
+
+
+/* ---------- 2026 tablet learning-first redesign ---------- */
+@media (min-width:700px){
+  /* 学習画面は「読む→考える→選ぶ」を主役にする */
+  #app:has(.flow-progress) main:not(:has(.result-card)):not(:has(.sequence-result-card)){
+    grid-template-columns:minmax(0,1fr) clamp(320px,34vw,400px);
+    grid-template-rows:minmax(0,1fr);
+    gap:16px 24px;
+    padding:10px 28px 22px;
+  }
+
+  #app:has(.flow-progress) .navi-guide{
+    display:none;
+  }
+
+  #app:has(.flow-progress) .status-panel{
+    grid-column:1 / -1;
+    grid-row:1;
+    position:absolute;
+    top:0;
+    left:0;
+    transform:translateY(-100%);
+  }
+
+  #app:has(.flow-progress) main{
+    position:relative;
+  }
+
+  /* 問題文を左側の中心に */
+  #app:has(.flow-progress) .scene-card{
+    grid-column:1;
+    grid-row:1;
+    margin:0;
+    padding:28px 30px 22px;
+    border-radius:18px;
+    overflow:auto;
+    justify-content:flex-start;
+  }
+
+  #app:has(.flow-progress) .scene-title{
+    order:0;
+    margin:0 0 18px;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.04em;
+  }
+
+  #app:has(.flow-progress) .scene-text{
+    order:1;
+    font-size:clamp(20px,2.05vw,24px);
+    line-height:1.8;
+    margin:0;
+    max-width:38em;
+  }
+
+  #app:has(.flow-progress) .event-badge{
+    order:0;
+    align-self:flex-start;
+    margin:0 0 12px;
+  }
+
+  /* 写真は補助資料。問題文のあとに、必要な分だけ見せる */
+  #app:has(.flow-progress) .scene-image{
+    order:2;
+    margin:22px 0 0;
+    width:min(100%,520px);
+    align-self:center;
+    opacity:.92;
+  }
+
+  #app:has(.flow-progress) .scene-image img{
+    height:min(24vh,180px);
+  }
+
+  #app:has(.flow-progress) .scene-image figcaption{
+    font-size:10px;
+  }
+
+  /* 判断エリア */
+  #app:has(.flow-progress) .choices{
+    grid-column:2;
+    grid-row:1;
+    height:100%;
+    margin:0;
+    padding:4px 0;
+    justify-content:center;
+    gap:12px;
+  }
+
+  #app:has(.flow-progress) .choices::before{
+    content:"どうする？";
+    display:block;
+    flex:none;
+    margin:0 0 2px 2px;
+    font-size:15px;
+    line-height:1.3;
+    font-weight:800;
+    color:var(--ink);
+  }
+
+  #app:has(.flow-progress) .choice-btn{
+    flex:none;
+    width:100%;
+    min-height:88px;
+    max-height:none;
+    padding:18px 20px;
+    background:#fff !important;
+    border:1.5px solid rgba(78,124,74,.16);
+    border-radius:15px;
+    box-shadow:0 2px 8px rgba(38,50,41,.055);
+    font-size:clamp(17px,1.7vw,20px);
+    line-height:1.5;
+  }
+
+  #app:has(.flow-progress) .choice-btn:hover{
+    background:#fff !important;
+    border-color:rgba(78,124,74,.38);
+  }
+
+  #app:has(.flow-progress) .choice-btn .num{
+    width:30px;
+    height:30px;
+    line-height:30px;
+    margin-right:11px;
+    flex:none;
+  }
+
+  /* 通常問題ではナビを消すので、結果画面の既存ナビはそのまま */
+  #app:has(.flow-progress) main:has(.result-card) .navi-guide,
+  #app:has(.flow-progress) main:has(.sequence-result-card) .navi-guide{
+    display:flex;
+  }
+}
