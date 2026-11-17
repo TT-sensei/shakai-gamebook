@@ -59,22 +59,23 @@ cooperation:{title:"助け合う",summary:"地域の人々や関係機関が力�
 CORE_SCENES:{
 know:[
 {id:"b1",title:"災害はどうして起こる？",text:"日本では、地震や津波、大雨による洪水、火山の噴火、大雪など、さまざまな自然災害が起こります。まず、災害についてどんなことを知っておきたいですか。",image:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/CFAS%20Participates%20in%20Sasebo%20City%20Joint%20Disaster%20Drill%202025%20%289291990%29.jpg?width=1000",credit:"U.S. Navy / Wikimedia Commons・Public Domain",url:"https://commons.wikimedia.org/wiki/File:CFAS_Participates_in_Sasebo_City_Joint_Disaster_Drill_2025_(9291990).jpg"},requiredLearning:["natural"],choices:[
-{text:"自然のようすと、災害が起こるしくみを知る",effects:{information:1,risk:1},result:"自然の条件と災害の関係に目を向けました。",point:"災害は、地震や火山活動、雨、雪などの自然の働きと関係しています。"},
+{text:"自然のようすと、災害が起こるしくみを知る",effects:{information:1,risk:1},result:"自然の条件と災害の関係に目を向けました。",point:"災害は、地震や火山活動、雨、雪などの自然の働きと関係しています。", fact:"日本は、地震のもとになるプレート（岩盤）が4つ集まる場所にあり、地震が多い国です。"},
 {text:"災害は起きてから考えればよい",effects:{risk:-1},result:"起こる前に考えることの大切さを見落としました。",point:"災害はいつ起こるかわからないので、普段から知っておくことが大切です。"},
 {text:"どの災害も同じだと考える",effects:{information:-1},result:"災害による違いを見落としました。",point:"災害の種類によって、危険な場所や必要な行動は変わります。"}
 ]},
 {id:"b2",title:"土地と災害",text:"同じ町の中でも、川の近く、低い土地、山の近くなど、場所によって危険が違うことがあります。何を見て考えますか。",image:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/An%20example%20of%20a%20tsunami%20hazard%20map%20Miyako%20City%20Iwate%20Prefecture.jpg?width=1000",credit:"Miyako City / Wikimedia Commons・CC BY 3.0 IGO",url:"https://commons.wikimedia.org/wiki/File:An_example_of_a_tsunami_hazard_map_Miyako_City_Iwate_Prefecture.jpg"},requiredLearning:["natural","hazard"],choices:[
-{text:"土地の高さや川・山との位置などを見る",effects:{information:1,risk:1},result:"地域の自然のようすから、災害の危険を考えました。",point:"地域の土地の特徴を知ることは、防災を考える手がかりになります。"},
+{text:"土地の高さや川・山との位置などを見る",effects:{information:1,risk:1},result:"地域の自然のようすから、災害の危険を考えました。",point:"地域の土地の特徴を知ることは、防災を考える手がかりになります。", fact:"ハザードマップでは、洪水や土砂災害などの危険が、場所ごとに色分けして示されています。"},
 {text:"建物が多い場所なら安全だと考える",effects:{risk:-1},result:"建物の数だけでは危険を判断できませんでした。",point:"土地の特徴や災害の種類などを見て考えます。"},
 {text:"町のどこでも危険は同じだと考える",effects:{information:-1,risk:-1},result:"場所による違いを見落としました。",point:"同じ地域でも、場所によって災害の危険が違うことがあります。"}
 ]}
 ],
 prepare:[
 {id:"b3",title:"災害が起こる前に",text:"地域で防災について考えることになりました。災害が起きてから慌てないために、何をしておきますか。",image:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Flickr%20-%20Official%20U.S.%20Navy%20Imagery%20-%20Sailors%20conduct%20disaster%20prevention%20training..jpg?width=1000",credit:"U.S. Navy / Wikimedia Commons・Public Domain",url:"https://commons.wikimedia.org/wiki/File:Flickr_-_Official_U.S._Navy_Imagery_-_Sailors_conduct_disaster_prevention_training..jpg"},requiredLearning:["preparation","hazard"],choices:[
-{text:"地域の危険、避難場所、安全な道などを確認する",effects:{risk:1,information:1},result:"地域の危険と避難について、前もって確認しました。",point:"ハザードマップなどを使い、普段から地域の危険や避難場所を知っておくことができます。"},
+{text:"地域の危険、避難場所、安全な道などを確認する",effects:{risk:1,information:1},result:"地域の危険と避難について、前もって確認しました。",point:"ハザードマップなどを使い、普段から地域の危険や避難場所を知っておくことができます。", fact:"「避難場所」はまず逃げる場所、「避難所」は避難生活を送る場所で、役割がちがいます。"},
 {text:"災害が起きたら、そのときに探す",effects:{risk:-1,action:-1},result:"いざというときに迷う可能性があります。",point:"避難場所や安全な道は、災害が起こる前に確認しておくことが大切です。"},
 {text:"施設があるから、自分では何も準備しない",effects:{risk:-1},result:"施設だけでは対応できないことがあります。",point:"地域の施設と一人一人の備えを組み合わせて考えます。"}
 ]},
+{id:"b_machi",title:"まちを守る仕組み",text:"私たちのまちは、国や自治体の仕組みにも守られています。川の堤防やダム、土砂災害を防ぐ砂防えん堤、危険な場所を知らせるハザードマップなどです。どんなことを知っておきますか。",image:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/An%20example%20of%20a%20tsunami%20hazard%20map%20Miyako%20City%20Iwate%20Prefecture.jpg?width=1000",credit:"Miyako City / Wikimedia Commons・CC BY 3.0 IGO",url:"https://commons.wikimedia.org/wiki/File:An_example_of_a_tsunami_hazard_map_Miyako_City_Iwate_Prefecture.jpg"},requiredLearning:["preparation","information","cooperation"],choices:[{text:"ハザードマップで、自分のまちの危険な場所と避難場所を確認する",effects:{risk:1,information:1},result:"まちの仕組みと自分の備えがつながりました。いざというときの判断に役立ちます。",point:"ハザードマップは自治体が作り、危険な場所や避難場所を知らせています。",fact:"ダムには、大雨のときに水をためて、下流の洪水を防ぐ働きがあります。"},{text:"施設があるから、自分は何もしなくてよいと考える",effects:{risk:-1,information:0},result:"施設だけでは守りきれない場合もあります。自分の備えも必要です。",point:"国や自治体の備えと、一人ひとりの備えの両方が大切です。"},{text:"気象庁の警報や注意報の意味を調べる",effects:{information:1,risk:0},result:"警報の意味が分かると、災害のときに早く行動できます。",point:"気象庁は、天気の観測をもとに、警報や注意報を発表しています。"}]},
 {id:"b4",title:"どの災害に備える？",text:"ここからは、実際の災害を一つ選んで考えてみます。災害によって、必要な情報や行動は変わります。どれを体験しますか。",image:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Map%20of%20Japan.svg?width=1000",credit:"Luinil / Wikimedia Commons・CC BY-SA 3.0",url:"https://commons.wikimedia.org/wiki/File:Map_of_Japan.svg"},requiredLearning:["preparation","hazard"],choices:[
 {text:"大雨・洪水",effects:{risk:1},nextSceneId:"rain1",result:"大雨・洪水について考えます。",point:"雨の量や川、土地のようすを見ながら行動を考えます。"},
 {text:"地震・津波",effects:{risk:1},nextSceneId:"quake1",result:"地震・津波について考えます。",point:"揺れや津波など、その災害に応じた情報と行動を考えます。"},
@@ -84,22 +85,22 @@ prepare:[
 ],
 action:[
 {id:"rain1",title:"大雨・洪水：雨が強くなった",text:"雨が強くなり、川の水位も上がってきました。避難を考えるため、まず何をしますか。",image:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/2026%20chiba%20flood.jpg?width=1000",credit:"Misei sen / Wikimedia Commons・CC0",url:"https://commons.wikimedia.org/wiki/File:2026_chiba_flood.jpg"},requiredLearning:["information","action"],choices:[
-{text:"雨・川・避難情報などを確認し、状況を見ながら判断する",effects:{information:1,action:1},result:"複数の情報を確認して、次の行動を考えました。",point:"雨や川の情報、自治体からの避難情報などを確認し、状況に合わせて判断します。",nextSceneId:"rain2"},
+{text:"雨・川・避難情報などを確認し、状況を見ながら判断する",effects:{information:1,action:1},result:"複数の情報を確認して、次の行動を考えました。",point:"雨や川の情報、自治体からの避難情報などを確認し、状況に合わせて判断します。", fact:"避難の情報は「警戒レベル」で伝えられます。レベル4は、全員が避難する目安です。",nextSceneId:"rain2"},
 {text:"雨がやむまで何も確認せず待つ",effects:{information:-1,action:-1},result:"状況の変化を見逃す可能性があります。",point:"災害時は新しい情報を確認しながら行動を考えます。",nextSceneId:"rain2"},
 {text:"近所の人が動くまで待つ",effects:{information:-1,action:-1},result:"自分で情報を確認するのが遅れました。",point:"周りの様子だけでなく、自分でも情報を確認します。",nextSceneId:"rain2"}
 ]},
 {id:"quake1",title:"地震・津波：強い揺れ",text:"強い地震が起きました。海に近い地域では、津波への注意も必要です。まず、どうしますか。",image:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Reaching%20Higher%20Ground-%20Kadena%20Air%20Base%20and%20Chatan%20Town%20Test%20Tsunami%20Evacuation%20Procedures%20%289950981%29.jpg?width=1000",credit:"U.S. Air Force / Wikimedia Commons・Public Domain",url:"https://commons.wikimedia.org/wiki/File:Reaching_Higher_Ground-_Kadena_Air_Base_and_Chatan_Town_Test_Tsunami_Evacuation_Procedures_(9950981).jpg"},requiredLearning:["information","action"],choices:[
-{text:"身の安全を確保し、津波などの情報を確認する",effects:{safety:1,information:1},result:"まず安全を確保し、その後の情報を確認しました。",point:"地震の後は、その地域に津波の危険があるかなど、最新の情報を確認します。",nextSceneId:"quake2"},
+{text:"身の安全を確保し、津波などの情報を確認する",effects:{safety:1,information:1},result:"まず安全を確保し、その後の情報を確認しました。",point:"地震の後は、その地域に津波の危険があるかなど、最新の情報を確認します。", fact:"津波は、川をさかのぼってくることもあります。海から離れていても注意が必要です。",nextSceneId:"quake2"},
 {text:"揺れている間に外へ急いで出る",effects:{safety:-1,action:-1},result:"周りの落下物などを確認できませんでした。",point:"強い揺れのときは、まず身の安全を確保します。",nextSceneId:"quake2"},
 {text:"揺れがおさまったので、津波の情報は見ない",effects:{information:-1,action:-1},result:"必要な情報を確認できませんでした。",point:"地震の後は、津波など二次的な危険についても情報を確認します。",nextSceneId:"quake2"}
 ]},
 {id:"volcano1",title:"火山：情報を確認する",text:"火山の活動が活発になり、避難についての情報が出ました。どうしますか。",image:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Shin-moe%20Eruption%202011%200127.jpg?width=1000",credit:"Ray_go / Wikimedia Commons・CC BY-SA 3.0",url:"https://commons.wikimedia.org/wiki/File:Shin-moe_Eruption_2011_0127.jpg"},requiredLearning:["information","action"],choices:[
-{text:"火山の状況と避難情報を確認し、地域で決められた行動を考える",effects:{information:1,action:1},result:"火山の状況と避難情報を確認しました。",point:"火山災害では、火山活動の状況や避難に関する情報を確認して行動します。",nextSceneId:"volcano2"},
+{text:"火山の状況と避難情報を確認し、地域で決められた行動を考える",effects:{information:1,action:1},result:"火山の状況と避難情報を確認しました。",point:"火山災害では、火山活動の状況や避難に関する情報を確認して行動します。", fact:"火山の災害には、噴石や火山灰、火砕流など、いくつかの種類があります。",nextSceneId:"volcano2"},
 {text:"いつもの道なら安全だと考えて動く",effects:{action:-1,safety:-1},result:"火山の状況によって危険が変わることを見落としました。",point:"災害時は最新の情報をもとに安全を考えます。",nextSceneId:"volcano2"},
 {text:"情報は見ずに様子を見る",effects:{information:-1,action:-1},result:"避難の判断が遅れる可能性があります。",point:"状況が変化する災害では、情報を確認して行動することが大切です。",nextSceneId:"volcano2"}
 ]},
 {id:"snow1",title:"大雪：安全を確かめる",text:"大雪が続き、道路や交通にも影響が出ています。どうしますか。",image:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Mount%20Ibuki%20drive-way%202011-03-16.jpg?width=1000",credit:"Alpsdake / Wikimedia Commons・CC0",url:"https://commons.wikimedia.org/wiki/File:Mount_Ibuki_drive-way_2011-03-16.jpg"},requiredLearning:["information","action"],choices:[
-{text:"雪の状況や交通情報を確認し、安全を優先して行動する",effects:{information:1,action:1,safety:1},result:"雪と交通の状況を確認し、安全を優先しました。",point:"大雪では、道路や交通の状況を確認し、無理な外出を避けるなど安全を考えます。",nextSceneId:"snow2"},
+{text:"雪の状況や交通情報を確認し、安全を優先して行動する",effects:{information:1,action:1,safety:1},result:"雪と交通の状況を確認し、安全を優先しました。",point:"大雪では、道路や交通の状況を確認し、無理な外出を避けるなど安全を考えます。", fact:"大雪では、屋根の雪下ろしの事故や、車の立ち往生などが起こります。",nextSceneId:"snow2"},
 {text:"いつも通り出かける",effects:{action:-1,safety:-1},result:"道路や交通の状況を十分に考えませんでした。",point:"大雪のときは、普段と状況が変わっていることを考えます。",nextSceneId:"snow2"},
 {text:"雪が降っているだけなので気にしない",effects:{information:-1,safety:-1},result:"交通などへの影響を見落としました。",point:"雪の量や道路の状況によって、くらしへの影響は変わります。",nextSceneId:"snow2"}
 ]},
@@ -110,7 +111,7 @@ action:[
 ],
 cooperation:[
 {id:"b5",title:"みんなで助け合う",text:"災害が起こり、地域の避難場所に人が集まりました。高齢の人や小さな子どもなど、支えが必要な人もいます。地域ではどうしますか。",image:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/374%20AW%20supports%20Big%20Rescue%20Kanagawa%202026%20%289908016%29.jpg?width=1000",credit:"U.S. Air Force / Wikimedia Commons・Public Domain",url:"https://commons.wikimedia.org/wiki/File:374_AW_supports_Big_Rescue_Kanagawa_2026_(9908016).jpg"},requiredLearning:["cooperation","life"],choices:[
-{text:"できることを分担し、困っている人を支える",effects:{cooperation:1,safety:1},result:"地域の人が役割を分担して、避難生活を支えました。",point:"災害時には、地域の人々だけでなく、自治体や関係機関なども協力して人々を支えます。"},
+{text:"できることを分担し、困っている人を支える",effects:{cooperation:1,safety:1},result:"地域の人が役割を分担して、避難生活を支えました。",point:"災害時には、地域の人々だけでなく、自治体や関係機関なども協力して人々を支えます。", fact:"大きな地震のとき、生き埋めになった人の多くは、家族や近所の人に助けられたことが分かっています。"},
 {text:"それぞれ自分のことだけを考える",effects:{cooperation:-1,safety:-1},result:"困っている人への支援が遅れました。",point:"地域で支え合うことも、災害への備えの一つです。"},
 {text:"一人の人に全部まかせる",effects:{cooperation:-1},result:"負担が一人に集中しました。",point:"役割を分担し、いろいろな人が協力することが大切です。"}
 ]}
