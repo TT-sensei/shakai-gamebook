@@ -969,3 +969,17 @@
 .title-learn-head{font-size:12.5px;color:var(--ink-soft);margin-bottom:6px;text-align:center}
 .title-learn-chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}
 .title-learn-chips span{background:#F2F5EC;border:1px solid rgba(78,124,74,.3);color:var(--paddy-dark);border-radius:999px;padding:4px 11px;font-size:12.5px;font-weight:600}
+
+/* ===== タイトル画面：タブレット最適化 ===== */
+.title-visual{flex:none}
+@media (min-width:861px){
+  .center-screen{display:grid;grid-template-columns:1.08fr .92fr;column-gap:30px;row-gap:14px;align-content:center;justify-content:stretch;text-align:left;padding:26px 34px}
+  .title-visual{grid-column:1;grid-row:1 / span 9;width:100%;max-width:610px;justify-self:center;align-self:center}
+  .center-screen>.title-label,.center-screen>.title-jp,.center-screen>.title-sub,.center-screen>.title-navi-row,.center-screen>.title-learn,.center-screen>#gb-mode,.center-screen>.primary-btn,.center-screen>.ghost-btn{grid-column:2;justify-self:stretch}
+  .center-screen>.title-label{margin-bottom:-4px}
+  .center-screen>.title-navi-row{justify-content:flex-start;margin-top:2px}
+  .title-learn{margin-top:2px}
+  .title-learn-head{text-align:left}
+  .title-learn-chips{justify-content:flex-start}
+  .center-screen>.primary-btn,.center-screen>.ghost-btn{max-width:430px}
+}
