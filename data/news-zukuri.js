@@ -108,7 +108,8 @@ const NEWS_ZUKURI_DATA = {
        ]},
       {id:"news_verify_2",title:"別の情報と比べる",text:"市役所の発表と、地域の人から聞いた話で数字が少し違っています。どうしますか？",
        requiredLearning:["multiple","source"],educationalIntent:"一つの情報だけで判断せず、複数の情報を比べて確認する。",
-       choices:[
+       material:{title:"2つの情報",kind:"voices",items:[{who:"市役所の発表",text:"公園の花壇整備には、地域の団体など約50人が参加しました。"},{who:"地域の人の話",text:"参加したのは、30人くらいだったと思います。"}]}, predict:"accuracy",
+      choices:[
         {text:"両方の情報を確認し、数字が違う理由を調べる",effects:{accuracy:1,source:1,speed:-1},result:"情報を比べることで、数字の違いがわかりました。",point:"複数の情報を比べると、事実をより確かに捉えられます。", fact:"大切な情報ほど、2つ以上の情報源で確かめる「ダブルチェック」をします。"},
         {text:"公式発表だけを見て、地域の話は無視する",effects:{accuracy:0,source:1},result:"公式情報は確認できましたが、地域の人の話を生かせませんでした。",point:"公式情報は重要ですが、現場の声も手がかりになります。役割の違う情報を比べることができます。"},
         {text:"数字が大きいほうを採用する",effects:{speed:1,accuracy:-2},result:"数字は決まりましたが、選んだ根拠がありません。",point:"数字の大きさではなく、情報の根拠を確かめて選びます。"}
@@ -117,7 +118,8 @@ const NEWS_ZUKURI_DATA = {
     select:[
       {id:"news_select_1",title:"何を記事にする？",text:"取材メモには、活動の目的、参加人数、作業内容、参加者の感想、関係のない雑談までたくさんあります。記事に必要な情報をどう選びますか？",
        requiredLearning:["selection"],educationalIntent:"集めた情報の中から、ニュースの中心に必要な情報を選ぶ。",
-       choices:[
+       material:{title:"取材メモ",kind:"list",items:["活動の目的：公園を花いっぱいにして、みんなの憩いの場にする","参加人数：約30人","作業内容：花の苗植え、草取り","参加者の感想：「孫と一緒に参加できてうれしい」","そのほかの雑談"]}, predict:"accuracy",
+      choices:[
         {text:"ニュースの中心に関係する事実を優先する",effects:{accuracy:1},result:"中心がはっきりした材料になりました。",point:"集めた情報を全部入れるのではなく、ニュースの中心に必要な情報を選びます。", fact:"限られた放送時間に収めるため、中心の事実を残し、枝葉を削る判断が必要です。"},
         {text:"面白そうな話をできるだけたくさん入れる",effects:{readability:-1},result:"情報量は増えましたが、何が大切なのかわかりにくくなりました。",point:"情報が多すぎると、伝えたいことがぼやけることがあります。"},
         {text:"自分が一番おもしろいと思った感想だけで記事を作る",effects:{accuracy:-1,ethics:-1},result:"一人の見方にかたよった記事になりました。",point:"一人の感想だけでなく、事実や複数の声を組み合わせます。"}
