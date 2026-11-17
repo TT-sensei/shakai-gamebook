@@ -3,6 +3,13 @@
  */
 const SUISAN_DATA={
 meta:{
+    startImage:"assets/title-suisan.webp",
+    stageImages:{
+      sea:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Nakahama%20Fishing%20Port%202021-07%20ac%20(1).jpg?width=1000",credit:"漁港の様子（Photo: Asturio Cantabrio, CC BY-SA 4.0）",url:"https://commons.wikimedia.org/wiki/File:Nakahama_Fishing_Port_2021-07_ac_(1).jpg"},
+      catch:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Squid-fishing%20vessels%20in%20Tsuyazaki%20Fishing%20Port.jpg?width=1000",credit:"イカ釣り漁船（Photo: STA3816, CC BY-SA 4.0）",url:"https://commons.wikimedia.org/wiki/File:Squid-fishing_vessels_in_Tsuyazaki_Fishing_Port.jpg"},
+      grow:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Sakiko%20releases%20the%20fry%20into%20the%20river.-%20Chitose%20Aquarium.%20(52114875529).jpg?width=1000",credit:"稚魚の放流（Photo: MIKI Yoshihito, CC BY 2.0）",url:"https://commons.wikimedia.org/wiki/File:Sakiko_releases_the_fry_into_the_river.-_Chitose_Aquarium._(52114875529).jpg"},
+      deliver:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Tsukiji%20fish%20market,%20Chuo%20City;%20November%202013%20(05).jpg?width=1000",credit:"魚市場のセリの様子（Photo: chee.hong, CC BY 2.0）",url:"https://commons.wikimedia.org/wiki/File:Tsukiji_fish_market,_Chuo_City;_November_2013_(05).jpg"}
+    },
  id:"suisan",
  title:"水産業ゲームブック",
  icon:"魚",

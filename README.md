@@ -64,6 +64,14 @@
 
 魚をとる・育てる・届ける営みを体験します。海の環境や魚の量、新鮮さ、効率、安全を考えながら、水産業のしくみを学びます。
 
+## 遊び方の広がり（2026-11-17追加）
+
+- 短いモード：タイトル画面で「ふつう／短い」を選べます。短いモードは突発イベントを入れず、単元の核になる場面だけを体験する10分ほどのモードです。授業の導入や復習に使えます。
+- ピンチ警告：状態が下限の手前まで下がると、結果画面で「ピンチ」の警告と立て直しの促しが出ます。
+- ふりかえりの保存：終了・ゲームオーバー画面で書いたふりかえりは端末に保存され、次に同じゲームを終えたときに「前回のふりかえり」として見返せます。
+- スタート画面：各ゲームのタイトルに、テーマに合ったナビキャラの場面イラスト（2〜3人）を大きく表示します。自動車づくりと水産業のイラストは、このゲームブック用に新規作成したものです。
+- 米づくりと水産業には、ステージごとの本物の写真（Wikimedia Commons、出典は下記）を表示します。
+
 ## 学習の記録とバッジ
 
 - プレイ回数・クリア回数は端末（localStorage）に保存され、トップページの「学習の記録」と各ゲームのカードに表示されます。
@@ -149,6 +157,27 @@
   https://commons.wikimedia.org/wiki/File:005_Chassis_dynamometer_car_testing_in_car_factory_-_Opel_Factory_in_Gliwice,_Poland_-_Rollenprüfstand.jpg
 - 出荷: Wikideas1, “Car container carrier.webp” — CC0 1.0
   https://commons.wikimedia.org/wiki/File:Car_container_carrier.webp
+
+## 米づくり・水産業のステージ写真の出典とライセンス
+
+いずれも Wikimedia Commons の画像で、ゲーム内では写真の下に撮影者とライセンスを表示し、出典ページへリンクしています。
+
+- 米づくり・春（田植え）: Marie-Sophie Mejan — CC BY 4.0
+  https://commons.wikimedia.org/wiki/File:Japan,_modern_rice_planting.jpg
+- 米づくり・夏（田んぼ）: NevinThompson — CC BY-SA 4.0
+  https://commons.wikimedia.org/wiki/File:Green_rice_fields_below_forested_hills_near_Saifuku-ji,_Tsuruga,_June_2016.jpg
+- 米づくり・秋（実り）: Sgroey — CC BY-SA 4.0
+  https://commons.wikimedia.org/wiki/File:Rice_Fields_Before_Harvest_in_Autumn_Hokkaido_Japan.jpg
+- 米づくり・収穫後（運び出し）: katorisi — CC BY 3.0
+  https://commons.wikimedia.org/wiki/File:Rice-combine-harvester%26rice-truck,katori-city,japan.JPG
+- 水産業・海を見る（漁港）: Asturio Cantabrio — CC BY-SA 4.0
+  https://commons.wikimedia.org/wiki/File:Nakahama_Fishing_Port_2021-07_ac_(1).jpg
+- 水産業・とる（イカ釣り漁船）: STA3816 — CC BY-SA 4.0
+  https://commons.wikimedia.org/wiki/File:Squid-fishing_vessels_in_Tsuyazaki_Fishing_Port.jpg
+- 水産業・海へかえす（稚魚の放流）: MIKI Yoshihito — CC BY 2.0
+  https://commons.wikimedia.org/wiki/File:Sakiko_releases_the_fry_into_the_river.-_Chitose_Aquarium._(52114875529).jpg
+- 水産業・届ける（魚市場のセリ）: chee.hong — CC BY 2.0
+  https://commons.wikimedia.org/wiki/File:Tsukiji_fish_market,_Chuo_City;_November_2013_(05).jpg
 
 ## ニュースづくりの参考資料
 

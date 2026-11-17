@@ -1,5 +1,6 @@
 const UNYU_ZUKURI_DATA={
 meta:{
+    startImage:"https://tt-sensei.github.io/navi-character-/assets/web/groups/learning/pair-learning-market-nami-riku.webp",
   id:"unyu-zukuri",
   title:"運輸・物流ゲームブック",
   icon:"🚚",

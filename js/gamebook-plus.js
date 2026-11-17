@@ -158,6 +158,48 @@
       else if(vals.some(v=>v>0)) play("correct");
     }
     if(state.phase === "sequenceResult") play("correct");
+
+    // ピンチ警告：状態が下限+1まで下がったら、結果画面で立て直しを促す
+    if(state.phase === "result"){
+      const m = data.meta.statuses || {};
+      const low = Object.keys(m).filter(k => state.status[k] <= Number(m[k].min ?? 0) + 1);
+      const main = document.querySelector("#app main");
+      if(low.length && main && !main.querySelector(".gb-pinch")){
+        const div = document.createElement("div");
+        div.className = "gb-pinch";
+        const b = document.createElement("b");
+        b.textContent = low.map(k=>m[k].label).join("・");
+        div.append("⚠ ", b, " がピンチです。このまま下がると続けられなくなります。次の判断で立て直そう。");
+        const card = main.querySelector(".result-card");
+        if(card) card.after(div); else main.appendChild(div);
+        play("near");
+      }
+    }
+
+    // ふりかえりの保存：終了・ゲームオーバー画面の文章を端末に残し、次回に前回分を見せる
+    if(state.phase === "end" || state.phase === "gameover"){
+      const ta = document.querySelector("#app textarea.reflect");
+      if(ta && !ta.dataset.gbBound){
+        ta.dataset.gbBound = "1";
+        const prev = (loadRec().games[gid] || {}).reflection;
+        if(prev && prev.text && !ta.value){
+          const note = document.createElement("div");
+          note.className = "gb-prev-reflect";
+          const head = document.createElement("b");
+          head.textContent = "前回のふりかえり（" + prev.date + "）";
+          const body = document.createElement("span");
+          body.textContent = prev.text;
+          note.append(head, document.createElement("br"), body);
+          ta.parentNode.insertBefore(note, ta);
+        }
+        ta.addEventListener("input", ()=>{
+          const r = loadRec();
+          const g2 = r.games[gid] || (r.games[gid] = { plays:0, clears:0, overs:0, last:"" });
+          g2.reflection = { text: ta.value, date: today() };
+          saveRec(r);
+        });
+      }
+    }
   }
 
   /* ---------- ゲーム画面：固定ボタン（トップへ／音） ---------- */
@@ -228,9 +270,34 @@
     if(t.closest(".primary-btn")) play("start");
     else if(t.closest(".ghost-btn")) play("click");
   });
+  /* ---------- ゲーム画面：タイトルのモード選択 ---------- */
+  function addModeSelector(){
+    const center = document.querySelector(".center-screen");
+    if(!center || document.getElementById("gb-mode")) return;
+    window.GB_SHORT_MODE = false;
+    const box = document.createElement("div");
+    box.id = "gb-mode";
+    box.innerHTML = '<div class="gb-mode-label">モードをえらぶ</div>' +
+      '<div class="gb-mode-row">' +
+      '<button type="button" class="gb-mode-btn on" data-m="normal">ふつう<small>できごともあり・20〜25分</small></button>' +
+      '<button type="button" class="gb-mode-btn" data-m="short">短い<small>核の場面だけ・10分ほど</small></button>' +
+      '</div>' +
+      '<p class="gb-mode-note">短いモードは、単元の核になる場面だけを体験します。</p>';
+    const primary = center.querySelector(".primary-btn");
+    if(primary) center.insertBefore(box, primary); else center.appendChild(box);
+    box.querySelectorAll(".gb-mode-btn").forEach(b=>{
+      b.addEventListener("click", ()=>{
+        window.GB_SHORT_MODE = b.dataset.m === "short";
+        box.querySelectorAll(".gb-mode-btn").forEach(x=>x.classList.toggle("on", x===b));
+        play("click");
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", ()=>{
     if(window.GameBook){
       addChrome();
+      addModeSelector();
       const prev = window.GameBook.onRender;
       window.GameBook.onRender = function(ctx){
         if(typeof prev === "function"){ try{ prev(ctx); }catch(e){} }

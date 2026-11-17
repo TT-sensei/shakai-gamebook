@@ -4,7 +4,13 @@
  */
 const KOME_ZUKURI_DATA = {
   meta: {
-    startImage: "https://tt-sensei.github.io/navi-character-/assets/web/groups/group-thinking.webp",
+    startImage: "https://tt-sensei.github.io/navi-character-/assets/web/groups/daily/pair-daily-riceharvest-kai-tsuki.webp",
+    stageImages:{
+      spring:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Japan,%20modern%20rice%20planting.jpg?width=1000",credit:"田植えの様子（Photo: Marie-Sophie Mejan, CC BY 4.0）",url:"https://commons.wikimedia.org/wiki/File:Japan,_modern_rice_planting.jpg"},
+      summer:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Green%20rice%20fields%20below%20forested%20hills%20near%20Saifuku-ji,%20Tsuruga,%20June%202016.jpg?width=1000",credit:"夏の田んぼ（Photo: NevinThompson, CC BY-SA 4.0）",url:"https://commons.wikimedia.org/wiki/File:Green_rice_fields_below_forested_hills_near_Saifuku-ji,_Tsuruga,_June_2016.jpg"},
+      autumn:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Rice%20Fields%20Before%20Harvest%20in%20Autumn%20Hokkaido%20Japan.jpg?width=1000",credit:"実りの秋の田んぼ（Photo: Sgroey, CC BY-SA 4.0）",url:"https://commons.wikimedia.org/wiki/File:Rice_Fields_Before_Harvest_in_Autumn_Hokkaido_Japan.jpg"},
+      post:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Rice-combine-harvester%26rice-truck,katori-city,japan.JPG?width=1000",credit:"収穫した米を運び出す様子（Photo: katorisi, CC BY 3.0）",url:"https://commons.wikimedia.org/wiki/File:Rice-combine-harvester%26rice-truck,katori-city,japan.JPG"}
+    },
     id: "kome-zukuri",
     title: "米づくりゲームブック",
     icon: "米",

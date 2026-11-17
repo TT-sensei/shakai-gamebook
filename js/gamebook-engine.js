@@ -15,7 +15,8 @@ function buildTimeline(data){
   const eventMin = Number(data.meta.eventCountMin ?? 2);
   const eventMax = Number(data.meta.eventCountMax ?? 4);
   const targetEventCount = eventMin + Math.floor(Math.random() * Math.max(1, eventMax - eventMin + 1));
-  const chosen = weightedPick(data.EVENTS, Math.min(targetEventCount, data.EVENTS.length));
+  // 短いモード（window.GB_SHORT_MODE）では突発イベントを入れず、核の場面だけにする
+  const chosen = window.GB_SHORT_MODE ? [] : weightedPick(data.EVENTS, Math.min(targetEventCount, data.EVENTS.length));
   const timeline = [];
   data.STAGE_ORDER.forEach(stageKey=>{
     const req = data.CORE_SCENES[stageKey].flatMap(s=>{

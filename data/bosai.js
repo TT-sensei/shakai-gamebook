@@ -1,5 +1,6 @@
 const BOSAI_DATA={
 meta:{
+    startImage:"https://tt-sensei.github.io/navi-character-/assets/web/groups/daily/trio-daily-drill-riku-tsuki-nami.webp",
 id:"bosai",
 title:"防災ゲームブック",
 icon:"🛡️",

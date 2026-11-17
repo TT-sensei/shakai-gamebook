@@ -4,7 +4,7 @@
  */
 const NEWS_ZUKURI_DATA = {
   meta: {
-    startImage:"https://tt-sensei.github.io/navi-character-/assets/web/groups/group-presenting.webp",
+    startImage:"https://tt-sensei.github.io/navi-character-/assets/web/groups/daily/pair-daily-broadcast-nami-sora.webp",
     id:"news-zukuri",
     title:"ニュースづくりゲームブック",
     icon:"ニュース",
