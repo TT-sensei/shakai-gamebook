@@ -47,6 +47,14 @@
 }
 @media (max-width:420px){.portal-hero{grid-template-columns:1fr}.portal-hero-character{height:100px;margin-top:6px}.edu-kit-link{display:none}}
 @media (prefers-reduced-motion:reduce){.game-card{transition:none}}
+
+.portal-hero{position:relative}
+.portal-deco{position:absolute;font-size:26px;opacity:.9;animation:gb-float 3.8s ease-in-out infinite;pointer-events:none}
+.portal-deco.pd1{top:2px;right:250px}
+.portal-deco.pd2{top:64px;right:8px;animation-delay:.8s}
+.portal-deco.pd3{bottom:16px;left:38%;animation-delay:1.4s}
+.portal-deco.pd4{top:0;left:6px;animation-delay:2s}
+@media (max-width:760px){.portal-deco{display:none}}
 </style>
 </head>
 <body>
@@ -61,6 +69,7 @@
     </header>
 
     <section class="portal-hero" aria-label="ゲームブックの遊び方">
+      <span class="portal-deco pd1" aria-hidden="true">🌾</span><span class="portal-deco pd2" aria-hidden="true">🚚</span><span class="portal-deco pd3" aria-hidden="true">📰</span><span class="portal-deco pd4" aria-hidden="true">✨</span>
       <div class="portal-hero-copy">
         <div class="portal-hero-label">LEARN THROUGH CHOICES</div>
         <p class="portal-hero-title">正解を当てるのではなく、<br>選んで、その先を体験する。</p>

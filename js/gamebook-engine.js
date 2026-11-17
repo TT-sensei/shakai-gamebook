@@ -450,6 +450,31 @@ function renderTitle(){
     <h1 class="title-jp">${GAME_DATA.meta.title}</h1>
     <p class="title-sub">${GAME_DATA.meta.lead}</p>
   `;
+  // タイトル画面の演出：浮かぶ飾り・ナビの歓迎・学べることチップ
+  const decoList = GAME_DATA.meta.titleDeco || ["✨","🌱","📚","⭐"];
+  decoList.slice(0, 4).forEach((e, i)=>{
+    const sp = document.createElement("span");
+    sp.className = "title-deco d" + (i + 1);
+    sp.textContent = e;
+    wrap.appendChild(sp);
+  });
+  const pool = Array.isArray(GAME_DATA.meta.navi) ? GAME_DATA.meta.navi : [];
+  if(pool.length){
+    const ent = pool[Math.abs(hashString(GAME_DATA.meta.id || "")) % pool.length];
+    if(ent && ent.src){
+      const row = document.createElement("div");
+      row.className = "title-navi-row";
+      row.innerHTML = '<img src="' + ent.src + '" alt=""><div class="title-navi-bubble">' + (GAME_DATA.meta.titleLine || ent.message || "いっしょに考えて、決めていこう！") + '</div>';
+      wrap.appendChild(row);
+    }
+  }
+  const learnLabels = Object.values(GAME_DATA.REQUIRED_LEARNING || {}).slice(0, 4);
+  if(learnLabels.length){
+    const learn = document.createElement("div");
+    learn.className = "title-learn";
+    learn.innerHTML = '<div class="title-learn-head">✨ こんなことを学べるよ</div><div class="title-learn-chips">' + learnLabels.map(l=>'<span>' + l + '</span>').join('') + '</div>';
+    wrap.appendChild(learn);
+  }
   const startBtn = document.createElement("button");
   startBtn.className = "primary-btn";
   startBtn.textContent = s ? "さいしょから はじめる" : "はじめる";

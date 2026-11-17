@@ -942,3 +942,30 @@
 .retry-choice-btn{display:block;margin:12px auto 0;min-height:48px;padding:10px 22px;font-size:15px;font-weight:700;border-radius:999px;border:1.5px solid var(--ink-soft);background:#fff;color:var(--ink-soft);cursor:pointer}
 .reflect-prompts{margin:8px 0 12px;padding-left:20px;font-size:14px;line-height:1.8;color:var(--ink-soft)}
 .gb-clear-btn{margin-top:14px;min-height:44px;padding:8px 18px;font-size:13.5px;border-radius:999px;border:1px solid #C9CFC2;background:#fff;color:var(--ink-soft);cursor:pointer}
+
+/* ===== タイトル画面の演出 ===== */
+.center-screen{position:relative;overflow:hidden}
+.center-screen::before,.center-screen::after{content:"";position:absolute;border-radius:50%;opacity:.55;pointer-events:none}
+.center-screen::before{width:340px;height:340px;background:radial-gradient(circle,#DCEBD2,transparent 70%);top:-90px;left:-70px;animation:gb-drift 9s ease-in-out infinite}
+.center-screen::after{width:300px;height:300px;background:radial-gradient(circle,#F6E7C8,transparent 70%);bottom:-80px;right:-60px;animation:gb-drift 11s ease-in-out infinite reverse}
+@keyframes gb-drift{0%,100%{transform:translate(0,0)}50%{transform:translate(24px,16px)}}
+.center-screen>*{position:relative;z-index:2}
+.title-deco{position:absolute;font-size:34px;opacity:.92;animation:gb-float 3.6s ease-in-out infinite;pointer-events:none;z-index:1}
+.title-deco.d1{top:8%;left:7%}
+.title-deco.d2{top:13%;right:8%;animation-delay:.7s}
+.title-deco.d3{bottom:15%;left:10%;animation-delay:1.2s}
+.title-deco.d4{bottom:10%;right:11%;animation-delay:1.7s}
+@keyframes gb-float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-13px) rotate(5deg)}}
+.title-visual{animation:gb-pop .6s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes gb-pop{from{transform:scale(.86);opacity:0}to{transform:scale(1);opacity:1}}
+.title-label{animation:gb-rise .55s .05s ease both}
+.title-jp{animation:gb-rise .55s .15s ease both}
+.title-sub{animation:gb-rise .55s .25s ease both}
+@keyframes gb-rise{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
+.title-navi-row{display:flex;align-items:flex-end;gap:10px;justify-content:center;margin-top:16px;animation:gb-rise .55s .35s ease both}
+.title-navi-row img{width:76px;height:76px;object-fit:contain}
+.title-navi-bubble{background:#fff;border:1.5px solid rgba(78,124,74,.35);border-radius:14px;padding:10px 14px;font-size:14.5px;line-height:1.6;max-width:430px;box-shadow:var(--card-shadow);text-align:left}
+.title-learn{margin-top:14px;animation:gb-rise .55s .45s ease both}
+.title-learn-head{font-size:12.5px;color:var(--ink-soft);margin-bottom:6px;text-align:center}
+.title-learn-chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}
+.title-learn-chips span{background:#F2F5EC;border:1px solid rgba(78,124,74,.3);color:var(--paddy-dark);border-radius:999px;padding:4px 11px;font-size:12.5px;font-weight:600}
