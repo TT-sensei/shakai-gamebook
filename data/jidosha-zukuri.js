@@ -85,6 +85,7 @@ planning:[
       text:"クルマづくりは、材料集めから始まります。車体の材料になる鉄は、鉄鉱石から作られます。その鉄鉱石は、どこから来るのでしょう。",
       requiredLearning:["global","logistics"],
       educationalIntent:"原材料の輸入と、貿易とのつながりを考える。",
+      material:{title:"材料は世界から",kind:"table",head:["材料","主な産地"],rows:[["鉄鉱石","オーストラリア・ブラジル"],["ゴム","東南アジア"],["石油（プラスチックの原料）","中東など"]],note:"材料は、大きな船で何週間もかけて日本へ運ばれます。"}, predict:"cooperation",
       choices:[
         {text:"オーストラリアなど外国の鉱山から、大きな船で運ばれてくる", effects:{cooperation:1,efficiency:0},
          result:"日本は鉄鉱石をほとんど輸入しています。船で何週間もかけて運ばれ、製鉄所で鉄になります。",
@@ -126,7 +127,8 @@ painting:[
 ]}
 ],
 assembly:[
-{id:"j6",title:"必要な部品をそろえる",text:"組立ラインには、注文に合わせて部品を届けます。一台ごとにちがう部品を取りつけます。",requiredLearning:["division","technology","quality"],educationalIntent:"組立では、必要な部品を必要なときにそろえる工夫があることを知る。",choices:[
+{id:"j6",title:"必要な部品をそろえる",text:"組立ラインには、注文に合わせて部品を届けます。一台ごとにちがう部品を取りつけます。",requiredLearning:["division","technology","quality"],educationalIntent:"組立では、必要な部品を必要なときにそろえる工夫があることを知る。",material:{title:"部品の数と届け方",kind:"stats",items:[{value:"約3万点",label:"クルマ1台の部品の数"},{value:"必要なとき・必要な量だけ",label:"ジャストインタイム"}],note:"部品が多すぎると置き場所や費用がかかり、足りないとラインが止まってしまいます。"}, predict:"efficiency",
+      choices:[
 {text:"一台分の部品をあらかじめそろえて届ける",effects:{quality:1,efficiency:1,cooperation:1},result:"必要な部品がすぐ使えるようになり、取り付け作業に集中できました。",point:"必要な部品を必要なときに届ける工夫があります。", fact:"必要な部品を、必要なときに、必要な量だけ届ける工夫は「ジャストインタイム」と呼ばれます。"},
 {text:"作業する人がその都度部品を探す",effects:{efficiency:-1,quality:-1},result:"部品を探す時間が増え、取り付け間違いにも注意が必要になりました。",point:"部品をあらかじめそろえることで、作業のむだを減らせます。"},
 {text:"たくさんの部品を近くに置いておく",effects:{efficiency:-1},result:"選べる部品は増えましたが、必要な部品を探す手間が増えました。",point:"部品は多ければよいのではなく、必要なものを必要なときに用意する工夫があります。"}

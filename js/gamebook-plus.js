@@ -8,7 +8,9 @@
   "use strict";
   const REC_KEY = "shakaiGamebook.records.v1";
   const SET_KEY = "shakaiGamebook.settings.v1";
-  const COUNT_KEY = "gbplus.counted.v1";
+  const COUNT_KEY = "gbplus.counted.v2";
+  const RUN_KEY = "gbplus.run.v2";
+  const REFL_KEY = "gbplus.reflect.v1";
   const GAMES = [
     { id: "kome-zukuri",    name: "米づくり",     page: "kome-zukuri.html" },
     { id: "jidosha-zukuri", name: "自動車づくり", page: "jidosha-zukuri.html" },
@@ -21,8 +23,18 @@
 
   /* ---------- 記録と設定 ---------- */
   function loadRec(){
-    try{ const r = JSON.parse(localStorage.getItem(REC_KEY)); if(r && r.games && r.badges) return r; }catch(e){}
-    return { games:{}, badges:{} };
+    try{
+      const r = JSON.parse(localStorage.getItem(REC_KEY));
+      if(r && r.games && r.badges){
+        // v2移行：自由記述の振り返りは端末に残さない（セッション内だけに変更）
+        let dirty = r.version !== 2;
+        Object.keys(r.games).forEach(k=>{ const g = r.games[k]; if(g && g.reflection){ delete g.reflection; dirty = true; } });
+        r.version = 2;
+        if(dirty) saveRec(r);
+        return r;
+      }
+    }catch(e){}
+    return { version: 2, games:{}, badges:{} };
   }
   function saveRec(r){ try{ localStorage.setItem(REC_KEY, JSON.stringify(r)); }catch(e){} }
   function loadSet(){
@@ -34,7 +46,11 @@
     try{ return JSON.parse(sessionStorage.getItem(COUNT_KEY)) || {}; }catch(e){ return {}; }
   }
   function saveCounted(c){ try{ sessionStorage.setItem(COUNT_KEY, JSON.stringify(c)); }catch(e){} }
-  const today = () => new Date().toISOString().slice(0,10);
+  function loadRuns(){ try{ return JSON.parse(sessionStorage.getItem(RUN_KEY)) || {}; }catch(e){ return {}; } }
+  function saveRuns(r){ try{ sessionStorage.setItem(RUN_KEY, JSON.stringify(r)); }catch(e){} }
+  function loadRefl(){ try{ return JSON.parse(sessionStorage.getItem(REFL_KEY)) || {}; }catch(e){ return {}; } }
+  function saveRefl(r){ try{ sessionStorage.setItem(REFL_KEY, JSON.stringify(r)); }catch(e){} }
+  const today = () => { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0"); };
 
   /* ---------- 音（sounds-recipe-） ---------- */
   let ac = null, sndMod = null;
@@ -81,16 +97,18 @@
       defs.push({ id: "clear-" + g.id,  name: "🏅 " + g.name + " クリア", earned: !!rec.badges["clear-" + g.id] });
       defs.push({ id: "master-" + g.id, name: "🌟 " + g.name + " マスター（3回クリア）", earned: !!rec.badges["master-" + g.id] });
     });
+    GAMES.forEach(g=>{ defs.push({ id: "thinker-" + g.id, name: "🔍 " + g.name + " の視点マスター", earned: !!rec.badges["thinker-" + g.id] }); });
     defs.push({ id: "all-clear", name: "👑 全ゲーム制覇", earned: !!rec.badges["all-clear"] });
     defs.push({ id: "plays-10",  name: "📚 10回プレイ", earned: !!rec.badges["plays-10"] });
     return defs;
   }
-  function checkBadges(rec, gid){
+  function checkBadges(rec, gid, coverage){
     const newly = [];
     const g = rec.games[gid] || { plays:0, clears:0, overs:0 };
     const award = id => { if(!rec.badges[id]){ rec.badges[id] = today(); newly.push(id); } };
     if(g.clears >= 1) award("clear-" + gid);
     if(g.clears >= 3) award("master-" + gid);
+    if(typeof coverage === "number" && coverage >= 0.8) award("thinker-" + gid);
     if(GAMES.every(x => (rec.games[x.id]||{}).clears >= 1)) award("all-clear");
     const totalPlays = GAMES.reduce((n,x)=> n + ((rec.games[x.id]||{}).plays||0), 0);
     if(totalPlays >= 10) award("plays-10");
@@ -117,8 +135,16 @@
   }
 
   /* ---------- ゲーム画面：エンジンへのフック ---------- */
-  function tokenOf(state){
-    return state && state.timeline ? state.timeline.map(s=>s.id).join("|") : "";
+  function coverageOf(data, state){
+    const total = Object.keys(data.REQUIRED_LEARNING || {}).length;
+    if(!total || !state || !state.log) return 0;
+    const keys = new Set();
+    state.log.forEach(item=>{
+      (item.sceneLearning || []).forEach(k=>keys.add(k));
+      const scene = data.CORE_SCENES && data.CORE_SCENES[item.stage] ? data.CORE_SCENES[item.stage].find(x=>x.id===item.id) : null;
+      if(scene && scene.requiredLearning) scene.requiredLearning.forEach(k=>keys.add(k));
+    });
+    return keys.size / total;
   }
   function handleRender(ctx){
     const data = ctx && ctx.data, state = ctx && ctx.state;
@@ -126,7 +152,19 @@
     const gid = data.meta && data.meta.id;
     if(!gid) return;
     const counted = loadCounted();
-    const tok = tokenOf(state);
+    const runs = loadRuns();
+    let run = runs[gid];
+    const fresh = state.phase === "scene" && state.index === 0 && (!state.log || state.log.length === 0);
+    if(fresh && (!run || run.done)){
+      run = { id: gid + "-" + Date.now().toString(36) + Math.floor(Math.random()*1e5).toString(36), done: false };
+      runs[gid] = run; saveRuns(runs);
+    }
+    if(!run){
+      // 別タブで途中再開した場合：このランではプレイ数を数えない
+      run = { id: "resumed-" + gid, done: false };
+      runs[gid] = run; saveRuns(runs);
+    }
+    const tok = run.id;
     const c = counted[tok] || {};
     const rec = loadRec();
     const g = rec.games[gid] || (rec.games[gid] = { plays:0, clears:0, overs:0, last:"" });
@@ -138,7 +176,8 @@
     if(state.phase === "end" && !c.clear){
       g.clears++; c.clear = true; changed = true;
       g.last = today();
-      const newly = checkBadges(rec, gid);
+      run.done = true; saveRuns(runs);
+      const newly = checkBadges(rec, gid, coverageOf(data, state));
       saveRec(rec);
       if(newly.length) showBadgeAward(newly);
       play("allclear");
@@ -147,6 +186,7 @@
     }
     if(state.phase === "gameover" && !c.over){
       g.overs++; c.over = true; changed = true;
+      run.done = true; saveRuns(runs);
       play("softFail");
     }
     if(changed){ g.last = g.last || today(); saveRec(rec); }
@@ -176,27 +216,26 @@
       }
     }
 
-    // ふりかえりの保存：終了・ゲームオーバー画面の文章を端末に残し、次回に前回分を見せる
+    // ふりかえり：自由記述は端末に残さず、このタブを開いている間だけ保持する（共有タブレット配慮）
     if(state.phase === "end" || state.phase === "gameover"){
       const ta = document.querySelector("#app textarea.reflect");
       if(ta && !ta.dataset.gbBound){
         ta.dataset.gbBound = "1";
-        const prev = (loadRec().games[gid] || {}).reflection;
+        const prev = loadRefl()[gid];
         if(prev && prev.text && !ta.value){
           const note = document.createElement("div");
           note.className = "gb-prev-reflect";
           const head = document.createElement("b");
-          head.textContent = "前回のふりかえり（" + prev.date + "）";
+          head.textContent = "さっきのふりかえり";
           const body = document.createElement("span");
           body.textContent = prev.text;
           note.append(head, document.createElement("br"), body);
           ta.parentNode.insertBefore(note, ta);
         }
         ta.addEventListener("input", ()=>{
-          const r = loadRec();
-          const g2 = r.games[gid] || (r.games[gid] = { plays:0, clears:0, overs:0, last:"" });
-          g2.reflection = { text: ta.value, date: today() };
-          saveRec(r);
+          const r = loadRefl();
+          r[gid] = { text: ta.value, date: today() };
+          saveRefl(r);
         });
       }
     }
@@ -261,6 +300,20 @@
       }
     }
     box.innerHTML = html;
+    if(totalPlays > 0){
+      const clearBtn = document.createElement("button");
+      clearBtn.type = "button";
+      clearBtn.className = "gb-clear-btn";
+      clearBtn.textContent = "記録を消す";
+      clearBtn.addEventListener("click", ()=>{
+        if(!window.confirm("学習の記録とバッジを消します。よろしいですか？")) return;
+        try{ localStorage.removeItem(REC_KEY); }catch(e){}
+        try{ sessionStorage.removeItem(REFL_KEY); }catch(e){}
+        document.querySelectorAll(".card-record").forEach(el=>el.remove());
+        renderTop();
+      });
+      box.appendChild(clearBtn);
+    }
   }
 
   /* ---------- 起動 ---------- */

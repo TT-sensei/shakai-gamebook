@@ -12,7 +12,7 @@ statusTitle:"今回の防災計画",
 flowTitle:"防災の流れ",
 flowStages:[{label:"知る"},{label:"備える"},{label:"行動する"},{label:"助け合う"}],
 gameOverOnZero:true,
-gameOverTitle:"このままでは助からない！",
+gameOverTitle:"安全を守るために、判断を見直そう",
 gameOverText:"今の判断を続けると、安全を守れません。この災害では、どの判断を変えればよかったかを考えて、もう一度やり直してみよう。",
 gameOverRetryText:"もう一度考える",
 eventCountMin:0,
@@ -75,7 +75,8 @@ prepare:[
 {text:"災害が起きたら、そのときに探す",effects:{risk:-1,action:-1},result:"いざというときに迷う可能性があります。",point:"避難場所や安全な道は、災害が起こる前に確認しておくことが大切です。"},
 {text:"施設があるから、自分では何も準備しない",effects:{risk:-1},result:"施設だけでは対応できないことがあります。",point:"地域の施設と一人一人の備えを組み合わせて考えます。"}
 ]},
-{id:"b_machi",title:"まちを守る仕組み",text:"私たちのまちは、国や自治体の仕組みにも守られています。川の堤防やダム、土砂災害を防ぐ砂防えん堤、危険な場所を知らせるハザードマップなどです。どんなことを知っておきますか。",image:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/An%20example%20of%20a%20tsunami%20hazard%20map%20Miyako%20City%20Iwate%20Prefecture.jpg?width=1000",credit:"Miyako City / Wikimedia Commons・CC BY 3.0 IGO",url:"https://commons.wikimedia.org/wiki/File:An_example_of_a_tsunami_hazard_map_Miyako_City_Iwate_Prefecture.jpg"},requiredLearning:["preparation","information","cooperation"],choices:[{text:"ハザードマップで、自分のまちの危険な場所と避難場所を確認する",effects:{risk:1,information:1},result:"まちの仕組みと自分の備えがつながりました。いざというときの判断に役立ちます。",point:"ハザードマップは自治体が作り、危険な場所や避難場所を知らせています。",fact:"ダムには、大雨のときに水をためて、下流の洪水を防ぐ働きがあります。"},{text:"施設があるから、自分は何もしなくてよいと考える",effects:{risk:-1,information:0},result:"施設だけでは守りきれない場合もあります。自分の備えも必要です。",point:"国や自治体の備えと、一人ひとりの備えの両方が大切です。"},{text:"気象庁の警報や注意報の意味を調べる",effects:{information:1,risk:0},result:"警報の意味が分かると、災害のときに早く行動できます。",point:"気象庁は、天気の観測をもとに、警報や注意報を発表しています。"}]},
+{id:"b_machi",title:"まちを守る仕組み",text:"私たちのまちは、国や自治体の仕組みにも守られています。川の堤防やダム、土砂災害を防ぐ砂防えん堤、危険な場所を知らせるハザードマップなどです。どんなことを知っておきますか。",image:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/An%20example%20of%20a%20tsunami%20hazard%20map%20Miyako%20City%20Iwate%20Prefecture.jpg?width=1000",credit:"Miyako City / Wikimedia Commons・CC BY 3.0 IGO",url:"https://commons.wikimedia.org/wiki/File:An_example_of_a_tsunami_hazard_map_Miyako_City_Iwate_Prefecture.jpg"},requiredLearning:["preparation","information","cooperation"],material:{title:"警戒レベルの意味",kind:"table",head:["レベル","意味"],rows:[["3","高齢の人などは、避難を始める"],["4","危険な場所にいる人は、全員避難"],["5","命の危険が迫っている。直ちに安全な場所へ"]],note:"警戒レベルは、気象庁などの情報をもとに、市町村から出されます。"}, predict:"risk",
+      choices:[{text:"ハザードマップで、自分のまちの危険な場所と避難場所を確認する",effects:{risk:1,information:1},result:"まちの仕組みと自分の備えがつながりました。いざというときの判断に役立ちます。",point:"ハザードマップは自治体が作り、危険な場所や避難場所を知らせています。",fact:"ダムには、大雨のときに水をためて、下流の洪水を防ぐ働きがあります。"},{text:"施設があるから、自分は何もしなくてよいと考える",effects:{risk:-1,information:0},result:"施設だけでは守りきれない場合もあります。自分の備えも必要です。",point:"国や自治体の備えと、一人ひとりの備えの両方が大切です。"},{text:"気象庁の警報や注意報の意味を調べる",effects:{information:1,risk:0},result:"警報の意味が分かると、災害のときに早く行動できます。",point:"気象庁は、天気の観測をもとに、警報や注意報を発表しています。"}]},
 {id:"b4",title:"どの災害に備える？",text:"ここからは、実際の災害を一つ選んで考えてみます。災害によって、必要な情報や行動は変わります。どれを体験しますか。",image:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/Map%20of%20Japan.svg?width=1000",credit:"Luinil / Wikimedia Commons・CC BY-SA 3.0",url:"https://commons.wikimedia.org/wiki/File:Map_of_Japan.svg"},requiredLearning:["preparation","hazard"],choices:[
 {text:"大雨・洪水",effects:{risk:1},nextSceneId:"rain1",result:"大雨・洪水について考えます。",point:"雨の量や川、土地のようすを見ながら行動を考えます。"},
 {text:"地震・津波",effects:{risk:1},nextSceneId:"quake1",result:"地震・津波について考えます。",point:"揺れや津波など、その災害に応じた情報と行動を考えます。"},
@@ -84,8 +85,9 @@ prepare:[
 ]}
 ],
 action:[
-{id:"rain1",title:"大雨・洪水：雨が強くなった",text:"雨が強くなり、川の水位も上がってきました。避難を考えるため、まず何をしますか。",image:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/2026%20chiba%20flood.jpg?width=1000",credit:"Misei sen / Wikimedia Commons・CC0",url:"https://commons.wikimedia.org/wiki/File:2026_chiba_flood.jpg"},requiredLearning:["information","action"],choices:[
-{text:"雨・川・避難情報などを確認し、状況を見ながら判断する",effects:{information:1,action:1},result:"複数の情報を確認して、次の行動を考えました。",point:"雨や川の情報、自治体からの避難情報などを確認し、状況に合わせて判断します。", fact:"避難の情報は「警戒レベル」で伝えられます。レベル4は、全員が避難する目安です。",nextSceneId:"rain2"},
+{id:"rain1",title:"大雨・洪水：雨が強くなった",text:"雨が強くなり、川の水位も上がってきました。避難を考えるため、まず何をしますか。",image:{src:"https://commons.wikimedia.org/wiki/Special:FilePath/2026%20chiba%20flood.jpg?width=1000",credit:"Misei sen / Wikimedia Commons・CC0",url:"https://commons.wikimedia.org/wiki/File:2026_chiba_flood.jpg"},requiredLearning:["information","action"],material:{title:"雨と川の様子",kind:"stats",items:[{value:"45mm",label:"1時間の雨量（非常に激しい雨）"},{value:"避難判断水位を超えた",label:"近くの川の水位"}]}, predict:"action",
+      choices:[
+{text:"雨・川・避難情報などを確認し、状況を見ながら判断する",effects:{information:1,action:1},result:"複数の情報を確認して、次の行動を考えました。",point:"雨や川の情報、自治体からの避難情報などを確認し、状況に合わせて判断します。", fact:"避難の情報は「警戒レベル」で伝えられます。レベル4では、対象地域の危険な場所にいる人は、全員避難が目安です。",nextSceneId:"rain2"},
 {text:"雨がやむまで何も確認せず待つ",effects:{information:-1,action:-1},result:"状況の変化を見逃す可能性があります。",point:"災害時は新しい情報を確認しながら行動を考えます。",nextSceneId:"rain2"},
 {text:"近所の人が動くまで待つ",effects:{information:-1,action:-1},result:"自分で情報を確認するのが遅れました。",point:"周りの様子だけでなく、自分でも情報を確認します。",nextSceneId:"rain2"}
 ]},

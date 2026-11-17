@@ -4,6 +4,15 @@
 const SAVE_KEY_PREFIX = "shakai_gamebook_save_v1_";
 let SAVE_KEY = SAVE_KEY_PREFIX + "default";
 
+function shuffle(arr){
+  const a = [...arr];
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
 function weightedPick(pool, n){
   // 重み付き非復元抽出（Math.random()^(1/weight) トリック）
   const scored = pool.map(e => ({e, score: Math.pow(Math.random(), 1/e.weight)}));
@@ -20,18 +29,18 @@ function buildTimeline(data){
   const timeline = [];
   data.STAGE_ORDER.forEach(stageKey=>{
     const req = data.CORE_SCENES[stageKey].flatMap(s=>{
-      const core = {...s, kind:"core", stage:stageKey, choices:[...(s.choices||[])].sort(()=>Math.random()-0.5)};
+      const core = {...s, kind:"core", stage:stageKey, choices:shuffle(s.choices||[])};
       const flow = data.FLOW_CHECKPOINTS && data.FLOW_CHECKPOINTS.find(f=>f.afterId===s.id);
       if(flow){
-        const sequence = {...flow, kind:"sequence", stage:stageKey, choices:[...flow.choices].sort(()=>Math.random()-0.5)};
+        const sequence = {...flow, kind:"sequence", stage:stageKey, choices:shuffle(flow.choices)};
         return [core, sequence];
       }
       return [core];
     });
     const evs = chosen.filter(e=>e.stages.includes(stageKey)).map(e=>({
       id:e.id+"_"+stageKey, kind:"event", stage:stageKey,
-      title:e.title, text:e.text, choices:[...(e.choices||[])].sort(()=>Math.random()-0.5), image:e.image,
-      requiredLearning:e.requiredLearning, educationalIntent:e.educationalIntent,
+      title:e.title, text:e.text, choices:shuffle(e.choices||[]), image:e.image,
+      requiredLearning:e.requiredLearning, educationalIntent:e.educationalIntent, material:e.material, predict:e.predict,
       eventName:e.name
     }));
     const merged = [];
@@ -53,6 +62,7 @@ let GAME_DATA = null; // {meta, timeline, index, log:[], phase:'scene'|'result'|
 function saveState(){
   try{
     localStorage.setItem(SAVE_KEY, JSON.stringify({
+      version: 2,
       timelineIds: state.timeline.map(s=>s.id),
       timelineData: state.timeline,
       gameId: GAME_DATA.meta.id,
@@ -64,7 +74,8 @@ function saveState(){
       phase: state.phase,
       lastChoice: state.lastChoice,
       sequenceFeedback: state.sequenceFeedback || null,
-      nextSceneId: state.nextSceneId || null
+      nextSceneId: state.nextSceneId || null,
+      prediction: state.prediction || null
     }));
   }catch(e){ /* 保存できなくてもゲームは続行 */ }
 }
@@ -99,7 +110,7 @@ function applyEffects(effects){const m=statusMeta();Object.keys(m).forEach(k=>{c
 function failedStatus(){if(GAME_DATA.meta.gameOverOnZero===false)return null;const m=statusMeta();return Object.keys(m).find(k=>state.status[k]<=Number(m[k].min??0))||null;}
 function startNewGame(){
   const pool = GAME_DATA.meta.navi || [];
-  const naviMap = pool.map((_,i)=>i).sort(()=>Math.random()-0.5);
+  const naviMap = shuffle(pool.map((_,i)=>i));
   state={timeline:buildTimeline(GAME_DATA),index:0,log:[],phase:"scene",status:initialStatus(),lastChoice:null,failedStatus:null,naviMap};
   saveState();render();
 }
@@ -107,7 +118,7 @@ function resumeGame(){
   const s = loadSave();
   if(!s){ startNewGame(); return; }
   if(s.gameId && s.gameId !== GAME_DATA.meta.id) { startNewGame(); return; }
-  state={timeline:s.timelineData,index:s.index,log:s.log,phase:s.phase||"scene",lastChoice:s.lastChoice||null,status:s.status||initialStatus(),failedStatus:s.failedStatus||null,naviMap:s.naviMap||null,sequenceFeedback:s.sequenceFeedback||null,nextSceneId:s.nextSceneId||null};
+  state={timeline:s.timelineData,index:s.index,log:s.log,phase:s.phase||"scene",lastChoice:s.lastChoice||null,status:s.status||initialStatus(),failedStatus:s.failedStatus||null,naviMap:s.naviMap||null,sequenceFeedback:s.sequenceFeedback||null,nextSceneId:s.nextSceneId||null,prediction:s.prediction||null};
   render();
 }
 
@@ -135,7 +146,21 @@ function chooseOption(choiceIndex){
   state.phase="result";saveState();render();
 }
 
+function retryChoice(){
+  const last = state.log[state.log.length - 1];
+  if(!last) return;
+  state.status = { ...last.before };
+  state.log.pop();
+  state.lastChoice = null;
+  state.failedStatus = null;
+  state.nextSceneId = null;
+  state.prediction = null;
+  state.phase = "scene";
+  saveState(); render();
+}
+
 function goNext(){
+  state.prediction = null;
   if(state.failedStatus && GAME_DATA.meta.gameOverOnZero!==false){state.phase="gameover";clearSave();render();return;}
   if(state.nextSceneId){
     const target=state.timeline.findIndex(s=>s.id===state.nextSceneId);
@@ -207,6 +232,60 @@ function renderSceneImage(scene){
   return '<figure class="scene-image"><img src="'+image.src+'" alt="" loading="eager"><figcaption>'+credit+source+'</figcaption></figure>';
 }
 
+function renderMaterial(mat){
+  const box = document.createElement("div");
+  box.className = "material-card";
+  let html = '<div class="material-head">📊 資料：' + (mat.title || "資料") + '</div>';
+  if(mat.kind === "table"){
+    html += '<table class="material-table"><thead><tr>' + (mat.head||[]).map(h=>'<th>'+h+'</th>').join('') + '</tr></thead><tbody>' +
+      (mat.rows||[]).map(r=>'<tr>' + r.map((c,i)=> (i===0 ? '<th>'+c+'</th>' : '<td>'+c+'</td>')).join('') + '</tr>').join('') + '</tbody></table>';
+  } else if(mat.kind === "stats"){
+    html += '<div class="material-stats">' + (mat.items||[]).map(it=>'<div class="material-stat"><div class="material-stat-value">'+it.value+'</div><div class="material-stat-label">'+it.label+'</div></div>').join('') + '</div>';
+  } else if(mat.kind === "voices"){
+    html += '<div class="material-voices">' + (mat.items||[]).map(it=>'<div class="material-voice"><span class="material-who">'+it.who+'</span><p>'+it.text+'</p></div>').join('') + '</div>';
+  } else if(mat.kind === "list"){
+    html += '<ul class="material-list">' + (mat.items||[]).map(t=>'<li>'+t+'</li>').join('') + '</ul>';
+  } else if(mat.kind === "photo" && mat.image){
+    html += '<figure class="scene-image"><img src="'+mat.image.src+'" alt=""><figcaption>' + (mat.image.credit ? '<span>'+mat.image.credit+'</span>' : '') + (mat.image.url ? ' <a href="'+mat.image.url+'" target="_blank" rel="noopener">出典・ライセンス</a>' : '') + '</figcaption></figure>';
+  }
+  if(mat.note) html += '<p class="material-note">' + mat.note + '</p>';
+  box.innerHTML = html;
+  return box;
+}
+
+function renderPredict(scene){
+  const m = statusMeta();
+  const label = (m[scene.predict] && m[scene.predict].label) || scene.predict;
+  const box = document.createElement("div");
+  box.className = "predict-card";
+  box.innerHTML = '<p class="predict-q">まず予想しよう。この判断で、<b>' + label + '</b> はどうなると思う？</p>';
+  const row = document.createElement("div");
+  row.className = "predict-btns";
+  [["up","よくなる"],["same","かわらない"],["down","むずかしくなる"]].forEach(function(pair){
+    const b = document.createElement("button");
+    b.className = "predict-btn";
+    b.textContent = pair[1];
+    b.onclick = function(){ state.prediction = { index: state.index, key: scene.predict, dir: pair[0] }; saveState(); render(); };
+    row.appendChild(b);
+  });
+  box.appendChild(row);
+  return box;
+}
+
+function renderPredictCompare(){
+  const pred = state.prediction, c = state.lastChoice;
+  if(!pred || !c || pred.index !== state.index) return "";
+  const m = statusMeta();
+  const label = (m[pred.key] && m[pred.key].label) || pred.key;
+  const d = (c.after[pred.key] ?? 0) - (c.before[pred.key] ?? 0);
+  const actual = d > 0 ? "up" : d < 0 ? "down" : "same";
+  const names = { up: "よくなった", same: "かわらなかった", down: "むずかしくなった" };
+  const predNames = { up: "よくなる", same: "かわらない", down: "むずかしくなる" };
+  const match = actual === pred.dir;
+  return '<div class="predict-compare ' + (match ? "good" : "diff") + '"><h3>予想と結果</h3><p>予想：' + label + 'は「' + predNames[pred.dir] + '」 → 結果：「' + names[actual] + '」。' +
+    (match ? "予想どおり！ どうしてそうなったか、ポイントで確かめよう。" : "予想とちがったね。どこが予想とちがったか、結果とポイントで確かめよう。") + '</p></div>';
+}
+
 function render(){
   app.innerHTML = "";
   if(!state){ renderTitle(); return; }
@@ -253,16 +332,22 @@ function render(){
       ${scene.kind==="sequence" && state.sequenceFeedback && !state.sequenceFeedback.correct ? `<div class="sequence-hint">${state.sequenceFeedback.text}</div>` : ""}`;
     main.appendChild(card);
 
-    const choices = document.createElement("div");
-    choices.className = "choices";
-    scene.choices.forEach((c,i)=>{
-      const btn = document.createElement("button");
-      btn.className = "choice-btn";
-      btn.innerHTML = `<span class="num">${i+1}</span>${c.text}`;
-      btn.onclick = ()=>chooseOption(i);
-      choices.appendChild(btn);
-    });
-    main.appendChild(choices);
+    if(scene.material) main.appendChild(renderMaterial(scene.material));
+    const needPredict = scene.predict && !(state.prediction && state.prediction.index === state.index);
+    if(needPredict){
+      main.appendChild(renderPredict(scene));
+    } else {
+      const choices = document.createElement("div");
+      choices.className = "choices";
+      scene.choices.forEach((c,i)=>{
+        const btn = document.createElement("button");
+        btn.className = "choice-btn";
+        btn.innerHTML = `<span class="num">${i+1}</span>${c.text}`;
+        btn.onclick = ()=>chooseOption(i);
+        choices.appendChild(btn);
+      });
+      main.appendChild(choices);
+    }
   }
 
   if(state.phase==="sequenceResult"){
@@ -309,6 +394,7 @@ function render(){
         <p>${c.point || "この選択によって、別の結果や課題が生まれました。"}</p>
       </div>
       ${c.fact ? `<div class="fact-block"><p>${c.fact}</p></div>` : ""}
+      ${renderPredictCompare()}
     `;
     main.appendChild(card);
 
@@ -317,6 +403,11 @@ function render(){
     nextBtn.textContent = "つぎへ";
     nextBtn.onclick = goNext;
     main.appendChild(nextBtn);
+    const retryBtn = document.createElement("button");
+    retryBtn.className = "retry-choice-btn";
+    retryBtn.textContent = "↩ 別の選択を試す";
+    retryBtn.onclick = retryChoice;
+    main.appendChild(retryBtn);
   }
 
   app.appendChild(main);
@@ -330,7 +421,7 @@ function render(){
 
 function renderStatus(final=false){
   const m=statusMeta(),box=document.createElement("div");box.className="status-panel"+(final?" final-status-panel":"");
-  box.innerHTML='<div class="status-title">'+(GAME_DATA.meta.statusTitle||GAME_DATA.meta.title)+'</div><div class="status-grid">'+Object.keys(m).map(k=>{const x=m[k],v=state.status[k],n=Math.max(1,Number(x.max??5)-Number(x.min??0));return '<div class="status-item"><div class="status-label">'+x.label+'</div><div class="status-bars">'+Array.from({length:n},(_,i)=>'<span class="status-dot '+(i<(v-Number(x.min??0))?'on':'')+'"></span>').join('')+'</div></div>';}).join('')+'</div>';return box;
+  box.innerHTML='<div class="status-title">'+(GAME_DATA.meta.statusTitle||GAME_DATA.meta.title)+'</div><div class="status-grid">'+Object.keys(m).map(k=>{const x=m[k],v=state.status[k],n=Math.max(1,Number(x.max??5)-Number(x.min??0));return '<div class="status-item"><div class="status-label">'+x.label+'</div><div class="status-bars">'+Array.from({length:n},(_,i)=>'<span class="status-dot '+(i<(v-Number(x.min??0))?'on':'')+'"></span>').join('')+'</div></div>';}).join('')+'</div>';const note=document.createElement("div");note.className="status-note";note.textContent="メーターは、仕事で大切な視点を表す学習用のモデルです。";box.appendChild(note);return box;
 }
 function renderEffectSummary(effects){
   if(!effects)return '';
@@ -345,6 +436,7 @@ function renderGameOver(){
   card.innerHTML='<div class="gameover-mark">番組はここで終了</div><h2>'+(GAME_DATA.meta.gameOverTitle||((failed&&failed.label)?failed.label+" が0になりました":"ゲームオーバー"))+'</h2><p>'+(GAME_DATA.meta.gameOverText||"大切な判断を見直して、もう一度挑戦してみよう。")+'</p><div class="status-final">'+Object.keys(statusMeta()).map(k=>'<div><b>'+statusMeta()[k].label+'</b><strong>'+state.status[k]+'</strong></div>').join('')+'</div>';
   main.appendChild(card);
   const reflect=document.createElement("div");reflect.className="scene-card";reflect.innerHTML='<p class="reflect-q">どの判断が、この結果につながったと思いますか？</p><textarea class="reflect" placeholder="学びノートに書いてみよう。"></textarea>';main.appendChild(reflect);
+  if(state.log && state.log.length){ const rc=document.createElement("button");rc.className="retry-choice-btn";rc.textContent="↩ 直前の判断を選び直す";rc.onclick=retryChoice;main.appendChild(rc); }
   const retry=document.createElement("button");retry.className="next-btn";retry.textContent=GAME_DATA.meta.gameOverRetryText||"もう一度挑戦する";retry.onclick=startNewGame;main.appendChild(retry);app.appendChild(main);
 }
 
@@ -385,7 +477,7 @@ function renderEnding(){
 
   const flow = document.createElement("div");
   flow.className="ending-flow";
-  flow.innerHTML="<div class=\"ending-flow-title\">"+(GAME_DATA.meta.flowTitle||"学習の流れ")+"</div><div class=\"ending-flow-line\">"+GAME_DATA.STAGE_ORDER.flatMap(k=>GAME_DATA.CORE_SCENES[k]||[]).map((s,i)=>`<span>${i+1}. ${s.title}</span>`).join("<b>→</b>")+"</div><p>"+(GAME_DATA.meta.endingNote||"")+"</p>";
+  flow.innerHTML="<div class=\"ending-flow-title\">"+(GAME_DATA.meta.flowTitle||"学習の流れ")+"</div><div class=\"ending-flow-line\">"+(()=>{ const seen=new Set(), titles=[]; state.log.forEach(l=>{ if(l.kind==="core" && !seen.has(l.id)){ seen.add(l.id); titles.push(l.title); } }); const arr = titles.length ? titles : GAME_DATA.STAGE_ORDER.flatMap(k=>GAME_DATA.CORE_SCENES[k]||[]).map(x=>x.title); return arr.map((t,i)=>`<span>${i+1}. ${t}</span>`).join("<b>→</b>"); })()+"</div><p>"+(GAME_DATA.meta.endingNote||"")+"</p>";
   main.appendChild(flow);
 
   const summary = document.createElement("div");
@@ -446,6 +538,11 @@ function renderEnding(){
   reflectCard.className = "scene-card";
   reflectCard.innerHTML = `
     <p class="reflect-q">一番迷った選択は、どれでしたか？　なぜその方法を選びましたか？</p>
+    <ul class="reflect-prompts">
+      <li>自分は、何を大切にして選びましたか？</li>
+      <li>どの資料や情報を、根拠にしましたか？</li>
+      <li>別の立場の人から見ると、どんな課題がありそうですか？</li>
+    </ul>
     <textarea class="reflect" placeholder="ここに書いて、学びノートに続きを書こう。"></textarea>
   `;
   main.appendChild(reflectCard);
@@ -471,6 +568,20 @@ function renderEnding(){
 
 function start(options){
   GAME_DATA = options.data;
+  const gid = (GAME_DATA.meta && GAME_DATA.meta.id) || "default";
+  SAVE_KEY = SAVE_KEY_PREFIX + gid;
+  try{
+    if(gid !== "default" && !localStorage.getItem(SAVE_KEY)){
+      const legacy = localStorage.getItem(SAVE_KEY_PREFIX + "default");
+      if(legacy){
+        const parsed = JSON.parse(legacy);
+        if(parsed && parsed.gameId === gid){
+          localStorage.setItem(SAVE_KEY, legacy);
+          localStorage.removeItem(SAVE_KEY_PREFIX + "default");
+        }
+      }
+    }
+  }catch(e){}
   state = null;
   render();
 }

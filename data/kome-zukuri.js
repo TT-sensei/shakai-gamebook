@@ -60,6 +60,7 @@ const KOME_ZUKURI_DATA = {
       text:"ここは、川の水が豊かで、平らな土地が広がる米どころです。田んぼの水は、山に降った雨や雪どけ水が、川や用水路を通って届きます。春のはじめ、まず何を考えますか。",
       requiredLearning:["natural","society"],
       educationalIntent:"米どころの自然条件と、用水を地域で分け合う仕組みを考える。",
+      material:{title:"この土地の自然",kind:"table",head:["","ようす"],rows:[["地形","平らな土地が広がっている"],["水","雪どけ水が、川や用水路を流れる"],["気温","昼は暑く、夜は涼しい"]],note:"昼と夜の気温の差が大きいと、おいしい米が育ちます。"},
       choices:[
         {text:"用水路や田んぼの状態を確認し、地域で水の使い方を相談する", effects:{water:1,cooperation:1},
          result:"水は地域みんなで使うものです。順番や量を相談しておくことで、一年の米づくりがスムーズに始まります。",
@@ -135,6 +136,7 @@ const KOME_ZUKURI_DATA = {
       image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Paddy_field_and_Drainage_System.jpg?width=800","credit":"Kamilmkm / Wikimedia Commons・CC BY-SA 4.0","url":"https://commons.wikimedia.org/wiki/File:Paddy_field_and_Drainage_System.jpg"},
       requiredLearning:["water","natural"],
       educationalIntent:"稲の成長段階に応じて水の量を調整する必要があることを考えさせる。",
+      material:{title:"稲の育ちと水",kind:"list",items:["穂が出る前後は、いちばん水を必要とする時期","実るころには、水を落として田を乾かす（落水）","暑い日が続くと、水が温まりすぎないよう入れ替える"]}, predict:"water",
       choices:[
         {text:"生育の段階に合わせて水深を調整する", effects:{"water":1,"growth":1},
          result:"稲の状態を見ながら水を調整し、生育を支えることができました。",
@@ -173,6 +175,7 @@ const KOME_ZUKURI_DATA = {
       image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Ricefield.jpg?width=800","credit":"Jfi7811 / Wikimedia Commons・CC BY 3.0","url":"https://commons.wikimedia.org/wiki/File:Ricefield.jpg"},
       requiredLearning:["natural","observe"],
       educationalIntent:"天候と稲の状態の両方を見て収穫時期を判断する必要があることを考えさせる。",
+      material:{title:"天気と稲の様子",kind:"voices",items:[{who:"天気予報",text:"明日は晴れ。あさってから、雨の日が続く見込みです。"},{who:"田んぼの稲",text:"穂の約85%が、黄金色になってきました。"}]}, predict:"quality",
       choices:[
         {text:"予定通りの日に収穫する", effects:{"growth":-1,"quality":-1},
          result:"計画通りに進みましたが、直前の天候の変化には対応できませんでした。",
@@ -238,7 +241,7 @@ const KOME_ZUKURI_DATA = {
          point:"米の販売方法には、集荷を通す方法だけでなく、直接販売などもあります。"},
         {text:"品質や出荷条件を確認してから、次の流通へ届ける", effects:{"quality":1,"efficiency":0},
          result:"米の状態を確認してから、次の流通へ届けました。",
-         point:"米は品質や出荷条件を確認しながら、集荷・販売などの流通へ進みます。", fact:"日本で食べられている米は、ほぼすべて日本で作られています（米の自給率はほぼ100%です）。"}
+         point:"米は品質や出荷条件を確認しながら、集荷・販売などの流通へ進みます。", fact:"日本で食べられている米は、ほぼすべて日本で作られています（米の自給率はほぼ100%。農林水産省の資料より）。"}
       ]
     },
     {

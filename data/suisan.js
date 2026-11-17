@@ -74,13 +74,15 @@ CORE_SCENES:{
    {text:"たくさんとれそうな場所を中心に考える",effects:{quantity:-1},result:"魚の数だけでなく、海のようすも見る必要がありました。",point:"水産業では、魚のすむ場所や海のようすなども大切です。"}
   ]},
   {id:"s2",title:"海の広さと魚をとる場所",text:"魚をとる場所によって、とれる魚やかかる時間などがちがいます。近くの海、少し離れた海、遠い海では、どんな方法が考えられますか。", 
-      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Fishing_boat_at_sea_(Hastings).jpg?width=1000","credit":"Poliphilo / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Fishing_boat_at_sea_(Hastings).jpg"},requiredLearning:["fishing","natural"],educationalIntent:"沿岸・沖合・遠洋漁業のちがいと、それぞれの場所に合った工夫を知る。",choices:[
+      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Fishing_boat_at_sea_(Hastings).jpg?width=1000","credit":"Poliphilo / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Fishing_boat_at_sea_(Hastings).jpg"},requiredLearning:["fishing","natural"],educationalIntent:"沿岸・沖合・遠洋漁業のちがいと、それぞれの場所に合った工夫を知る。",material:{title:"とる場所で変わる漁業",kind:"table",head:["種類","場所","方法の例"],rows:[["沿岸漁業","海岸に近い海","一本釣り・定置網"],["沖合漁業","少し離れた海","まき網"],["遠洋漁業","遠くの海","大型船で長期間"]]},
+      choices:[
    {text:"日本の近くの海（沿岸）で、港へ早く戻れるようにとる",effects:{freshness:1,efficiency:1},result:"「沿岸漁業」です。港に近い海で、一本釣りや定置網など、魚や場所に合った方法を使います。",point:"沿岸漁業は海岸に近い海で行う漁業です。とった魚を早く港へ運べることも特徴です。", fact:"日本の漁師の多くは、海岸に近い海で行う沿岸漁業にたずさわっています。"},
    {text:"日本から少し離れた海（沖合）で、まき網などを使ってまとめてとる",effects:{quantity:1,efficiency:1,environment:-1},result:"「沖合漁業」です。魚の群れを見つけ、まき網などを使ってまとめてとる方法があります。",point:"沖合漁業では、魚の群れや季節などを見ながら、効率よくとる工夫があります。たくさんとれる分、資源を守ることも大切です。"},
    {text:"遠くの海（遠洋）まで大型船で行き、とった魚を船で冷やして運ぶ",effects:{quantity:1,freshness:1,efficiency:-1},result:"「遠洋漁業」です。遠くの海まで行くため、長い時間や手間がかかります。そのため、船の中で魚を冷やしたり保存したりする工夫があります。",point:"遠洋漁業は遠い海まで行って魚をとる漁業です。長い時間、海の上で過ごすため、大型船や魚を冷やしたり保存したりする工夫があります。"}
   ]},
   {id:"s3",title:"魚をとりすぎない",text:"ある魚が少なくなってきました。このまま同じようにとり続けると、これからも魚をとれるとはかぎりません。今後のとり方をどうしますか。", 
-      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Choshi_Fishing_Port_03.jpg?width=1000","credit":"Higa4 / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Choshi_Fishing_Port_03.jpg"},requiredLearning:["resource","life"],educationalIntent:"魚をこれからも利用するため、とる量を考える方法を知る。",choices:[
+      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Choshi_Fishing_Port_03.jpg?width=1000","credit":"Higa4 / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Choshi_Fishing_Port_03.jpg"},requiredLearning:["resource","life"],educationalIntent:"魚をこれからも利用するため、とる量を考える方法を知る。",material:{title:"日本の漁業・養殖業の生産量",kind:"stats",items:[{value:"約1,282万トン",label:"1984年（ピーク）"},{value:"約364万トン",label:"2024年"}],note:"水産庁「漁業・養殖業生産統計」より。とれる魚の量は、大きく減ってきています。"}, predict:"quantity",
+      choices:[
    {text:"魚の数や成長を調べ、今後とる量を考える",effects:{quantity:1,efficiency:1,environment:1},result:"魚の数や成長を調べ、とる量を考えることにしました。",point:"魚をこれからも利用するため、魚の数や成長を調べ、とる量を決めたり、ルールを作ったりすることがあります。", fact:"魚をとる量や時期、大きさなどを決めるルールがあり、資源を守りながら漁を続けています。"},
    {text:"今までと同じ量をとり、しばらくようすを見る",effects:{quantity:-1,environment:-1},result:"今はたくさんとれましたが、これからの魚の数を考える必要が出てきました。",point:"魚をとりすぎると、これから魚をとりにくくなることがあります。"},
    {text:"とる量を大きく減らし、魚の数がもどるかを見る",effects:{quantity:-1,environment:1,efficiency:-1},result:"今とれる量は減りましたが、魚を守ることを優先しました。",point:"魚を守るため、とる量を減らすことがあります。必要な量を届けることとのバランスも考えます。"}
@@ -115,7 +117,7 @@ CORE_SCENES:{
   ]},
   {id:"s8",title:"魚を長く食べるために",text:"魚をとる方法や育てる方法には、いくつかの種類があります。魚をこれからも利用していくには、どの方法をどのように組み合わせるとよいでしょう。", 
       image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Salmon_sold_in_Japan_under_the_brand_%22Emperor_Salmon%22.jpg?width=1000","credit":"Syced / Wikimedia Commons・CC0","url":"https://commons.wikimedia.org/wiki/File:Salmon_sold_in_Japan_under_the_brand_%22Emperor_Salmon%22.jpg"},requiredLearning:["resource","cultivation","aquaculture"],educationalIntent:"とる漁業、栽培漁業、養殖業のちがいを整理し、魚をこれからも利用するための考え方をもつ。",choices:[
-   {text:"とる・育てる・海へかえす方法を組み合わせて考える",effects:{quantity:1,efficiency:1},result:"魚の種類や目的に合わせて、いろいろな方法を考えました。",point:"水産業には、とる漁業、ようしょく、さいばい漁業などがあります。", fact:"日本の漁業・養殖業の生産量は、1984年の約1280万トンがピークで、近年は約400万トンほどまで減っています。"},
+   {text:"とる・育てる・海へかえす方法を組み合わせて考える",effects:{quantity:1,efficiency:1},result:"魚の種類や目的に合わせて、いろいろな方法を考えました。",point:"水産業には、とる漁業、ようしょく、さいばい漁業などがあります。", fact:"日本の漁業・養殖業の生産量は、1984年の約1,282万トンがピークでしたが、2024年は約364万トンまで減っています（水産庁「漁業・養殖業生産統計」）。"},
    {text:"魚をとる量だけを増やす",effects:{quantity:-1},result:"魚をこれからも利用するためには、量だけでなく魚の数やようすも考える必要がありました。",point:"魚をこれからも利用するには、魚をとりすぎないことも大切です。"},
    {text:"育てる方法だけにする",effects:{quantity:0},result:"育てる方法も大切ですが、とる漁業などとのつながりもあります。",point:"水産業にはいろいろな方法があります。"}
   ]}
@@ -128,7 +130,8 @@ CORE_SCENES:{
    {text:"魚のようすをあまり確認せずに運ぶ",effects:{freshness:-1,efficiency:-1},result:"魚のようすに合わせた対応ができませんでした。",point:"魚はようすを見ながら、ていねいにあつかうことが大切です。"}
   ]},
   {id:"s_seri",title:"市場のセリ",text:"港に着いた魚は、市場に運ばれました。市場では朝早くから『セリ』が始まります。魚の値段は、どのように決まっていくのでしょう。",
-      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Tsukiji%20fish%20market,%20Chuo%20City;%20November%202013%20(05).jpg?width=1000","credit":"chee.hong / Wikimedia Commons・CC BY 2.0","url":"https://commons.wikimedia.org/wiki/File:Tsukiji_fish_market,_Chuo_City;_November_2013_(05).jpg"},requiredLearning:["distribution","life"],educationalIntent:"セリの仕組みと、魚の値段が決まる流れを知る。",choices:[
+      image:{"src":"https://commons.wikimedia.org/wiki/Special:FilePath/Tsukiji%20fish%20market,%20Chuo%20City;%20November%202013%20(05).jpg?width=1000","credit":"chee.hong / Wikimedia Commons・CC BY 2.0","url":"https://commons.wikimedia.org/wiki/File:Tsukiji_fish_market,_Chuo_City;_November_2013_(05).jpg"},requiredLearning:["distribution","life"],educationalIntent:"セリの仕組みと、魚の値段が決まる流れを知る。",material:{title:"市場で聞いた声",kind:"voices",items:[{who:"仲卸の人",text:"魚は目で見て確かめる。新せんな魚は、目が澄んでいて、体に張りがあるんだ。"},{who:"料理店の人",text:"お客さんに出すから、新せんさが一番大切。多少高くても、よい魚がほしい。"}]},
+      choices:[
    {text:"魚の種類や新せんさを見て、セリの様子を確認する",effects:{freshness:1,efficiency:0},result:"セリでは、仲卸の人たちが魚の状態を目で確かめて、値段を競り合います。新せんな魚ほど、よい値段がつきます。",point:"市場ではセリによって魚の値段が決まり、仲卸を通して店や料理店へ届けられます。",fact:"セリは朝の早い時間に行われます。魚は夜明け前には市場に集まっています。"},
    {text:"セリに出さず、港で直接お店に売る",effects:{efficiency:1,freshness:-1},result:"早く売れましたが、たくさんの買い手と比べることができませんでした。",point:"市場に集めることで、多くの買い手に魚が届き、適正な値段がつきます。"},
    {text:"値段が高いときだけ市場に出す",effects:{quantity:-1,freshness:-1},result:"魚は生ものなので、待っている間に新せんさが落ちてしまいました。",point:"魚は新せんさが大切です。とれたら早く市場へ運ぶことが基本です。"}
