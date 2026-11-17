@@ -877,3 +877,25 @@
     display:flex;
   }
 }
+
+/* =========================================================
+   gamebook-plus：記録・バッジ・固定ボタン
+   ========================================================= */
+#gbplus-bar{position:fixed;right:14px;bottom:14px;z-index:60;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.gbplus-btn{display:inline-block;padding:10px 16px;border-radius:999px;border:1.5px solid rgba(78,124,74,.35);background:rgba(255,255,255,.94);color:var(--paddy-dark);font-size:14px;font-weight:700;text-decoration:none;cursor:pointer;box-shadow:0 2px 8px rgba(38,50,41,.14);font-family:inherit}
+.gbplus-btn:hover{border-color:rgba(78,124,74,.6)}
+.gb-badge-card{margin-top:16px;padding:18px;border-radius:15px;background:#FFF7E0;border:1.5px solid #E4C56A;text-align:center}
+.gb-badge-title{font-size:17px;font-weight:800;color:#7A5B12;margin:0 0 10px}
+.gb-badge-list{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0}
+.gb-badge-chip{display:inline-block;padding:7px 13px;border-radius:999px;background:#fff;border:1.5px solid #E4C56A;color:#7A5B12;font-size:13.5px;font-weight:700}
+.gb-badge-note{font-size:12px;color:var(--ink-soft);margin:8px 0 0}
+.card-record{position:absolute;top:12px;right:12px;z-index:2;padding:5px 11px;border-radius:999px;background:var(--paddy);color:#fff;font-size:12px;font-weight:800}
+#gb-records{margin-top:30px;padding:18px;background:rgba(255,255,255,.62);border:1px solid rgba(76,122,147,.16);border-radius:15px}
+#gb-records .section-head{margin:0 2px 8px}
+.gb-records-empty,.gb-records-summary{font-size:13.5px;line-height:1.7;color:var(--ink-soft);margin:4px 2px 10px}
+.gb-records-games{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:8px}
+.gb-records-game{display:flex;justify-content:space-between;gap:8px;padding:9px 12px;background:#fff;border-radius:11px;font-size:13px}
+.gb-records-name{font-weight:700;color:var(--ink)}
+.gb-records-num{color:var(--ink-soft)}
+@media (max-width:820px){.gb-records-games{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.gb-records-games{grid-template-columns:1fr}}
